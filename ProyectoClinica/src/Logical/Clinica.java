@@ -8,6 +8,13 @@ public class Clinica {
 	private ArrayList<Paciente> misPaciente;
 	private ArrayList<Consultas> misConsultas;
 	private static Clinica clinica = null;
+	private static int generadorCodigoConsulta = 1;
+	private static int generadorCodigoEnfermedad = 1;
+	private static int generadorCodigoHistorialMed = 1;
+	private static int generadorCodigoidMedico = 1;
+	private static int generadorCodigoVacuna = 1;
+	private static int generadorCodigoVivienda = 1;
+	
 	
 	public Clinica() {
 		super();
@@ -47,5 +54,7 @@ public class Clinica {
 	public void setMisConsultas(ArrayList<Consultas> misConsultas) {
 		this.misConsultas = misConsultas;
 	}
+	
+	
 	
 }

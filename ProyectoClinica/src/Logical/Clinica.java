@@ -15,7 +15,6 @@ public class Clinica {
 	private static int generadorCodigoVacuna = 1;
 	private static int generadorCodigoVivienda = 1;
 	
-	
 	public Clinica() {
 		super();
 		this.misMedico = new ArrayList<Medico>();
@@ -54,6 +53,9 @@ public class Clinica {
 	public void setMisConsultas(ArrayList<Consultas> misConsultas) {
 		this.misConsultas = misConsultas;
 	}
+	
+	// A partir de aqui pongamos los metodos...
+	
 	
 	
 	

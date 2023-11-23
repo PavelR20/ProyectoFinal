@@ -11,9 +11,9 @@ public class Clinica {
 	
 	public Clinica() {
 		super();
-		this.misMedico = new ArrayList<>();
-		this.misPaciente = new ArrayList<>();
-		this.misConsultas = new ArrayList<>();
+		this.misMedico = new ArrayList<Medico>();
+		this.misPaciente = new ArrayList<Paciente>();
+		this.misConsultas = new ArrayList<Consultas>();
 	}
 	
 	public static Clinica getInstance(){

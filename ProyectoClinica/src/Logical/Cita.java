@@ -48,6 +48,4 @@ public class Cita {
 		this.fecha = fecha;
 	}
 	
-
-	
 }

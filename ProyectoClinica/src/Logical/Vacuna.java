@@ -1,5 +1,6 @@
 package Logical;
 
+
 public class Vacuna {
 
 	private String idVacuna;
@@ -38,7 +39,7 @@ public class Vacuna {
 	}
 	
 	
-	
+
 	
 	
 }

@@ -1,53 +1,26 @@
 package Logical;
 
+import java.util.ArrayList;
+
 public class HistoriaMedica {
 	
-	private String idHistoriaMedico;
-	private Paciente idpaciente;
-	private Vacuna historialVacunasXpaciente;
-	private Enfermedad historialEnfemerdad;
-	
-	public HistoriaMedica(String idHistoriaMedico, Paciente idpaciente, Vacuna historialVacunasXpaciente,
-			Enfermedad historialEnfemerdad) {
+	private ArrayList<Consultas> historialConsultas;
+
+	public HistoriaMedica(ArrayList<Consultas> historialConsultas) {
 		super();
-		this.idHistoriaMedico = idHistoriaMedico;
-		this.idpaciente = idpaciente;
-		this.historialVacunasXpaciente = historialVacunasXpaciente;
-		this.historialEnfemerdad = historialEnfemerdad;
+		historialConsultas = new ArrayList<Consultas>();
 	}
 
-	public String getIdHistoriaMedico() {
-		return idHistoriaMedico;
+	public ArrayList<Consultas> getHistorialConsultas() {
+		return historialConsultas;
 	}
 
-	public void setIdHistoriaMedico(String idHistoriaMedico) {
-		this.idHistoriaMedico = idHistoriaMedico;
-	}
-
-	public Paciente getIdpaciente() {
-		return idpaciente;
-	}
-
-	public void setIdpaciente(Paciente idpaciente) {
-		this.idpaciente = idpaciente;
-	}
-
-	public Vacuna getHistorialVacunasXpaciente() {
-		return historialVacunasXpaciente;
-	}
-
-	public void setHistorialVacunasXpaciente(Vacuna historialVacunasXpaciente) {
-		this.historialVacunasXpaciente = historialVacunasXpaciente;
-	}
-
-	public Enfermedad getHistorialEnfemerdad() {
-		return historialEnfemerdad;
-	}
-
-	public void setHistorialEnfemerdad(Enfermedad historialEnfemerdad) {
-		this.historialEnfemerdad = historialEnfemerdad;
+	public void setHistorialConsultas(ArrayList<Consultas> historialConsultas) {
+		this.historialConsultas = historialConsultas;
 	}
 	
+	public void agregarConsulta(Consultas consult) {
+		historialConsultas.add(consult);
+	}
 	
-
 }

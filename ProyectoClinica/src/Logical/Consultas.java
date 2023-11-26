@@ -8,6 +8,7 @@ public class Consultas {
 	private Date fechaConsulta;
 	private Enfermedad sintomas;
 	private Paciente patient;
+	
 	public Consultas(String idConsulta, Date fechaConsulta, Enfermedad sintomas, Paciente patient) {
 		super();
 		this.idConsulta = idConsulta;

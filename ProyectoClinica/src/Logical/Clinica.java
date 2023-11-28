@@ -2,6 +2,7 @@ package Logical;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 
 
@@ -13,6 +14,8 @@ public class Clinica {
 	private ArrayList<Vacuna> misVacunas;
 	private ArrayList<Cita> misCitas;
 	private ArrayList<Usuario>misUsuarios;
+	private ArrayList<Enfermedad> misEnfermedades;
+	List<String> listaPacientesAsignados;
 	private static Clinica clinica = null;
 	private static int generadorCodigoConsulta = 1;
 	private static int generadorCodigoEnfermedad = 1;
@@ -28,6 +31,8 @@ public class Clinica {
 		this.misConsultas = new ArrayList<Consultas>();
 		this.misVacunas = new ArrayList<Vacuna>();
 		this.misUsuarios = new ArrayList<Usuario>();
+		this.listaPacientesAsignados = new ArrayList();
+		this.misEnfermedades = new ArrayList<Enfermedad>();
 	}
 	
 	public static Clinica getInstance(){
@@ -156,12 +161,29 @@ public class Clinica {
 	    public void agregarUsuario(Usuario usuario) {
 	        misUsuarios.add(usuario);
 	    }
+	    
+	    public void agregarMedico(Medico medico) {
+	    	misMedico.add(medico);
+	    }
+	    public void agregarEnfermedad(Enfermedad enfermedad) {
+	    	misEnfermedades.add(enfermedad);
+	    }
 
 	   
 	    private String hashPassword(String password) {
 	       
 	        return String.valueOf(password.hashCode());
 	    }
+	    
+	    public void asignarPacienteMedico(String paciente) {
+	        listaPacientesAsignados.add(paciente);
+	        
+	    }
+	    /* Hay que agregar los mismo al reves, digo el asignar medico a paciente. */
+	    
+	    
+	    
+
 	}
 	
 	

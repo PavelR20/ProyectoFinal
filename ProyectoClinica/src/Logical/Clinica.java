@@ -85,45 +85,7 @@ public class Clinica {
 	// A partir de aqui pongamos los metodos...
 	
 	
-
-	public void insertarVacuna(Vacuna vacunas) {
-		
-		misVacunas.add(vacunas);
-		System.out.println(misVacunas);
-		generadorCodigoVacuna++;
-		
-	}
-	
-	public Vacuna obtenervacuna(String idVacuna) {
-		
-		Vacuna vacuna = null;
-		boolean encontrado = false;
-		int i = 0;
-		while(i<misVacunas.size()&& !encontrado) {
-			if(misVacunas.get(i).getIdVacuna().equalsIgnoreCase(idVacuna)) {
-				vacuna = misVacunas.get(i);
-				encontrado = true;
-				break;
-			}
-			i++;
-		}
-		return vacuna;
-		
-		
-		
-	}
-	
-	   private boolean verificarDisponibilidadMedico(Medico medico, Date fecha) {
-	        for (Cita cita : misCitas) {
-	            if (cita.getDoc().equals(medico) && cita.getFecha().equals(fecha)) {
-	                return false; 
-	                }
-	        }
-	        return true; 
-	    }
-	
-
-
+	  // Metodos para crear o insertar 
 	
 	 public void crearCita(String idCita, Paciente paciente, Medico medico, Date fecha) {
 	       
@@ -141,21 +103,6 @@ public class Clinica {
 	        }
 	    }
 	 
-	 
-	    public boolean login(String nombreUsuario, String password, String rol) {
-	        for (Usuario usuario : misUsuarios) {
-	            if (usuario.getNombreUser().equals(nombreUsuario) &&
-	                usuario.getPassword().equals(hashPassword(password)) &&
-	                usuario.getRol().equals(rol)) {
-	                System.out.println("Inicio de sesión exitoso como " + rol);
-	                return true;
-	            }
-	        }
-	        System.out.println("Credenciales incorrectas o usuario no autorizado.");
-	        return false;
-	    }
-
-	
 	    public void agregarUsuario(Usuario usuario) {
 	        misUsuarios.add(usuario);
 	    }
@@ -163,22 +110,22 @@ public class Clinica {
 	    public void agregarMedico(Medico medico) {
 	    	misMedico.add(medico);
 	    }
-	    public void agregarEnfermedad(Enfermedad enfermedad) {
+	    public void agregarEnfermedad(Enfermedad enfermedad) { /* Hay que agregar los mismo al reves, digo el asignar medico a paciente. */
 	    	misEnfermedades.add(enfermedad);
 	    }
 
-	   
-	    private String hashPassword(String password) {
-	       
-	        return String.valueOf(password.hashCode());
-	    }
-	    
 	    public void asignarPacienteMedico(String paciente) {
 	        listaPacientesAsignados.add(paciente);
 	        
 	    }
 	    
-	    /* Hay que agregar los mismo al reves, digo el asignar medico a paciente. */
+		public void insertarVacuna(Vacuna vacunas) {
+			
+			misVacunas.add(vacunas);
+			System.out.println(misVacunas);
+			generadorCodigoVacuna++;
+			
+		}
 	    
 	    // Metodo de busquedas para programa
 	    
@@ -210,7 +157,50 @@ public class Clinica {
 			return medic;
 		}
 	    
-
+		public Vacuna obtenervacuna(String idVacuna) {
+			
+			Vacuna vacuna = null;
+			boolean encontrado = false;
+			int i = 0;
+			while(i<misVacunas.size()&& !encontrado) {
+				if(misVacunas.get(i).getIdVacuna().equalsIgnoreCase(idVacuna)) {
+					vacuna = misVacunas.get(i);
+					encontrado = true;
+					break;
+				}
+				i++;
+			}
+			return vacuna;
+		}
+		
+	    // Otros metodos 
+	    
+	    private String hashPassword(String password) {
+		       
+	        return String.valueOf(password.hashCode());
+	    }
+	    
+	    public boolean login(String nombreUsuario, String password, String rol) {
+	        for (Usuario usuario : misUsuarios) {
+	            if (usuario.getNombreUser().equals(nombreUsuario) &&
+	                usuario.getPassword().equals(hashPassword(password)) &&
+	                usuario.getRol().equals(rol)) {
+	                System.out.println("Inicio de sesión exitoso como " + rol);
+	                return true;
+	            }
+	        }
+	        System.out.println("Credenciales incorrectas o usuario no autorizado.");
+	        return false;
+	    }
+	    
+	    private boolean verificarDisponibilidadMedico(Medico medico, Date fecha) {
+	        for (Cita cita : misCitas) {
+	            if (cita.getDoc().equals(medico) && cita.getFecha().equals(fecha)) {
+	                return false; 
+	                }
+	        }
+	        return true; 
+	    }
 	}
 	
 	

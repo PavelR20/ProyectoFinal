@@ -4,8 +4,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class Clinica {
 	
 	private ArrayList<Medico> misMedico;
@@ -179,9 +177,38 @@ public class Clinica {
 	        listaPacientesAsignados.add(paciente);
 	        
 	    }
+	    
 	    /* Hay que agregar los mismo al reves, digo el asignar medico a paciente. */
 	    
+	    // Metodo de busquedas para programa
 	    
+	    public Paciente obtenerPacienteXnombre(String nombre) {
+			Paciente paciente = null;
+			boolean encontrado = false;
+			int i = 0;
+			while (i < misPaciente.size()&& !encontrado) {
+				if (misPaciente.get(i).getNombre().equalsIgnoreCase(nombre)) {
+					paciente = misPaciente.get(i);
+					encontrado = true;
+				} 
+				i++;
+			}
+			return paciente;
+		}
+	   
+	    public Medico obtenerMedicoXnombre(String nombre) {
+	    	Medico medic = null;
+			boolean encontrado = false;
+			int i = 0;
+			while (i < misMedico.size()&& !encontrado) {
+				if (misMedico.get(i).getNombre().equalsIgnoreCase(nombre)) {
+					medic = misMedico.get(i);
+					encontrado = true;
+				} 
+				i++;
+			}
+			return medic;
+		}
 	    
 
 	}

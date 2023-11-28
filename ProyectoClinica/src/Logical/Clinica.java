@@ -127,7 +127,7 @@ public class Clinica {
 			
 		}
 	    
-	    // Metodo de busquedas para programa
+	   
 	    
 	    public Paciente obtenerPacienteXnombre(String nombre) {
 			Paciente paciente = null;
@@ -173,8 +173,7 @@ public class Clinica {
 			return vacuna;
 		}
 		
-	    // Otros metodos 
-	    
+	   
 	    private String hashPassword(String password) {
 		       
 	        return String.valueOf(password.hashCode());
@@ -184,7 +183,7 @@ public class Clinica {
 	        for (Usuario usuario : misUsuarios) {
 	            if (usuario.getNombreUser().equals(nombreUsuario) &&
 	                usuario.getPassword().equals(hashPassword(password)) &&
-	                usuario.getRol().equals(rol)) {
+	                usuario.getRol().equalsIgnoreCase(rol)) {
 	                System.out.println("Inicio de sesión exitoso como " + rol);
 	                return true;
 	            }
@@ -192,6 +191,7 @@ public class Clinica {
 	        System.out.println("Credenciales incorrectas o usuario no autorizado.");
 	        return false;
 	    }
+	    
 	    
 	    private boolean verificarDisponibilidadMedico(Medico medico, Date fecha) {
 	        for (Cita cita : misCitas) {

@@ -1,6 +1,6 @@
 package Visual;
 
-public class Iniciador {
+public class IniciadorPrograma {
 
 	public static void main(String[] args) {
 		

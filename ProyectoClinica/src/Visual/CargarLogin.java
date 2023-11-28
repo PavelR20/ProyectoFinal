@@ -71,7 +71,7 @@ public class CargarLogin extends JFrame {
 		panel.add(lblNewLabel);
 		
 		lblEsperar = new JLabel("Porfavor Espere");
-		lblEsperar.setBounds(10, 182, 96, 14);
+		lblEsperar.setBounds(10, 182, 135, 14);
 		panel.add(lblEsperar);
 		
 		JLabel lblNewLabel_1 = new JLabel("");

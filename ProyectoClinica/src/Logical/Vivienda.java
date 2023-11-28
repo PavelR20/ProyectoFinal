@@ -1,16 +1,19 @@
 package Logical;
 
+import java.util.ArrayList;
+
 public class Vivienda {
 	
 	private String idVivienda;
 	private String Direccion; 
 	private String telefono;
+	private ArrayList<Persona> misPersonas;
 	
-	public Vivienda(String idVivienda, String direccion, String telefono) {
+	public Vivienda(String idVivienda, String direccion, String telefono,  ArrayList<Persona> misPersonas) {
 		super();
 		this.idVivienda = idVivienda;
 		Direccion = direccion;
-		this.telefono = telefono;
+		this.setMisPersonas(new ArrayList<Persona>());
 	}
 
 	public String getIdVivienda() {
@@ -35,6 +38,14 @@ public class Vivienda {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+
+	public ArrayList<Persona> getMisPersonas() {
+		return misPersonas;
+	}
+
+	public void setMisPersonas(ArrayList<Persona> misPersonas) {
+		this.misPersonas = misPersonas;
 	}
 	
 	

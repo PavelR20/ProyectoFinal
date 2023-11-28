@@ -13,6 +13,7 @@ public class Clinica {
 	private ArrayList<Cita> misCitas;
 	private ArrayList<Usuario>misUsuarios;
 	private ArrayList<Enfermedad> misEnfermedades;
+	private ArrayList<Vivienda> misViviendas;
 	List<String> listaPacientesAsignados;
 	private static Clinica clinica = null;
 	private static int generadorCodigoConsulta = 1;
@@ -31,6 +32,7 @@ public class Clinica {
 		this.misUsuarios = new ArrayList<Usuario>();
 		this.listaPacientesAsignados = new ArrayList();
 		this.misEnfermedades = new ArrayList<Enfermedad>();
+		this.misViviendas = new ArrayList<Vivienda>();
 	}
 	
 	public static Clinica getInstance(){
@@ -126,6 +128,20 @@ public class Clinica {
 			generadorCodigoVacuna++;
 			
 		}
+	public void insertarConsulta(Consultas consultas) {
+				
+				misConsultas.add(consultas);
+				System.out.println(misConsultas);
+				generadorCodigoConsulta++;
+				
+			}
+	public void insertarVivienda(Vivienda viviendas) {
+		
+		misViviendas.add(viviendas);
+		System.out.println(misViviendas);
+		generadorCodigoVivienda++;
+		
+	}
 	    
 	   
 	    

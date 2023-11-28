@@ -202,8 +202,3 @@ public class Clinica {
 	        return true; 
 	    }
 	}
-	
-	
-	
-	
-

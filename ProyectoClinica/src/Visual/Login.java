@@ -109,6 +109,8 @@ public class Login extends JFrame {
 					dispose();
 					JOptionPane.showMessageDialog(null, "Bienvenido a Clinica S.R.L", "Bienvenido", JOptionPane.INFORMATION_MESSAGE);
 					PrincipalVisual main = new PrincipalVisual();
+					String nombreUsuario = txtUser.getText();
+					main.lblUser.setText(nombreUsuario);
 					main.setVisible(true);
 				}else {
 					JOptionPane.showMessageDialog(null, "DATOS ERRONEOS", "ERROR", JOptionPane.ERROR_MESSAGE);

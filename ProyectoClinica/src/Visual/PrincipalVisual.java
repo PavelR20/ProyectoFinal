@@ -12,6 +12,7 @@ import javax.swing.JMenuItem;
 import java.awt.SystemColor;
 import javax.swing.JMenu;
 import java.awt.Color;
+import java.awt.Toolkit;
 
 public class PrincipalVisual extends JFrame {
 
@@ -40,6 +41,8 @@ public class PrincipalVisual extends JFrame {
 	 * Create the frame.
 	 */
 	public PrincipalVisual() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PrincipalVisual.class.getResource("/imagenes/edificio-del-hospital.png")));
+		setTitle("MENU CLINICA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 959, 532);
 		
@@ -50,20 +53,59 @@ public class PrincipalVisual extends JFrame {
 		JMenu mCitas = new JMenu("CITAS");
 		menuBar.add(mCitas);
 		
+		JMenuItem mntmNewMenuItem_12 = new JMenuItem("Hacer Cita");
+		mCitas.add(mntmNewMenuItem_12);
+		
 		JMenu mConsultas = new JMenu("CONSULTAS");
 		menuBar.add(mConsultas);
+		
+		JMenuItem mntmNewMenuItem_11 = new JMenuItem("Hacer Consulta");
+		mConsultas.add(mntmNewMenuItem_11);
 		
 		JMenu mRegistro = new JMenu("REGISTROS");
 		menuBar.add(mRegistro);
 		
+		JMenuItem mntmNewMenuItem_8 = new JMenuItem("Crear Medico");
+		mRegistro.add(mntmNewMenuItem_8);
+		
+		JMenuItem mntmNewMenuItem_9 = new JMenuItem("Crear Paciente");
+		mRegistro.add(mntmNewMenuItem_9);
+		
+		JMenuItem mntmNewMenuItem_10 = new JMenuItem("Crear Vacuna");
+		mRegistro.add(mntmNewMenuItem_10);
+		
 		JMenu mInventario = new JMenu("INVENTARIO");
 		menuBar.add(mInventario);
+		
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Listado Paciente");
+		mInventario.add(mntmNewMenuItem_3);
+		
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Listado Medico");
+		mInventario.add(mntmNewMenuItem_4);
+		
+		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Listado Vacunas");
+		mInventario.add(mntmNewMenuItem_5);
+		
+		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Listado Enfermedades");
+		mInventario.add(mntmNewMenuItem_6);
+		
+		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Listado Vivienda");
+		mInventario.add(mntmNewMenuItem_7);
 		
 		JMenu mUtilidades = new JMenu("UTILIDADES");
 		menuBar.add(mUtilidades);
 		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("WORKING");
+		mUtilidades.add(mntmNewMenuItem_2);
+		
 		JMenu mUSER = new JMenu("USUARIO");
 		menuBar.add(mUSER);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Crear Usuario");
+		mUSER.add(mntmNewMenuItem);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Borrar Usuario");
+		mUSER.add(mntmNewMenuItem_1);
 		
 		lblSepa = new JLabel("--------------INFO-EXTRA---------------");
 		menuBar.add(lblSepa);

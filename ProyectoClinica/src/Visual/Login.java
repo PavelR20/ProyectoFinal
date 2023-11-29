@@ -95,7 +95,7 @@ public class Login extends JFrame {
 				dispose();
 			}
 		});
-		btnSalir.setBounds(237, 162, 89, 23);
+		btnSalir.setBounds(237, 174, 89, 23);
 		contentPane.add(btnSalir);
 		
 		JButton btnEntrar = new JButton("Entrar");
@@ -118,7 +118,7 @@ public class Login extends JFrame {
 				
 			}
 		});
-		btnEntrar.setBounds(330, 162, 89, 23);
+		btnEntrar.setBounds(331, 174, 89, 23);
 		contentPane.add(btnEntrar);
 	}
 }

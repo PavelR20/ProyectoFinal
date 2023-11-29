@@ -25,6 +25,9 @@ public class IniciadorPrograma {
 				
 				if(i == 100) {
 					cargar.dispose();
+					login.setLocationRelativeTo(null);
+					login.setResizable(false);
+					login.setUndecorated(true);
 					login.setVisible(true);
 				}
 			} catch (InterruptedException e) {

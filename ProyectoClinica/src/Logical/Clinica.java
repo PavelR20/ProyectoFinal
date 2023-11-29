@@ -217,4 +217,14 @@ public class Clinica {
 	        }
 	        return true; 
 	    }
+	    
+	    
+	    public List<Enfermedad> getEnfermedadesDiagnosticadas() {
+	        List<Enfermedad> enfermedadesDiagnosticadas = new ArrayList<>();
+	        for (Consultas consulta : misConsultas) {
+	            List<Enfermedad> enfermedadesConsulta = consulta.getSintomas();
+	            enfermedadesDiagnosticadas.addAll(enfermedadesConsulta);
+	        }
+	        return enfermedadesDiagnosticadas;
+	    }
 	}

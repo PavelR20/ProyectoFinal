@@ -31,7 +31,7 @@ public class HistoriaMedica {
 		for (Consultas consultas : historialConsultas) {
 			resumen.setCodigo(historialConsultas.get(i).getIdConsulta());
 			resumen.getMedicos().add(historialConsultas.get(i).getDoctor());
-			resumen.getEnfermedades().add(historialConsultas.get(i).getSintomas());
+			resumen.getEnfermedades().addAll(historialConsultas.get(i).getSintomas());
 			resumen.getFecha().add((Date) historialConsultas.get(i).getFechaConsulta());
 			i++;
 		}

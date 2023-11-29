@@ -3,20 +3,28 @@ package Visual;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
+import org.jfree.chart.labels.StandardCategoryToolTipGenerator;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+
+import Logical.Clinica;
+import Logical.Enfermedad;
 
 public class LogUser extends JDialog {
 
     private final JPanel contentPanel = new JPanel();
-    private JTextField txtUsername;
-    private JTextField txtPass;
+    private JFreeChart barChart;
+    private ChartPanel chartPanel;
 
     /**
      * Launch the application.
@@ -35,7 +43,7 @@ public class LogUser extends JDialog {
      * Create the dialog.
      */
     public LogUser() {
-        setBounds(100, 100, 536, 487);
+        setBounds(100, 100, 662, 487);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -46,39 +54,51 @@ public class LogUser extends JDialog {
         contentPanel.add(panel, BorderLayout.CENTER);
         panel.setLayout(null);
 
-        JButton btnLogin = new JButton("Login");
-        btnLogin.setBounds(266, 236, 79, 23);
-        panel.add(btnLogin);
+        barChart = createChart(createDataset());
+        chartPanel = new ChartPanel(barChart);
+        chartPanel.setBounds(0, 44, 596, 360);
+        panel.add(chartPanel);
 
-        JLabel lblUser = new JLabel("Username:");
-        lblUser.setBounds(143, 108, 85, 14);
-        panel.add(lblUser);
+        JButton btnDiagnose = new JButton("Diagnose");
+        btnDiagnose.addActionListener(e -> {
+            updateDataset();
+            chartPanel.repaint();
+        });
+        btnDiagnose.setBounds(10, 10, 100, 23);
+        panel.add(btnDiagnose);
+    }
 
-        txtUsername = new JTextField();
-        txtUsername.setBounds(242, 105, 146, 20);
-        panel.add(txtUsername);
-        txtUsername.setColumns(10);
+    private CategoryDataset createDataset() {
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.addValue(0, "Enfermedades", "Categoría 1");
+        dataset.addValue(0, "Enfermedades", "Categoría 2");
+        return dataset;
+    }
 
-        JLabel lblPass = new JLabel("Password:");
-        lblPass.setBounds(143, 139, 79, 14);
-        panel.add(lblPass);
+    private void updateDataset() {
+        Clinica clinica = Clinica.getInstance();
+        DefaultCategoryDataset dataset = (DefaultCategoryDataset) barChart.getCategoryPlot().getDataset();
 
-        txtPass = new JTextField();
-        txtPass.setBounds(242, 136, 146, 20);
-        panel.add(txtPass);
-        txtPass.setColumns(10);
+        dataset.clear(); 
 
-        JLabel lblRol = new JLabel("Rol:");
-        lblRol.setBounds(146, 176, 46, 14);
-        panel.add(lblRol);
+        for (Enfermedad enfermedad : clinica.getEnfermedadesDiagnosticadas()) {
+            dataset.addValue(clinica.getEnfermedadesDiagnosticadas().stream()
+                    .filter(e -> e.getIdEnfermedad().equals(enfermedad.getIdEnfermedad())).count(),
+                    "Enfermedades", enfermedad.getNombreEnfermedad());
+        }
+    }
 
-       
-        JComboBox<String> comboBox = new JComboBox<>();
-        comboBox.setBounds(242, 173, 146, 20);
-        DefaultComboBoxModel<String> comboBoxModel = new DefaultComboBoxModel<>();
-        comboBoxModel.addElement("Administrador");
-        comboBoxModel.addElement("Medico");
-        comboBox.setModel(comboBoxModel);
-        panel.add(comboBox);
+    private JFreeChart createChart(CategoryDataset dataset) {
+        JFreeChart chart = ChartFactory.createBarChart(
+                "Enfermedades Propensas",
+                "Enfermedades",
+                "Cantidad de personas con Enfermedad",
+                dataset);
+
+        CategoryPlot plot = (CategoryPlot) chart.getPlot();
+        plot.getRenderer().setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
+        plot.getRenderer().setBaseToolTipGenerator(new StandardCategoryToolTipGenerator());
+
+        return chart;
     }
 }

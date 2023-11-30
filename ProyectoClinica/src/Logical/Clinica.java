@@ -3,7 +3,7 @@ package Logical;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-/*aaa*/
+
 public class Clinica {
 	
 	private ArrayList<Medico> misMedico;

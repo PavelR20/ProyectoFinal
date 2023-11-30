@@ -94,9 +94,9 @@ public class PrincipalVisual extends JFrame {
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Listado Enfermedades");
 		mntmNewMenuItem_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {	
-				LogUser logUserDialog = new LogUser();
-		        logUserDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		        logUserDialog.setVisible(true);
+				//LogUser logUserDialog = new LogUser();
+		        //logUserDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		        //logUserDialog.setVisible(true);
 			}
 		});
 		mInventario.add(mntmNewMenuItem_6);

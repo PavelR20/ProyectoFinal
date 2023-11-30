@@ -43,6 +43,7 @@ public class LogUser extends JDialog {
      * Create the dialog.
      */
     public LogUser() {
+    	setTitle("Enfermedades Propensas");
         setBounds(100, 100, 662, 487);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -3,6 +3,7 @@ package Visual;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -13,7 +14,12 @@ import java.awt.SystemColor;
 import javax.swing.JMenu;
 import java.awt.Color;
 import java.awt.Toolkit;
+<<<<<<< HEAD
 import javax.swing.ImageIcon;
+=======
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+>>>>>>> branch 'master' of https://github.com/PavelR20/ProyectoFinal.git
 
 public class PrincipalVisual extends JFrame {
 
@@ -88,6 +94,13 @@ public class PrincipalVisual extends JFrame {
 		mInventario.add(mntmNewMenuItem_5);
 		
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Listado Enfermedades");
+		mntmNewMenuItem_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {	
+				LogUser logUserDialog = new LogUser();
+		        logUserDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		        logUserDialog.setVisible(true);
+			}
+		});
 		mInventario.add(mntmNewMenuItem_6);
 		
 		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Listado Vivienda");

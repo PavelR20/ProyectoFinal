@@ -22,6 +22,7 @@ public class Clinica {
 	private static int generadorCodigoidMedico = 1;
 	private static int generadorCodigoVacuna = 1;
 	private static int generadorCodigoVivienda = 1;
+	private static int generadorCodigoUser = 1;
 	
 	public Clinica() {
 		super();
@@ -107,6 +108,8 @@ public class Clinica {
 	 
 	    public void agregarUsuario(Usuario usuario) {
 	        misUsuarios.add(usuario);
+	        archivoManager.GuardarUsuarios(misUsuarios);
+	        generadorCodigoUser++;
 	    }
 	    
 	    public void agregarMedico(Medico medico) {

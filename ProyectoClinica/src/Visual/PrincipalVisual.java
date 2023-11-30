@@ -13,6 +13,7 @@ import java.awt.SystemColor;
 import javax.swing.JMenu;
 import java.awt.Color;
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 public class PrincipalVisual extends JFrame {
 
@@ -126,5 +127,10 @@ public class PrincipalVisual extends JFrame {
 		panel.setBackground(SystemColor.window);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(PrincipalVisual.class.getResource("/imagenes/caduceo.png")));
+		lblNewLabel_1.setBounds(411, 153, 64, 104);
+		panel.add(lblNewLabel_1);
 	}
 }

@@ -14,12 +14,10 @@ import java.awt.SystemColor;
 import javax.swing.JMenu;
 import java.awt.Color;
 import java.awt.Toolkit;
-<<<<<<< HEAD
 import javax.swing.ImageIcon;
-=======
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
->>>>>>> branch 'master' of https://github.com/PavelR20/ProyectoFinal.git
+
 
 public class PrincipalVisual extends JFrame {
 

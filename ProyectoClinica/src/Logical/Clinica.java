@@ -16,13 +16,13 @@ public class Clinica {
 	private ArrayList<Vivienda> misViviendas;
 	List<String> listaPacientesAsignados;
 	private static Clinica clinica = null;
-	private static int generadorCodigoConsulta = 1;
-	private static int generadorCodigoEnfermedad = 1;
-	private static int generadorCodigoHistorialMed = 1;
-	private static int generadorCodigoidMedico = 1;
-	private static int generadorCodigoVacuna = 1;
-	private static int generadorCodigoVivienda = 1;
-	private static int generadorCodigoUser = 1;
+	public static int generadorCodigoConsulta = 1;
+	public static int generadorCodigoEnfermedad = 1;
+	public static int generadorCodigoHistorialMed = 1;
+	public static int generadorCodigoidMedico = 1;
+	public static int generadorCodigoVacuna = 1;
+	public static int generadorCodigoVivienda = 1;
+	public static int generadorCodigoUser = 1;
 	
 	public Clinica() {
 		super();

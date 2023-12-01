@@ -90,7 +90,31 @@ public class Clinica {
 	
 	  // Metodos para crear o insertar 
 	
-	 public void crearCita(String idCita, Paciente paciente, Medico medico, Date fecha) {
+	 public ArrayList<Usuario> getMisUsuarios() {
+		return misUsuarios;
+	}
+
+	public void setMisUsuarios(ArrayList<Usuario> misUsuarios) {
+		this.misUsuarios = misUsuarios;
+	}
+
+	public ArrayList<Enfermedad> getMisEnfermedades() {
+		return misEnfermedades;
+	}
+
+	public void setMisEnfermedades(ArrayList<Enfermedad> misEnfermedades) {
+		this.misEnfermedades = misEnfermedades;
+	}
+
+	public ArrayList<Vivienda> getMisViviendas() {
+		return misViviendas;
+	}
+
+	public void setMisViviendas(ArrayList<Vivienda> misViviendas) {
+		this.misViviendas = misViviendas;
+	}
+
+	public void crearCita(String idCita, Paciente paciente, Medico medico, Date fecha) {
 	       
 	        if (misMedico.contains(medico) && misPaciente.contains(paciente)) {	     
 	            if (verificarDisponibilidadMedico(medico, fecha)) {	              

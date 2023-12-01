@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Logical.Clinica;
+import Logical.Vivienda;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -19,6 +20,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class RegistrarVivienda extends JDialog {
 
@@ -26,8 +29,6 @@ public class RegistrarVivienda extends JDialog {
 	private JTextField txtCodeVivienda;
 	private JTextField txtTelefono;
 	private JTextField txtDireccion;
-	private JTable tablePacienteNoVivienda;
-	private JTable table_PacienteSiVivienda;
 
 	/**
 	 * Launch the application.
@@ -47,7 +48,7 @@ public class RegistrarVivienda extends JDialog {
 	 */
 	public RegistrarVivienda() {
 		setTitle("Ingresar Vivienda");
-		setBounds(100, 100, 500, 400);
+		setBounds(100, 100, 400, 250);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -71,7 +72,7 @@ public class RegistrarVivienda extends JDialog {
 			txtCodeVivienda.setColumns(10);
 			
 			JLabel lblNewLabel_2 = new JLabel("Telefono:");
-			lblNewLabel_2.setBounds(23, 55, 52, 14);
+			lblNewLabel_2.setBounds(23, 73, 52, 14);
 			panel.add(lblNewLabel_2);
 			
 			txtTelefono = new JTextField();
@@ -83,57 +84,23 @@ public class RegistrarVivienda extends JDialog {
 						e.consume();
 				}
 			});
-			txtTelefono.setBounds(90, 52, 86, 20);
+			txtTelefono.setBounds(90, 70, 86, 20);
 			panel.add(txtTelefono);
 			txtTelefono.setColumns(10);
 			
 			JLabel lblNewLabel = new JLabel("");
 			lblNewLabel.setIcon(new ImageIcon(RegistrarVivienda.class.getResource("/imagenes/edificio-del-hospital (2).png")));
-			lblNewLabel.setBounds(410, 245, 64, 73);
+			lblNewLabel.setBounds(310, 95, 64, 73);
 			panel.add(lblNewLabel);
 			
 			JLabel lblNewLabel_3 = new JLabel("Direccion:");
-			lblNewLabel_3.setBounds(23, 86, 57, 14);
+			lblNewLabel_3.setBounds(23, 118, 57, 14);
 			panel.add(lblNewLabel_3);
 			
 			txtDireccion = new JTextField();
-			txtDireccion.setBounds(90, 83, 164, 20);
+			txtDireccion.setBounds(90, 115, 164, 20);
 			panel.add(txtDireccion);
 			txtDireccion.setColumns(10);
-			
-			JPanel panel_PacienteNoVivienda = new JPanel();
-			panel_PacienteNoVivienda.setBorder(new TitledBorder(null, "Pacientes sin vivienda", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panel_PacienteNoVivienda.setBounds(23, 142, 166, 135);
-			panel.add(panel_PacienteNoVivienda);
-			panel_PacienteNoVivienda.setLayout(new BorderLayout(0, 0));
-			
-			JScrollPane scrollPanePacienteNoVivienda = new JScrollPane();
-			panel_PacienteNoVivienda.add(scrollPanePacienteNoVivienda, BorderLayout.CENTER);
-			
-			tablePacienteNoVivienda = new JTable();
-			tablePacienteNoVivienda.setBackground(SystemColor.info);
-			scrollPanePacienteNoVivienda.setViewportView(tablePacienteNoVivienda);
-			
-			JPanel panel_PacienteSiVivienda = new JPanel();
-			panel_PacienteSiVivienda.setBorder(new TitledBorder(null, "Pacientes con vivienda", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panel_PacienteSiVivienda.setBounds(224, 142, 176, 135);
-			panel.add(panel_PacienteSiVivienda);
-			panel_PacienteSiVivienda.setLayout(new BorderLayout(0, 0));
-			
-			JScrollPane scrollPane_PacienteSiVivienda = new JScrollPane();
-			panel_PacienteSiVivienda.add(scrollPane_PacienteSiVivienda, BorderLayout.CENTER);
-			
-			table_PacienteSiVivienda = new JTable();
-			table_PacienteSiVivienda.setBackground(SystemColor.info);
-			scrollPane_PacienteSiVivienda.setViewportView(table_PacienteSiVivienda);
-			
-			JButton btnQuitar = new JButton("Quitar");
-			btnQuitar.setBounds(224, 288, 89, 23);
-			panel.add(btnQuitar);
-			
-			JButton btnAgregar = new JButton("Agregar");
-			btnAgregar.setBounds(103, 288, 89, 23);
-			panel.add(btnAgregar);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -142,12 +109,24 @@ public class RegistrarVivienda extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton btnRegistrar = new JButton("Registrar");
+				btnRegistrar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Vivienda casaReg =  new Vivienda(txtCodeVivienda.getText(),txtDireccion.getText(),
+								txtTelefono.getText(), null);
+						Clinica.getInstance().getMisViviendas().add(casaReg);
+					}
+				});
 				btnRegistrar.setActionCommand("OK");
 				buttonPane.add(btnRegistrar);
 				getRootPane().setDefaultButton(btnRegistrar);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}

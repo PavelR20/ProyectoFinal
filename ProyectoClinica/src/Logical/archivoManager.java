@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class archivoManager {
 	
-	private static final String FILE_PATH = "usuarios.txt";
+	private static final String FILE_PATH = "usuarios.txt";	
 	
 	// 
 		public static void GuardarUsuarios(ArrayList<Usuario> usuarios) {

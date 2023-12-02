@@ -55,7 +55,7 @@ public class RegistrarGeneral extends JDialog {
 
     public RegistrarGeneral() {
         setTitle("Registrar");
-        setBounds(100, 100, 756, 530);
+        setBounds(100, 100, 705, 411);
         setResizable(false);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -66,11 +66,6 @@ public class RegistrarGeneral extends JDialog {
             panel.setBackground(SystemColor.info);
             contentPanel.add(panel, BorderLayout.CENTER);
             panel.setLayout(null);
-
-            JLabel lblNewLabel = new JLabel("");
-            lblNewLabel.setIcon(new ImageIcon(RegistrarGeneral.class.getResource("/imagenes/edificio-del-hospital (2).png")));
-            lblNewLabel.setBounds(666, 374, 64, 73);
-            panel.add(lblNewLabel);
             
             
             JPanel panel_DatosGenerales = new JPanel();
@@ -186,7 +181,7 @@ public class RegistrarGeneral extends JDialog {
                                                                                     			                                                panel_Medico = new JPanel();
                                                                                     			                                                panel_Medico.setBorder(new TitledBorder(null, "Datos de Medico", TitledBorder.LEADING, TitledBorder.TOP, null, null));
                                                                                     			                                                panel_Medico.setBackground(SystemColor.info);
-                                                                                    			                                                panel_Medico.setBounds(10, 225, 653, 224);
+                                                                                    			                                                panel_Medico.setBounds(10, 225, 678, 103);
                                                                                     			                                                panel.add(panel_Medico);
                                                                                     			                                                panel_Medico.setLayout(null);
                                                                                     			                                                panel_Medico.setVisible(false);
@@ -219,6 +214,11 @@ public class RegistrarGeneral extends JDialog {
                                                                                     			                                                                                                txtxEspecialidad.setBounds(86, 71, 185, 20);
                                                                                     			                                                                                                panel_Medico.add(txtxEspecialidad);
                                                                                     			                                                                                                txtxEspecialidad.setColumns(10);
+                                                                                    			                                                                                                
+                                                                                    			                                                                                                            JLabel lblNewLabel = new JLabel("");
+                                                                                    			                                                                                                            lblNewLabel.setBounds(604, 15, 64, 73);
+                                                                                    			                                                                                                            panel_Medico.add(lblNewLabel);
+                                                                                    			                                                                                                            lblNewLabel.setIcon(new ImageIcon(RegistrarGeneral.class.getResource("/imagenes/edificio-del-hospital (2).png")));
                                                                                     			                                                                                                
                                                                                     			                                                                                                panel_Paciente = new JPanel();
                                                                                     			                                                                                                panel_Paciente.setBorder(new TitledBorder(null, "Datos Paciente", TitledBorder.LEADING, TitledBorder.TOP, null, null));

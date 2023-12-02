@@ -23,6 +23,7 @@ public class Clinica {
 	public static int generadorCodigoVacuna = 1;
 	public static int generadorCodigoVivienda = 1;
 	public static int generadorCodigoUser = 1;
+	public static int generadorCodigoPaciente = 1;
 	
 	public Clinica() {
 		super();

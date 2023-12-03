@@ -121,6 +121,7 @@ public class VerMisUsuarios extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		
 		cargarDatosDesdeArchivo("usuarios.txt");
 	}
 	

@@ -42,4 +42,19 @@ public class archivoManager {
 	        
 	        return usuarios;
 	    }
+		
+		public static void borrarUsuario(String archivo, String nombreUsuario) {
+	        ArrayList<Usuario> listaUsuarios = LeerUsuario();
+
+	        
+	        for (int i = 0; i < listaUsuarios.size(); i++) {
+	            if (listaUsuarios.get(i).getNombreUser().equalsIgnoreCase(nombreUsuario)) {
+	                listaUsuarios.remove(i);
+	                break;
+	            }
+	        }
+	        
+	        GuardarUsuarios(listaUsuarios);
+	    }
+
 }

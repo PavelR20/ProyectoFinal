@@ -19,6 +19,7 @@ import javax.swing.JTable;
 import java.awt.SystemColor;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -136,6 +137,7 @@ public class VerMisUsuarios extends JDialog {
 	
 		private void buscarPorNombre() {
         String nombreABuscar = txtNombre.getText().trim();
+        boolean usuarioEncontrado = false;
 
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
@@ -145,7 +147,11 @@ public class VerMisUsuarios extends JDialog {
         for (Usuario usuario : listaUsuarios) {
             if (usuario.getNombreUser().equalsIgnoreCase(nombreABuscar)) {
                 model.addRow(new Object[]{usuario.getIdUsuario(), usuario.getNombreUser(), usuario.getPassword(),usuario.getRol()});
+                usuarioEncontrado = true;
             }
+        }
+        if (!usuarioEncontrado) {
+            JOptionPane.showMessageDialog(null, "Error No existe", "Busqueda", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

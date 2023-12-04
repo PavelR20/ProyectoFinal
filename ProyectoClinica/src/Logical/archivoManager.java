@@ -5,12 +5,14 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class archivoManager {
 	
 	private static final String FILE_PATH = "usuarios.txt";	
 	private static final String FILE_PATH1 = "Medico.txt";
+	
 	
 	// Usuarios 
 	
@@ -61,4 +63,23 @@ public class archivoManager {
 	    }
 		
 		// medicos 
+		
+		public static void guardarMedicoEnArchivo(Medico medico) {
+	        try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(FILE_PATH1, true)))) {
+	            writer.println(medico.toString()); 
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+		
+		 public static void leerMedico() {
+		        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH1))) {
+		            String linea;
+		            while ((linea = reader.readLine()) != null) {
+		                System.out.println(linea); 
+		            }
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+		    }
 }

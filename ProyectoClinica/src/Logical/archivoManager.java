@@ -12,7 +12,7 @@ public class archivoManager {
 	
 	private static final String FILE_PATH = "usuarios.txt";	
 	private static final String FILE_PATH1 = "Medico.txt";
-	
+	private static final String FILE_PATH2 = "Paciente.txt";
 	
 	// Usuarios 
 	
@@ -82,4 +82,26 @@ public class archivoManager {
 		            e.printStackTrace();
 		        }
 		    }
+		 
+		// Paciente 
+		 
+		 public static void guardarPacienteEnArchivo(Paciente paciente) {
+		        try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(FILE_PATH2, true)))) {
+		            writer.println(paciente.toString()); 
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+		    }
+			
+			 public static void leerPaciente() {
+			        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH2))) {
+			            String linea;
+			            while ((linea = reader.readLine()) != null) {
+			                System.out.println(linea); 
+			            }
+			        } catch (IOException e) {
+			            e.printStackTrace();
+			        }
+			    }
+		 
 }

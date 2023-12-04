@@ -15,6 +15,10 @@ public class Paciente extends Persona {
 		this.infoEmergencia = infoEmergencia;
 		this.historial = historial;
 	}
+	
+	public String toString() {
+        return super.toString() + "," + "," + idPaciente + "," + infoEmergencia + "," + historial;
+    }
 
 	public String getIdPaciente() {
 		return idPaciente;

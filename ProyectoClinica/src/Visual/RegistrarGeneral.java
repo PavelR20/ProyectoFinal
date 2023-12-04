@@ -348,7 +348,7 @@ public class RegistrarGeneral extends JDialog {
                 						txtTelefono.getText(),textCodigoPaciente.getText(),
                 						Clinica.getInstance().obtenervivienda(txtVivienda.getText()),
                 						textFieldInfoEmergencia.getText(),null);
-                				Clinica.getInstance().getMisPaciente().add(aux);
+                				Clinica.getInstance().agregarPaciente(aux);;
                 				miPersona=aux;
                 			}
                 			clean();

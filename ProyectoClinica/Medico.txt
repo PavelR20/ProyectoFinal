@@ -1,2 +1,3 @@
 Logical.Medico@60232c99
 Logical.Medico@698e1be,Medico -1,asdasda
+4444544444,sfsfsdf,comboBoxChanged,Mon Dec 04 18:49:38 GMT-04:00 2023,534564674,null,,Medico -1,zdfasdfaf

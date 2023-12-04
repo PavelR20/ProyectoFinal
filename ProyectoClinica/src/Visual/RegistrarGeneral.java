@@ -338,7 +338,7 @@ public class RegistrarGeneral extends JDialog {
                 						comboBoxGender.getActionCommand(),(Date)spnFecha.getValue(),
                 						txtTelefono.getText(),Clinica.getInstance().obtenervivienda(txtVivienda.getText()),
                 						txtCodeMed.getText(),txtxEspecialidad.getText());
-                				Clinica.getInstance().getMisMedico().add(aux);
+                				Clinica.getInstance().agregarMedico(aux);;
                 				miPersona=aux;
                 				
                 			}

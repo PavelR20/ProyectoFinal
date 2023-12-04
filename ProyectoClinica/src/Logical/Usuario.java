@@ -1,5 +1,7 @@
 package Logical;
 
+
+
 public class Usuario {
 
 	private String idUsuario;
@@ -48,5 +50,20 @@ public class Usuario {
 	}
 	
 	
+	public boolean autenticar(String contrasena) {
+	    return this.password.equals(contrasena);
+	}
 	
+	public boolean esAdministrador() {
+        return "Administrador".equals(Rol);
+    }
+
+    public boolean esSecretaria() {
+        return "Secretaria".equals(Rol);
+    }
+
+    public boolean esMedico() {
+        return "Medico".equals(Rol);
+    }
+    
 }

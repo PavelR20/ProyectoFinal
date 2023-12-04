@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Logical.Usuario;
+import Logical.archivoManager;
+
 import java.awt.SystemColor;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
@@ -15,6 +19,7 @@ import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
@@ -102,22 +107,42 @@ public class Login extends JFrame {
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				ArrayList<Usuario> usuarios = archivoManager.LeerUsuario();
 				char[] clave = JpassContra.getPassword();
-				String claveFinal = new String(clave);
-				
-				if(txtUser.getText().equals("ADMIN") && claveFinal.equals("1234")) {
-					dispose();
-					JOptionPane.showMessageDialog(null, "Bienvenido a Clinica S.R.L", "Bienvenido", JOptionPane.INFORMATION_MESSAGE);
-					PrincipalVisual main = new PrincipalVisual();
-					String nombreUsuario = txtUser.getText();
-					main.lblUser.setText(nombreUsuario);
-					main.setVisible(true);
-				}else {
-					JOptionPane.showMessageDialog(null, "DATOS ERRONEOS", "ERROR", JOptionPane.ERROR_MESSAGE);
-					txtUser.setText("");
-					JpassContra.setText("");
-				}
-				
+                String claveFinal = new String(clave);
+                String nombreUsuario = txtUser.getText();
+                Usuario usuarioEncontrado = null;
+                
+                for (Usuario usuario : usuarios) {
+                    if (usuario.getNombreUser().equals(nombreUsuario) && usuario.autenticar(claveFinal)) {
+                        usuarioEncontrado = usuario;
+                        break;
+                    }
+                    
+                    if (usuarioEncontrado != null) {
+                        dispose();
+                        JOptionPane.showMessageDialog(null, "Bienvenido a Clinica S.R.L", "Bienvenido", JOptionPane.INFORMATION_MESSAGE);
+                        
+                        if (usuarioEncontrado.esAdministrador()) {
+                           
+                            System.out.println("Acciones para administradores");
+                        } else if (usuarioEncontrado.esSecretaria()) {
+                           
+                            System.out.println("Acciones para secretarias");
+                        } else if (usuarioEncontrado.esMedico()) {
+                           
+                            System.out.println("Acciones para médicos");
+                        }
+                        
+                        PrincipalVisual main = new PrincipalVisual();
+                        main.lblUser.setText(usuarioEncontrado.getNombreUser());
+                        main.setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "DATOS ERRONEOS", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        txtUser.setText("");
+                        JpassContra.setText("");
+                    }
+                }  
 			}
 		});
 		btnEntrar.setBounds(331, 174, 89, 23);

@@ -128,7 +128,7 @@ public class RegistrarVivienda extends JDialog {
 						{
 							casaReg =  new Vivienda(txtCodeVivienda.getText(),txtDireccion.getText(),
 									txtTelefono.getText(), null);
-							Clinica.getInstance().getMisViviendas().add(casaReg);
+							Clinica.getInstance().agregarVivienda(casaReg);
 							clean();
 						}
 						else {

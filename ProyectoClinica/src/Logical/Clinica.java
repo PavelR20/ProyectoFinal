@@ -153,17 +153,26 @@ public class Clinica {
 	    }
 	    
 	    
-	    public void agregarEnfermedad(Enfermedad enfermedad) { /* Hay que agregar los mismo al reves, digo el asignar medico a paciente. */
+	    public void agregarEnfermedad(Enfermedad enfermedad) {
 	    	misEnfermedades.add(enfermedad);
 	    	archivoManager.guardarEnfermedadEnArchivo(enfermedad);
 	    }
 	    
 	    
-	    public void agregarVivienda(Vivienda vivienda) { /* Hay que agregar los mismo al reves, digo el asignar medico a paciente. */
+	    public void agregarVivienda(Vivienda vivienda) {
 	    	misViviendas.add(vivienda);
 	    	archivoManager.guardarViviendaEnArchivo(vivienda);
 	    }
 	    
+	    public void agregarConsulta(Consultas consu) {
+	    	misConsultas.add(consu);
+	    	archivoManager.guardarConsultasEnArchivo(consu);
+	    }
+	    
+	    public void agregarCitas(Cita cita) { 
+	    	misCitas.add(cita);
+	    	archivoManager.guardarCitasEnArchivo(cita);
+	    }
 	    
 	    
 

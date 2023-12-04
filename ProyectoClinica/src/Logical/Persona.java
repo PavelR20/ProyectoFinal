@@ -20,6 +20,11 @@ public class Persona {
 		this.telefono = telefono;
 		this.viviend = viviend;
 	}
+	
+	public String toString() {
+		
+        return cedula + "," + nombre + "," + genero + "," + fechaNacimiento + "," + telefono + "," + viviend;
+    }
 
 	public String getCedula() {
 		return cedula;

@@ -17,7 +17,7 @@ public class Medico extends Persona {
 	}
 	
 	 public String toString() {
-	        return super.toString() + "," + idMedico + "," + especialidad;
+	        return super.toString() + "," + "," + idMedico + "," + especialidad;
 	    }
 	 
 	public String getIdMedico() {

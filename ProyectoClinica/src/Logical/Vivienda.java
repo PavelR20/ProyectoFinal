@@ -12,9 +12,15 @@ public class Vivienda {
 	public Vivienda(String idVivienda, String direccion, String telefono,  ArrayList<Persona> misPersonas) {
 		super();
 		this.idVivienda = idVivienda;
-		Direccion = direccion;
+		this.Direccion = direccion;
+		this.telefono = telefono;
 		this.setMisPersonas(new ArrayList<Persona>());
 	}
+	
+	public String toString() {
+		
+        return idVivienda + "," + Direccion + "," + telefono;
+    }
 
 	public String getIdVivienda() {
 		return idVivienda;

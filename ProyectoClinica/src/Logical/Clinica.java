@@ -155,20 +155,23 @@ public class Clinica {
 	    
 	    public void agregarEnfermedad(Enfermedad enfermedad) { /* Hay que agregar los mismo al reves, digo el asignar medico a paciente. */
 	    	misEnfermedades.add(enfermedad);
-	    }
-
-	    public void asignarPacienteMedico(String paciente) {
-	        listaPacientesAsignados.add(paciente);
-	        
+	    	archivoManager.guardarEnfermedadEnArchivo(enfermedad);
 	    }
 	    
-		public void insertarVacuna(Vacuna vacunas) {
-			
-			misVacunas.add(vacunas);
-			System.out.println(misVacunas);
-			generadorCodigoVacuna++;
-			
-		}
+	    
+	    public void agregarVivienda(Vivienda vivienda) { /* Hay que agregar los mismo al reves, digo el asignar medico a paciente. */
+	    	misViviendas.add(vivienda);
+	    	archivoManager.guardarViviendaEnArchivo(vivienda);
+	    }
+	    
+	    
+	    
+
+	public void asignarPacienteMedico(String paciente) {
+	     listaPacientesAsignados.add(paciente);
+	        
+	}
+	    
 	public void insertarConsulta(Consultas consultas) {
 				
 				misConsultas.add(consultas);
@@ -176,16 +179,7 @@ public class Clinica {
 				generadorCodigoConsulta++;
 				
 			}
-	public void insertarVivienda(Vivienda viviendas) {
-		
-		misViviendas.add(viviendas);
-		System.out.println(misViviendas);
-		generadorCodigoVivienda++;
-		
-	}
-	    
 	   
-	    
 	    public Paciente obtenerPacienteXnombre(String nombre) {
 			Paciente paciente = null;
 			boolean encontrado = false;

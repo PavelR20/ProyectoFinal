@@ -14,6 +14,7 @@ public class archivoManager {
 	private static final String FILE_PATH1 = "Medico.txt";
 	private static final String FILE_PATH2 = "Paciente.txt";
 	private static final String FILE_PATH3 = "vacunas.txt";
+	private static final String FILE_PATH4 = "enfermedad.txt";
 	
 	// Usuarios 
 	
@@ -125,5 +126,26 @@ public class archivoManager {
 				            e.printStackTrace();
 				        }
 				    }
+				 
+				 // enfermedad 
+				 
+				 public static void guardarEnfermedadEnArchivo(Enfermedad enfe) {
+				        try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(FILE_PATH4, true)))) {
+				            writer.println(enfe.toString()); 
+				        } catch (IOException e) {
+				            e.printStackTrace();
+				        }
+				    }
+					
+					 public static void leerEnfermedad() {
+					        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH4))) {
+					            String linea;
+					            while ((linea = reader.readLine()) != null) {
+					                System.out.println(linea); 
+					            }
+					        } catch (IOException e) {
+					            e.printStackTrace();
+					        }
+					    }
 		 
 }

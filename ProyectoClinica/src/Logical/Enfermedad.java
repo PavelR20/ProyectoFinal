@@ -17,7 +17,10 @@ public class Enfermedad {
 		this.sintomas = sintomas;
 		this.vacunaDispo = vacunaDispo;
 	}
-
+	
+	public String toString() {
+        return idEnfermedad + "," + nombreEnfermedad + "," + descripcion + "," + sintomas + "," + vacunaDispo;
+    }
 	public String getIdEnfermedad() {
 		return idEnfermedad;
 	}

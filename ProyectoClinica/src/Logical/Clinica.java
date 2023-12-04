@@ -255,4 +255,19 @@ public class Clinica {
 	        }
 	        return enfermedadesDiagnosticadas;
 	    }
+	    public Vivienda obtenervivienda(String idVivienda) {
+			
+			Vivienda viviendaReg = null;
+			boolean encontrado = false;
+			int i = 0;
+			while(i<misViviendas.size()&& !encontrado) {
+				if(misVacunas.get(i).getIdVacuna().equalsIgnoreCase(idVivienda)) {
+					viviendaReg = misViviendas.get(i);
+					encontrado = true;
+					break;
+				}
+				i++;
+			}
+			return viviendaReg;
+		}
 	}

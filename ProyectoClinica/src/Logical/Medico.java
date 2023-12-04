@@ -9,9 +9,9 @@ public class Medico extends Persona {
 	private String idMedico;
 	private String especialidad;
 	
-	public Medico(String cedula, String nombre, String genero, Date fechaNacimiento, String telefono, String idMedico,
+	public Medico(String cedula, String nombre, String genero, Date fechaNacimiento, String telefono,Vivienda viviend, String idMedico,
 			String especialidad) {
-		super(cedula, nombre, genero, fechaNacimiento, telefono);
+		super(cedula, nombre, genero, fechaNacimiento, telefono, viviend);
 		this.idMedico = idMedico;
 		this.especialidad = especialidad;
 	}

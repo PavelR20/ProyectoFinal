@@ -10,6 +10,9 @@ import javax.swing.border.EmptyBorder;
 
 import Logical.Clinica;
 import Logical.Medico;
+import Logical.Paciente;
+import Logical.Persona;
+import Logical.Vivienda;
 
 import javax.swing.JLabel;
 import java.awt.event.ActionEvent;
@@ -30,7 +33,7 @@ import javax.swing.DefaultComboBoxModel;
 public class RegistrarGeneral extends JDialog {
 
     private final JPanel contentPanel = new JPanel();
-    private JTextField txtCodeVivienda;
+    private JTextField txtCodeMed;
     private JTextField txtTelefono;
     private JTextField txtNombre;
     private JTextField txtCedula;
@@ -42,10 +45,15 @@ public class RegistrarGeneral extends JDialog {
 	private JTextField textCodigoPaciente;
 	private JTextField textFieldInfoEmergencia;
 	private JPanel panel_Paciente;
+	private Persona miPersona;
+	private JTextField txtVivienda;
+	private Vivienda nuevaViv = null;
+	private JComboBox comboBoxGender;
+	private JButton btnEditarVivienda;
 
     public static void main(String[] args) {
         try {
-            RegistrarGeneral dialog = new RegistrarGeneral();
+            RegistrarGeneral dialog = new RegistrarGeneral(null,0);
             dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
             dialog.setVisible(true);
         } catch (Exception e) {
@@ -53,8 +61,15 @@ public class RegistrarGeneral extends JDialog {
         }
     }
 
-    public RegistrarGeneral() {
-        setTitle("Registrar");
+    public RegistrarGeneral(Persona person, int index) {
+    	miPersona = person;
+    	if(miPersona == null)
+    	{
+    		setTitle("Registrar");
+    	}
+    	else {
+    		setTitle("Modificar");
+    	}
         setBounds(100, 100, 705, 411);
         setResizable(false);
         getContentPane().setLayout(new BorderLayout());
@@ -71,7 +86,7 @@ public class RegistrarGeneral extends JDialog {
             JPanel panel_DatosGenerales = new JPanel();
             panel_DatosGenerales.setBorder(new TitledBorder(null, "Datos generales", TitledBorder.LEADING, TitledBorder.TOP, null, null));
             panel_DatosGenerales.setBackground(SystemColor.info);
-            panel_DatosGenerales.setBounds(10, 11, 678, 203);
+            panel_DatosGenerales.setBounds(10, 11, 669, 203);
             panel.add(panel_DatosGenerales);
             panel_DatosGenerales.setLayout(null);
             
@@ -130,12 +145,12 @@ public class RegistrarGeneral extends JDialog {
                                                                                                 lblGenero.setBounds(10, 156, 52, 14);
                                                                                                 panel_DatosGenerales.add(lblGenero);
                                                                                                 
-                                                                                                JComboBox comboBox = new JComboBox();
-                                                                                                comboBox.setModel(new DefaultComboBoxModel(new String[] {"Elegir", "Masculino", "Femenino"}));
-                                                                                                comboBox.setEditable(true);
-                                                                                                comboBox.setMaximumRowCount(3);
-                                                                                                comboBox.setBounds(82, 153, 94, 20);
-                                                                                                panel_DatosGenerales.add(comboBox);
+                                                                                                comboBoxGender = new JComboBox();
+                                                                                                comboBoxGender.setModel(new DefaultComboBoxModel(new String[] {"Elegir", "Masculino", "Femenino"}));
+                                                                                                comboBoxGender.setEditable(true);
+                                                                                                comboBoxGender.setMaximumRowCount(3);
+                                                                                                comboBoxGender.setBounds(82, 153, 94, 20);
+                                                                                                panel_DatosGenerales.add(comboBoxGender);
                                                                                                 
                                                                                                 rdbtnMedico = new JRadioButton("Medico");
                                                                                                 rdbtnMedico.addActionListener(new ActionListener() {
@@ -171,17 +186,69 @@ public class RegistrarGeneral extends JDialog {
                                                                                     			panel_DatosGenerales.add(spnFecha);
                                                                                     			
                                                                                     			JLabel lblNewLabel_3 = new JLabel("Fecha de Naciemiento:");
-                                                                                    			lblNewLabel_3.setBounds(276, 26, 116, 14);
+                                                                                    			lblNewLabel_3.setBounds(255, 26, 144, 14);
                                                                                     			panel_DatosGenerales.add(lblNewLabel_3);
                                                                                     			
-                                                                                    			JLabel lblNewLabel_4 = new JLabel("Vivienda:");
-                                                                                    			lblNewLabel_4.setBounds(276, 86, 52, 14);
+                                                                                    			JLabel lblNewLabel_4 = new JLabel("Codigo de vivienda:");
+                                                                                    			lblNewLabel_4.setBounds(276, 86, 116, 14);
                                                                                     			panel_DatosGenerales.add(lblNewLabel_4);
+                                                                                    			
+                                                                                    			txtVivienda = new JTextField();
+                                                                                    			txtVivienda.setBounds(402, 83, 109, 20);
+                                                                                    			panel_DatosGenerales.add(txtVivienda);
+                                                                                    			txtVivienda.setColumns(10);
+                                                                                    			
+                                                                                    			JButton btnBuscaVivienda = new JButton("Buscar");
+                                                                                    			btnBuscaVivienda.addActionListener(new ActionListener() {
+                                                                                    				public void actionPerformed(ActionEvent e) {
+                                                                                    					nuevaViv = Clinica.getInstance().obtenervivienda(txtVivienda.getText());
+                                                                                    					if(nuevaViv!=null) {
+                                                                                    						txtVivienda.setText(nuevaViv.getIdVivienda());
+                                                                                    						txtVivienda.setEnabled(false);
+                                                                                    					}
+                                                                                    						
+                                                                                    				}
+                                                                                    			});
+                                                                                    			btnBuscaVivienda.setBounds(545, 65, 89, 23);
+                                                                                    			panel_DatosGenerales.add(btnBuscaVivienda);
+                                                                                    			
+                                                                                    			JButton btnCrearVivienda = new JButton("Crear");
+                                                                                    			btnCrearVivienda.addActionListener(new ActionListener() {
+                                                                                    				public void actionPerformed(ActionEvent e) {
+                                                                                    					RegistrarVivienda nueva = new RegistrarVivienda(null,0);
+                                                                                    					nueva.setModal(true);
+                                                                                    					nueva.setVisible(true);
+                                                                                    					nuevaViv = nueva.getCasaReg();
+                                                                                    					if(nuevaViv!=null) {
+                                                                                    						txtVivienda.setText(nuevaViv.getIdVivienda());
+                                                                                    						txtVivienda.setEnabled(false);
+                                                                                    						btnCrearVivienda.setVisible(false);
+                                                                                    						btnEditarVivienda.setVisible(true);
+                                                                                    					}
+                                                                                    				}
+                                                                                    			});
+                                                                                    			btnCrearVivienda.setBounds(545, 101, 89, 23);
+                                                                                    			panel_DatosGenerales.add(btnCrearVivienda);
+                                                                                    			
+                                                                                    			btnEditarVivienda = new JButton("Editar");
+                                                                                    			btnEditarVivienda.setVisible(false);
+                                                                                    			btnEditarVivienda.addActionListener(new ActionListener() {
+                                                                                    				public void actionPerformed(ActionEvent e) {
+                                                                                    					RegistrarVivienda nueva = new RegistrarVivienda (nuevaViv,0);
+                                                                                    					nueva.setModal(true);
+                                                                                    					nueva.setVisible(true);
+                                                                                    				}
+                                                                                    			});
+                                                                                    			btnEditarVivienda.setEnabled(true);
+                                                                                    			btnEditarVivienda.setBounds(545, 106, 89, 23);
+                                                                                    			
+                                                                                    			panel_DatosGenerales.add(btnEditarVivienda);
+                                                                                    			
                                                                                     			                                                
                                                                                     			                                                panel_Medico = new JPanel();
                                                                                     			                                                panel_Medico.setBorder(new TitledBorder(null, "Datos de Medico", TitledBorder.LEADING, TitledBorder.TOP, null, null));
                                                                                     			                                                panel_Medico.setBackground(SystemColor.info);
-                                                                                    			                                                panel_Medico.setBounds(10, 225, 678, 103);
+                                                                                    			                                                panel_Medico.setBounds(10, 225, 598, 103);
                                                                                     			                                                panel.add(panel_Medico);
                                                                                     			                                                panel_Medico.setLayout(null);
                                                                                     			                                                panel_Medico.setVisible(false);
@@ -190,13 +257,13 @@ public class RegistrarGeneral extends JDialog {
                                                                                     			                                                            lblNewLabel_1.setBounds(10, 25, 46, 14);
                                                                                     			                                                            panel_Medico.add(lblNewLabel_1);
                                                                                     			                                                            
-                                                                                    			                                                                        txtCodeVivienda = new JTextField();
-                                                                                    			                                                                        txtCodeVivienda.setBounds(65, 22, 77, 20);
-                                                                                    			                                                                        panel_Medico.add(txtCodeVivienda);
-                                                                                    			                                                                        txtCodeVivienda.setBackground(SystemColor.info);
-                                                                                    			                                                                        txtCodeVivienda.setEnabled(false);
-                                                                                    			                                                                        txtCodeVivienda.setText("Medico -" + Clinica.getInstance().generadorCodigoidMedico);
-                                                                                    			                                                                        txtCodeVivienda.setColumns(10);
+                                                                                    			                                                                        txtCodeMed = new JTextField();
+                                                                                    			                                                                        txtCodeMed.setBounds(65, 22, 77, 20);
+                                                                                    			                                                                        panel_Medico.add(txtCodeMed);
+                                                                                    			                                                                        txtCodeMed.setBackground(SystemColor.info);
+                                                                                    			                                                                        txtCodeMed.setEnabled(false);
+                                                                                    			                                                                        txtCodeMed.setText("Medico -" + Clinica.getInstance().generadorCodigoidMedico);
+                                                                                    			                                                                        txtCodeMed.setColumns(10);
                                                                                     			                                                                        
                                                                                     			                                                                                    JLabel lblEspecialidad = new JLabel("Especialidad:");
                                                                                     			                                                                                    lblEspecialidad.setBounds(10, 74, 97, 14);
@@ -215,15 +282,10 @@ public class RegistrarGeneral extends JDialog {
                                                                                     			                                                                                                panel_Medico.add(txtxEspecialidad);
                                                                                     			                                                                                                txtxEspecialidad.setColumns(10);
                                                                                     			                                                                                                
-                                                                                    			                                                                                                            JLabel lblNewLabel = new JLabel("");
-                                                                                    			                                                                                                            lblNewLabel.setBounds(604, 15, 64, 73);
-                                                                                    			                                                                                                            panel_Medico.add(lblNewLabel);
-                                                                                    			                                                                                                            lblNewLabel.setIcon(new ImageIcon(RegistrarGeneral.class.getResource("/imagenes/edificio-del-hospital (2).png")));
-                                                                                    			                                                                                                
                                                                                     			                                                                                                panel_Paciente = new JPanel();
                                                                                     			                                                                                                panel_Paciente.setBorder(new TitledBorder(null, "Datos Paciente", TitledBorder.LEADING, TitledBorder.TOP, null, null));
                                                                                     			                                                                                                panel_Paciente.setBackground(SystemColor.info);
-                                                                                    			                                                                                                panel_Paciente.setBounds(10, 223, 646, 224);
+                                                                                    			                                                                                                panel_Paciente.setBounds(10, 225, 592, 103);
                                                                                     			                                                                                                panel.add(panel_Paciente);
                                                                                     			                                                                                                panel_Paciente.setLayout(null);
                                                                                     			                                                                                                panel_Paciente.setVisible(false);
@@ -232,19 +294,25 @@ public class RegistrarGeneral extends JDialog {
                                                                                     			                                                                                                panel_Paciente.add(lblNewLabel_5);
                                                                                     			                                                                                                
                                                                                     			                                                                                                textCodigoPaciente = new JTextField("Paciente - "+Clinica.getInstance().generadorCodigoPaciente);
+                                                                                    			                                                                                                textCodigoPaciente.setBackground(SystemColor.info);
                                                                                     			                                                                                                textCodigoPaciente.setEnabled(false);
                                                                                     			                                                                                                textCodigoPaciente.setBounds(66, 33, 86, 20);
                                                                                     			                                                                                                panel_Paciente.add(textCodigoPaciente);
                                                                                     			                                                                                                textCodigoPaciente.setColumns(10);
                                                                                     			                                                                                                
                                                                                     			                                                                                                JLabel lblNewLabel_6 = new JLabel("Informacion de emergencia:");
-                                                                                    			                                                                                                lblNewLabel_6.setBounds(10, 83, 142, 14);
+                                                                                    			                                                                                                lblNewLabel_6.setBounds(10, 70, 184, 14);
                                                                                     			                                                                                                panel_Paciente.add(lblNewLabel_6);
                                                                                     			                                                                                                
                                                                                     			                                                                                                textFieldInfoEmergencia = new JTextField();
-                                                                                    			                                                                                                textFieldInfoEmergencia.setBounds(171, 80, 281, 20);
+                                                                                    			                                                                                                textFieldInfoEmergencia.setBounds(204, 67, 281, 20);
                                                                                     			                                                                                                panel_Paciente.add(textFieldInfoEmergencia);
                                                                                     			                                                                                                textFieldInfoEmergencia.setColumns(10);
+                                                                                    			                                                                                                
+                                                                                    			                                                                                                            JLabel lblNewLabel = new JLabel("");
+                                                                                    			                                                                                                            lblNewLabel.setBounds(612, 255, 64, 73);
+                                                                                    			                                                                                                            panel.add(lblNewLabel);
+                                                                                    			                                                                                                            lblNewLabel.setIcon(new ImageIcon(RegistrarGeneral.class.getResource("/imagenes/edificio-del-hospital (2).png")));
         }
         {
             JPanel buttonPane = new JPanel();
@@ -252,28 +320,95 @@ public class RegistrarGeneral extends JDialog {
             buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
             getContentPane().add(buttonPane, BorderLayout.SOUTH);
             {
-            	 /*  JButton btnRegistrar = new JButton("Registrar");
-                btnRegistrar.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        Medico medicoReg = new Medico(txtCedula.getText(), txtNombre.getText(),
-                               txtGenero.getText(), txtTelefono.getText(), txtxEspecialidad.getText());
-                        Clinica.getInstance().getMisMedico().add(medicoReg);
-                   
-                });
-                btnRegistrar.setActionCommand("OK");
-                buttonPane.add(btnRegistrar);
-                getRootPane().setDefaultButton(btnRegistrar);
-            }
-            { }*/
+            	
                 JButton cancelButton = new JButton("Cancel");
                 cancelButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         dispose();
                     }
                 });
+                
+                JButton btnRegistrar = new JButton("Registrar");
+                btnRegistrar.addActionListener(new ActionListener() {
+                	public void actionPerformed(ActionEvent e) {
+                		if(miPersona == null) {
+                			if(rdbtnMedico.isSelected()) {
+                				
+                				Medico aux = new Medico(txtCedula.getText(),txtNombre.getText(),
+                						comboBoxGender.getActionCommand(),(Date)spnFecha.getValue(),
+                						txtTelefono.getText(),Clinica.getInstance().obtenervivienda(txtVivienda.getText()),
+                						txtCodeMed.getText(),txtxEspecialidad.getText());
+                				Clinica.getInstance().getMisMedico().add(aux);
+                				miPersona=aux;
+                				
+                			}
+                			else {
+                				Paciente aux = new Paciente(txtCedula.getText(),txtNombre.getText(),
+                						comboBoxGender.getActionCommand(),(Date)spnFecha.getValue(),
+                						txtTelefono.getText(),textCodigoPaciente.getText(),
+                						Clinica.getInstance().obtenervivienda(txtVivienda.getText()),
+                						textFieldInfoEmergencia.getText(),null);
+                				Clinica.getInstance().getMisPaciente().add(aux);
+                				miPersona=aux;
+                			}
+                			clean();
+                			
+                		}
+                		else {
+                			
+                		}
+                	}
+                });
+                buttonPane.add(btnRegistrar);
                 cancelButton.setActionCommand("Cancel");
                 buttonPane.add(cancelButton);
             }
         }
+        if(miPersona != null) {
+        	loadPersona();
+        }
+    }
+    
+    public void clean() {
+    	txtCedula.setText("");
+    	if(miPersona instanceof Medico) {
+    		Clinica.getInstance().generadorCodigoidMedico++;
+    	}
+    	else {
+    		Clinica.getInstance().generadorCodigoPaciente++;
+    	}
+    	txtCodeMed.setText("Medico - "+Clinica.getInstance().generadorCodigoidMedico);
+    	textCodigoPaciente.setText("Paciente - "+Clinica.getInstance().generadorCodigoPaciente);
+    	textFieldInfoEmergencia.setText("");
+    	txtNombre.setText("");
+    	txtTelefono.setText("");
+    	txtVivienda.setText("");
+    	txtxEspecialidad.setText("");
+    	rdbtnMedico.setSelected(false);
+    	rdbtnPaciente.setSelected(false);
+    	panel_Medico.setVisible(false);
+    	panel_Paciente.setVisible(false);
+    	txtVivienda.setEnabled(true);
+    }
+    public void loadPersona() {
+    	txtCedula.setText(miPersona.getCedula());
+    	txtNombre.setText(miPersona.getNombre());
+    	txtTelefono.setText(miPersona.getTelefono());
+    	txtVivienda.setText(miPersona.getViviend().getIdVivienda());
+    	comboBoxGender.setActionCommand(miPersona.getGenero());
+    	spnFecha.setEnabled(false);
+    	if(miPersona instanceof Paciente) {
+    		rdbtnMedico.setSelected(false);
+    		rdbtnPaciente.setSelected(true);
+    		textCodigoPaciente.setText(((Paciente) miPersona).getIdPaciente());
+    		textFieldInfoEmergencia.setText(((Paciente) miPersona).getInfoEmergencia());
+    	}
+    	if(miPersona instanceof Medico){
+    		rdbtnMedico.setSelected(true);
+    		rdbtnPaciente.setSelected(false);
+    		txtCodeMed.setText(((Medico) miPersona).getIdMedico());
+    		txtxEspecialidad.setText(((Medico) miPersona).getEspecialidad());
+    		
+    	}
     }
 }

@@ -9,14 +9,16 @@ public class Persona {
 	protected String genero;
 	protected Date fechaNacimiento;
 	protected String telefono;
+	protected Vivienda viviend;
 	
-	public Persona(String cedula, String nombre, String genero, Date fechaNacimiento, String telefono) {
+	public Persona(String cedula, String nombre, String genero, Date fechaNacimiento, String telefono,Vivienda viviend) {
 		super();
 		this.cedula = cedula;
 		this.nombre = nombre;
 		this.genero = genero;
 		this.fechaNacimiento = fechaNacimiento;
 		this.telefono = telefono;
+		this.viviend = viviend;
 	}
 
 	public String getCedula() {
@@ -57,6 +59,14 @@ public class Persona {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+
+	public Vivienda getViviend() {
+		return viviend;
+	}
+
+	public void setViviend(Vivienda viviend) {
+		this.viviend = viviend;
 	}
 	
 	

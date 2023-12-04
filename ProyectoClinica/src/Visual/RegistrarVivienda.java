@@ -29,13 +29,15 @@ public class RegistrarVivienda extends JDialog {
 	private JTextField txtCodeVivienda;
 	private JTextField txtTelefono;
 	private JTextField txtDireccion;
+	private Vivienda miVivienda;
+	private Vivienda casaReg;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			RegistrarVivienda dialog = new RegistrarVivienda();
+			RegistrarVivienda dialog = new RegistrarVivienda(null,0);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -43,11 +45,22 @@ public class RegistrarVivienda extends JDialog {
 		}
 	}
 
+	public Vivienda getCasaReg() {
+		return casaReg;
+	}
+
 	/**
 	 * Create the dialog.
 	 */
-	public RegistrarVivienda() {
-		setTitle("Ingresar Vivienda");
+	public RegistrarVivienda(Vivienda house,int index) {
+		miVivienda = house;
+		if(miVivienda==null) {
+			setTitle("Ingresar Vivienda");
+		}
+		else {
+			setTitle("Modificar Vivienda");
+		}
+		
 		setBounds(100, 100, 400, 250);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -66,8 +79,8 @@ public class RegistrarVivienda extends JDialog {
 			txtCodeVivienda = new JTextField();
 			txtCodeVivienda.setBackground(SystemColor.info);
 			txtCodeVivienda.setEnabled(false);
-			txtCodeVivienda.setText("Vivienda -"+ Clinica.getInstance().generadorCodigoVivienda);
-			txtCodeVivienda.setBounds(90, 21, 64, 20);
+			txtCodeVivienda.setText("Vivienda - "+ Clinica.getInstance().generadorCodigoVivienda);
+			txtCodeVivienda.setBounds(90, 21, 86, 20);
 			panel.add(txtCodeVivienda);
 			txtCodeVivienda.setColumns(10);
 			
@@ -111,9 +124,19 @@ public class RegistrarVivienda extends JDialog {
 				JButton btnRegistrar = new JButton("Registrar");
 				btnRegistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Vivienda casaReg =  new Vivienda(txtCodeVivienda.getText(),txtDireccion.getText(),
-								txtTelefono.getText(), null);
-						Clinica.getInstance().getMisViviendas().add(casaReg);
+						if(miVivienda == null)
+						{
+							casaReg =  new Vivienda(txtCodeVivienda.getText(),txtDireccion.getText(),
+									txtTelefono.getText(), null);
+							Clinica.getInstance().getMisViviendas().add(casaReg);
+							clean();
+						}
+						else {
+							miVivienda.setDireccion(txtDireccion.getText());
+							miVivienda.setIdVivienda(txtCodeVivienda.getText());
+							miVivienda.setTelefono(txtTelefono.getText());
+							dispose();
+						}
 					}
 				});
 				btnRegistrar.setActionCommand("OK");
@@ -131,6 +154,20 @@ public class RegistrarVivienda extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		if(miVivienda!=null)
+			loadVivienda();
+	}
+	
+	public void clean() {
+		Clinica.getInstance().generadorCodigoVivienda++;
+		txtCodeVivienda.setText("Vivienda - "+Clinica.getInstance().generadorCodigoVivienda);
+		txtDireccion.setText("");
+		txtTelefono.setText("");
+	}
+	public void loadVivienda(){
+		txtCodeVivienda.setText(miVivienda.getIdVivienda());
+		txtDireccion.setText(miVivienda.getDireccion());
+		txtTelefono.setText(miVivienda.getTelefono());
 	}
 }
 

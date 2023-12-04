@@ -13,6 +13,11 @@ public class Vacuna {
 		this.nombreVacuna = nombreVacuna;
 		this.idPaciente = idPaciente;
 	}
+	
+	public String toString() {
+		
+        return idVacuna + "," + nombreVacuna + ",";
+    }
 
 	public String getIdVacuna() {
 		return idVacuna;

@@ -147,6 +147,12 @@ public class Clinica {
 	    	archivoManager.guardarPacienteEnArchivo(paciente);
 	    }
 	    
+	    public void agregarVacuna(Vacuna vac) {
+	    	misVacunas.add(vac);
+	    	archivoManager.guardarVacunaEnArchivo(vac);
+	    }
+	    
+	    
 	    public void agregarEnfermedad(Enfermedad enfermedad) { /* Hay que agregar los mismo al reves, digo el asignar medico a paciente. */
 	    	misEnfermedades.add(enfermedad);
 	    }

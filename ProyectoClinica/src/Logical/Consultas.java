@@ -19,6 +19,11 @@ public class Consultas {
         this.doctor = doctor;
         this.patient = patient;
     }
+    
+    public String toString() {
+		
+        return idConsulta + "," + fechaConsulta + "," + sintomas + "," + doctor + "," + patient;
+    }
 
     public String getIdConsulta() {
         return idConsulta;

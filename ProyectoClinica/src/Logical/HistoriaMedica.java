@@ -12,6 +12,7 @@ public class HistoriaMedica {
 		super();
 		historialConsultas = new ArrayList<Consultas>();
 	}
+	
 
 	public ArrayList<Consultas> getHistorialConsultas() {
 		return historialConsultas;

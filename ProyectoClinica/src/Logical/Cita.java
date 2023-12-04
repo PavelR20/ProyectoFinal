@@ -15,6 +15,11 @@ public class Cita {
 		this.doc = doc;
 		this.fecha = fecha;
 	}
+	
+	public String toString() {
+		
+        return idCita + "," + paciente + "," + doc + "," + fecha;
+    }
 
 	public String getIdCita() {
 		return idCita;

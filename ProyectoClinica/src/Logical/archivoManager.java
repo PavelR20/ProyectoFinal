@@ -16,7 +16,9 @@ public class archivoManager {
 	private static final String FILE_PATH3 = "vacunas.txt";
 	private static final String FILE_PATH4 = "enfermedad.txt";
 	private static final String FILE_PATH5 = "vivienda.txt";
-	
+	private static final String FILE_PATH6 = "consultas.txt";
+	private static final String FILE_PATH7 = "citas.txt";
+	private static final String FILE_PATH8 = "historial.txt";
 	// Usuarios 
 	
 	// 
@@ -170,4 +172,68 @@ public class archivoManager {
 						        }
 						    }
 		 
-}
+						 // consultas 
+						 
+						 public static void guardarConsultasEnArchivo(Consultas consu) {
+						        try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(FILE_PATH6, true)))) {
+						            writer.println(consu.toString()); 
+						        } catch (IOException e) {
+						            e.printStackTrace();
+						        }
+						    }
+							
+							 public static void leerConsulta() {
+							        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH6))) {
+							            String linea;
+							            while ((linea = reader.readLine()) != null) {
+							                System.out.println(linea); 
+							            }
+							        } catch (IOException e) {
+							            e.printStackTrace();
+							        }
+							    }
+							 
+							 // citas 
+							 
+							 public static void guardarCitasEnArchivo(Cita cita) {
+							        try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(FILE_PATH7, true)))) {
+							            writer.println(cita.toString()); 
+							        } catch (IOException e) {
+							            e.printStackTrace();
+							        }
+							    }
+								
+								 public static void leerCita() {
+								        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH7))) {
+								            String linea;
+								            while ((linea = reader.readLine()) != null) {
+								                System.out.println(linea); 
+								            }
+								        } catch (IOException e) {
+								            e.printStackTrace();
+								        }
+								    }
+								 
+								 // historial 
+								 
+								 public static void guardarHistorialEnArchivo(HistoriaMedica HM) {
+								        try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(FILE_PATH8, true)))) {
+								            writer.println(HM.toString()); 
+								        } catch (IOException e) {
+								            e.printStackTrace();
+								        }
+								    }
+									
+									 public static void leerHisto() {
+									        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH8))) {
+									            String linea;
+									            while ((linea = reader.readLine()) != null) {
+									                System.out.println(linea); 
+									            }
+									        } catch (IOException e) {
+									            e.printStackTrace();
+									        }
+									    }
+								 
+								 
+}	

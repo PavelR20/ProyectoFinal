@@ -81,7 +81,7 @@ public class ReportePaciente extends JDialog {
 		    btnBuscar.addActionListener(new ActionListener() {
 		        public void actionPerformed(ActionEvent e) {
 		        
-		            buscarID();
+		          //  buscarID();
 		        }
 		    });
 		    btnBuscar.setBounds(243, 23, 80, 20);
@@ -152,7 +152,7 @@ public class ReportePaciente extends JDialog {
 			}
 		}
 	}
-	
+	/*
 	  private void buscarID() {
 	        String idPaciente = txtIdVacuna.getText();
 	        if (!idPaciente.isEmpty()) {
@@ -174,4 +174,5 @@ public class ReportePaciente extends JDialog {
 	            }
 	        }
 	    }
-	}
+	}*/
+}

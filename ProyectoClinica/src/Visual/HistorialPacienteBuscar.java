@@ -66,7 +66,7 @@ public class HistorialPacienteBuscar extends JDialog {
 		ListPanel.add(scrollPane, BorderLayout.CENTER);
 		
 		
-		String[] headear = {"ID","Usuario","Password", "Rol"};
+		String[] headear = {"ID","Paciente","Cedula"};
 		model = new DefaultTableModel();
 		model.setColumnIdentifiers(headear);
 		table = new JTable();
@@ -130,7 +130,12 @@ public class HistorialPacienteBuscar extends JDialog {
 	private void cargarDatosDesdeArchivo(String archivo) {
 		ArrayList<Paciente> listaPaciente = archivoManager.leerPacientes();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
+        
+        model.setRowCount(0);
 
+		for (Paciente paciente : listaPaciente) {
+			model.addRow(new Object[]{paciente.getIdPaciente(), paciente.getNombre(), paciente.getCedula()});
+		}
     }
 	
 		private void buscarPorNombre() {

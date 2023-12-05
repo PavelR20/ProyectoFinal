@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import Logical.Clinica;
 import Logical.Usuario;
 import Logical.archivoManager;
 
@@ -25,23 +24,19 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-import javax.swing.ScrollPaneConstants;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
-public class VerMisUsuarios extends JDialog {
+public class HistorialPacienteBuscar extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTable table;
 	private JTextField txtNombre;
+	
 	private static DefaultTableModel model;
 	private static Object[] row;
-	private JButton borrar;
-	private Usuario selected = null;
 
 	public static void main(String[] args) {
 		try {
-			VerMisUsuarios dialog = new VerMisUsuarios();
+			HistorialPacienteBuscar dialog = new HistorialPacienteBuscar();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -52,7 +47,7 @@ public class VerMisUsuarios extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public VerMisUsuarios() {
+	public HistorialPacienteBuscar() {
 		setTitle("Ver usuarios");
 		setBounds(100, 100, 750, 433);
 		getContentPane().setLayout(new BorderLayout());
@@ -67,7 +62,6 @@ public class VerMisUsuarios extends JDialog {
 		ListPanel.setLayout(new BorderLayout(0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		ListPanel.add(scrollPane, BorderLayout.CENTER);
 		
 		
@@ -75,19 +69,6 @@ public class VerMisUsuarios extends JDialog {
 		model = new DefaultTableModel();
 		model.setColumnIdentifiers(headear);
 		table = new JTable();
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int index = table.getSelectedRow();
-				if(index >= 0) {
-					borrar.setEnabled(true);
-					
-					String codigoUsuario = table.getValueAt(index, 0).toString();
-					selected = Clinica.getInstance().buscarUsuarioPorCodigo(codigoUsuario);
-
-				}
-			}
-		});
 		table.setModel(model);
 		scrollPane.setViewportView(table);
 		
@@ -116,7 +97,7 @@ public class VerMisUsuarios extends JDialog {
 				buscarPorNombre();
 			}
 		});
-		btnBuscar.setIcon(new ImageIcon(VerMisUsuarios.class.getResource("/imagenes/busqueda-de-lupa (1).png")));
+		btnBuscar.setIcon(new ImageIcon(HistorialPacienteBuscar.class.getResource("/imagenes/busqueda-de-lupa (1).png")));
 		btnBuscar.setBounds(666, 28, 38, 22);
 		OpcionesPanel.add(btnBuscar);
 		{
@@ -125,16 +106,10 @@ public class VerMisUsuarios extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				borrar = new JButton("Borrar");
-				borrar.setEnabled(false);
-				borrar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						archivoManager.borrarUsuario(selected);
-					}
-				});
-				borrar.setActionCommand("OK");
-				buttonPane.add(borrar);
-				getRootPane().setDefaultButton(borrar);
+				JButton okButton = new JButton("Borrar");
+				okButton.setActionCommand("OK");
+				buttonPane.add(okButton);
+				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Salir");

@@ -128,12 +128,9 @@ public class HistorialPacienteBuscar extends JDialog {
 	}
 	
 	private void cargarDatosDesdeArchivo(String archivo) {
-		ArrayList<Paciente> listaPaciente = archivoManager.leerPaciente();
+		ArrayList<Paciente> listaPaciente = archivoManager.leerPacientes();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
 
-        for (Usuario usuario : listaUsuarios) {
-            model.addRow(new Object[]{usuario.getIdUsuario(), usuario.getNombreUser(), usuario.getPassword(),usuario.getRol()});
-        }
     }
 	
 		private void buscarPorNombre() {

@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import Logical.Paciente;
 import Logical.Usuario;
 import Logical.archivoManager;
 
@@ -79,15 +80,15 @@ public class HistorialPacienteBuscar extends JDialog {
 		OpcionesPanel.setLayout(null);
 		
 		txtNombre = new JTextField();
-		txtNombre.setBounds(53, 28, 603, 20);
+		txtNombre.setBounds(57, 28, 599, 20);
 		OpcionesPanel.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Buscar:");
-		lblNewLabel.setBounds(10, 31, 38, 14);
+		lblNewLabel.setBounds(10, 31, 58, 14);
 		OpcionesPanel.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Lista de usuarios");
+		JLabel lblNewLabel_1 = new JLabel("Lista de Pacientes");
 		lblNewLabel_1.setBounds(10, 3, 694, 14);
 		OpcionesPanel.add(lblNewLabel_1);
 		
@@ -123,11 +124,11 @@ public class HistorialPacienteBuscar extends JDialog {
 			}
 		}
 		
-		cargarDatosDesdeArchivo("usuarios.txt");
+		cargarDatosDesdeArchivo("paciente.txt");
 	}
 	
 	private void cargarDatosDesdeArchivo(String archivo) {
-        ArrayList<Usuario> listaUsuarios = archivoManager.LeerUsuario();
+		ArrayList<Paciente> listaPaciente = archivoManager.leerPaciente();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
 
         for (Usuario usuario : listaUsuarios) {

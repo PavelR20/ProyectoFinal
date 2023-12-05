@@ -93,28 +93,28 @@ public class archivoManager {
 		}
 	}
 
-	public static ArrayList<Paciente> leerPacientes() {
-		ArrayList<Paciente> pacientes = new ArrayList<>();
-		
+	public static void leerPaciente() {
 		 try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH2))) {
 		        String line;
 		        while ((line = reader.readLine()) != null) {
 		            String[] parts = line.split(",");
 		            if (parts.length == 10) {
-		            	
-		            	 Vivienda vivienda = new Vivienda(parts[6], parts[7], parts[8], new ArrayList<Persona>());
-		                 Paciente paciente = new Paciente(parts[0], parts[1], parts[2], parseDate(parts[3]), parts[4],
-		                         parts[5], vivienda, parts[9], new HistoriaMedica(new ArrayList<>()));
+		                Paciente paciente = new Paciente(parts[0], parts[1], parts[2], parseDate(parts[3]), parts[4],
+		                        parts[5], new Vivienda(parts[6], parts[7], parts[8], new ArrayList<Persona>()),
+		                        parts[9], new HistoriaMedica(new ArrayList<>()));
 		                
-		                pacientes.add(paciente);
-		                
+		                String[] consultas = parts[9].split(";");
+		                for (String consultaStr : consultas) {
+		                    String[] consultaParts = consultaStr.split(":");
+		                    //paciente.getHistorial().getHistorialConsultas().add(consultas);
+		                }
+
+		                System.out.println(paciente);
 		            }
 		        }
 		    } catch (IOException e) {
 		        e.printStackTrace();
 		    }
-		 
-		 return pacientes;
 	}
 
 	// Vacuna 

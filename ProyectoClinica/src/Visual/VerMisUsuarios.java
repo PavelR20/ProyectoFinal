@@ -129,6 +129,7 @@ public class VerMisUsuarios extends JDialog {
 				borrar.setEnabled(false);
 				borrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						archivoManager.borrarUsuario(selected);
 					}
 				});
 				borrar.setActionCommand("OK");

@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class archivoManager {
 	
@@ -93,14 +94,27 @@ public class archivoManager {
 	}
 
 	public static void leerPaciente() {
-		try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH2))) {
-			String linea;
-			while ((linea = reader.readLine()) != null) {
-				System.out.println(linea); 
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		 try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH2))) {
+		        String line;
+		        while ((line = reader.readLine()) != null) {
+		            String[] parts = line.split(",");
+		            if (parts.length == 10) {
+		                Paciente paciente = new Paciente(parts[0], parts[1], parts[2], parseDate(parts[3]), parts[4],
+		                        parts[5], new Vivienda(parts[6], parts[7], parts[8], new ArrayList<Persona>()),
+		                        parts[9], new HistoriaMedica(new ArrayList<>()));
+		                
+		                String[] consultas = parts[9].split(";");
+		                for (String consultaStr : consultas) {
+		                    String[] consultaParts = consultaStr.split(":");
+		                    //paciente.getHistorial().getHistorialConsultas().add(consultas);
+		                }
+
+		                System.out.println(paciente);
+		            }
+		        }
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
 	}
 
 	// Vacuna 
@@ -228,6 +242,9 @@ public class archivoManager {
 			e.printStackTrace();
 		}
 	}
-
+	
+	private static Date parseDate(String dateStr) {
+	    return null;
+	}
 								 
 }	

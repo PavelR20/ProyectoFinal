@@ -280,4 +280,34 @@ public class Clinica {
 			}
 			return viviendaReg;
 		}
+	    public Paciente obtenerPacienteById(String id) {
+			
+			Paciente pacienteReg = null;
+			boolean encontrado = false;
+			int i = 0;
+			while(i<misPaciente.size()&& !encontrado) {
+				if(misPaciente.get(i).getIdPaciente().equalsIgnoreCase(id)) {
+					pacienteReg = misPaciente.get(i);
+					encontrado = true;
+					break;
+				}
+				i++;
+			}
+			return pacienteReg;
+		}
+	    public Medico obtenerMedicoById(String id) {
+			
+			Medico medicoReg = null;
+			boolean encontrado = false;
+			int i = 0;
+			while(i<misMedico.size()&& !encontrado) {
+				if(misMedico.get(i).getIdMedico().equalsIgnoreCase(id)) {
+					medicoReg = misMedico.get(i);
+					encontrado = true;
+					break;
+				}
+				i++;
+			}
+			return medicoReg;
+		}
 	}

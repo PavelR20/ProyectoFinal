@@ -13,6 +13,7 @@ import Logical.Medico;
 import Logical.Paciente;
 import Logical.Persona;
 import Logical.Vivienda;
+import javafx.scene.control.ComboBox;
 
 import javax.swing.JLabel;
 import java.awt.event.ActionEvent;
@@ -48,7 +49,7 @@ public class RegistrarGeneral extends JDialog {
 	private Persona miPersona;
 	private JTextField txtVivienda;
 	private Vivienda nuevaViv = null;
-	private JComboBox comboBoxGender;
+	private JComboBox<String> comboBoxGender;
 	private JButton btnEditarVivienda;
 
     public static void main(String[] args) {
@@ -335,7 +336,7 @@ public class RegistrarGeneral extends JDialog {
                 			if(rdbtnMedico.isSelected()) {
                 				
                 				Medico aux = new Medico(txtCedula.getText(),txtNombre.getText(),
-                						comboBoxGender.getActionCommand(),(Date)spnFecha.getValue(),
+                						((String)comboBoxGender.getSelectedItem()),(Date)spnFecha.getValue(),
                 						txtTelefono.getText(),Clinica.getInstance().obtenervivienda(txtVivienda.getText()),
                 						txtCodeMed.getText(),txtxEspecialidad.getText());
                 				Clinica.getInstance().agregarMedico(aux);;
@@ -344,7 +345,7 @@ public class RegistrarGeneral extends JDialog {
                 			}
                 			else {
                 				Paciente aux = new Paciente(txtCedula.getText(),txtNombre.getText(),
-                						comboBoxGender.getActionCommand(),(Date)spnFecha.getValue(),
+                						((String)comboBoxGender.getSelectedItem()),(Date)spnFecha.getValue(),
                 						txtTelefono.getText(),textCodigoPaciente.getText(),
                 						Clinica.getInstance().obtenervivienda(txtVivienda.getText()),
                 						textFieldInfoEmergencia.getText(),null);
@@ -355,7 +356,25 @@ public class RegistrarGeneral extends JDialog {
                 			
                 		}
                 		else {
-                			
+                			miPersona.setCedula(txtCedula.getText());
+                			miPersona.setFechaNacimiento((Date)spnFecha.getValue());
+                			miPersona.setGenero((String)comboBoxGender.getSelectedItem());
+                			miPersona.setNombre(txtNombre.getText());
+                			miPersona.setTelefono(txtTelefono.getText());
+                			miPersona.setViviend(Clinica.getInstance().obtenervivienda(txtVivienda.getText()));
+                			if(miPersona instanceof Paciente) {
+                	    		rdbtnMedico.setSelected(false);
+                	    		rdbtnPaciente.setSelected(true);
+                	    		((Paciente) miPersona).setIdPaciente(textCodigoPaciente.getText());
+                	    		((Paciente) miPersona).setInfoEmergencia(textFieldInfoEmergencia.getText());
+                	    	}
+                	    	if(miPersona instanceof Medico){
+                	    		rdbtnMedico.setSelected(true);
+                	    		rdbtnPaciente.setSelected(false);
+                	    		((Medico) miPersona).setIdMedico(txtCodeMed.getText());
+                	    		((Medico) miPersona).setEspecialidad(txtxEspecialidad.getText());
+                	    		
+                	    	}
                 		}
                 	}
                 });

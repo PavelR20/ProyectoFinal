@@ -6,12 +6,16 @@ public class Vacuna {
 	private String idVacuna;
 	private String nombreVacuna;
 	private Paciente idPaciente;
+	private int cantidad;
+	private String Descripcion;
 	
-	public Vacuna(String idVacuna, String nombreVacuna, Paciente idPaciente) {
+	public Vacuna(String idVacuna, String nombreVacuna, Paciente idPaciente,int cantidad,String Descripcion) {
 		super();
 		this.idVacuna = idVacuna;
 		this.nombreVacuna = nombreVacuna;
 		this.idPaciente = idPaciente;
+		this.cantidad = cantidad;
+		this.Descripcion = Descripcion;
 	}
 	
 	public String toString() {
@@ -41,6 +45,22 @@ public class Vacuna {
 
 	public void setIdPaciente(Paciente idPaciente) {
 		this.idPaciente = idPaciente;
+	}
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+
+	public String getDescripcion() {
+		return Descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		Descripcion = descripcion;
 	}
 	
 	

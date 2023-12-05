@@ -114,9 +114,23 @@ public class PrincipalVisual extends JFrame {
 		menuBar.add(mUSER);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Crear Usuario");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearUser user = new CrearUser();
+				user.setModal(true);
+				user.setVisible(true);
+			}
+		});
 		mUSER.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Borrar Usuario");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VerMisUsuarios usuarios = new VerMisUsuarios();
+				usuarios.setModal(true);
+				usuarios.setVisible(true);
+			}
+		});
 		mUSER.add(mntmNewMenuItem_1);
 		
 		lblSepa = new JLabel("--------------INFO-EXTRA---------------");

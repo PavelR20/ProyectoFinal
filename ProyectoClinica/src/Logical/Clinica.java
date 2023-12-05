@@ -277,7 +277,7 @@ public class Clinica {
 			boolean encontrado = false;
 			int i = 0;
 			while(i<misViviendas.size()&& !encontrado) {
-				if(misVacunas.get(i).getIdVacuna().equalsIgnoreCase(idVivienda)) {
+				if(misViviendas.get(i).getIdVivienda().equalsIgnoreCase(idVivienda)) {
 					viviendaReg = misViviendas.get(i);
 					encontrado = true;
 					break;

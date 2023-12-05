@@ -25,6 +25,24 @@ public class PrincipalVisual extends JFrame {
 	public JLabel lblSepa;
 	private JMenuBar menuBar;
 	public JLabel lblUser;
+	public JMenuItem hacerCita;
+	public JMenuItem HacerConsultas;
+	public JMenu mRegistro;
+	public JMenuItem crearPersona;
+	public JMenuItem mntmNewMenuItem_9;
+	public JMenuItem crearVacuna;
+	public JMenu mUSER;
+	public JMenu mUtilidades;
+	public JMenu mInvertario;
+	public JMenu mConsultas;
+	public JMenu mCitas;
+	public JMenuItem crearUsuario;
+	public JMenuItem borrarUsuario;
+	public JMenuItem listaPaciente;
+	public JMenuItem listaMedico;
+	public JMenuItem listadoVacuna;
+	public JMenuItem listadoEnfermedad;
+	public JMenuItem listaVivienda;
 
 	/**
 	 * Launch the application.
@@ -55,83 +73,83 @@ public class PrincipalVisual extends JFrame {
 		menuBar.setBackground(SystemColor.activeCaption);
 		setJMenuBar(menuBar);
 		
-		JMenu mCitas = new JMenu("CITAS");
+		mCitas = new JMenu("CITAS");
 		menuBar.add(mCitas);
 		
-		JMenuItem mntmNewMenuItem_12 = new JMenuItem("Hacer Cita");
-		mCitas.add(mntmNewMenuItem_12);
+		hacerCita = new JMenuItem("Hacer Cita");
+		mCitas.add(hacerCita);
 		
-		JMenu mConsultas = new JMenu("CONSULTAS");
+		mConsultas = new JMenu("CONSULTAS");
 		menuBar.add(mConsultas);
 		
-		JMenuItem mntmNewMenuItem_11 = new JMenuItem("Hacer Consulta");
-		mConsultas.add(mntmNewMenuItem_11);
+		HacerConsultas = new JMenuItem("Hacer Consulta");
+		mConsultas.add(HacerConsultas);
 		
-		JMenu mRegistro = new JMenu("REGISTROS");
+		mRegistro = new JMenu("REGISTROS");
 		menuBar.add(mRegistro);
 		
-		JMenuItem mntmNewMenuItem_8 = new JMenuItem("Crear Medico");
-		mRegistro.add(mntmNewMenuItem_8);
+		crearPersona = new JMenuItem("Crear Medico");
+		mRegistro.add(crearPersona);
 		
-		JMenuItem mntmNewMenuItem_9 = new JMenuItem("Crear Paciente");
+		mntmNewMenuItem_9 = new JMenuItem("Crear Paciente");
 		mRegistro.add(mntmNewMenuItem_9);
 		
-		JMenuItem mntmNewMenuItem_10 = new JMenuItem("Crear Vacuna");
-		mRegistro.add(mntmNewMenuItem_10);
+		crearVacuna = new JMenuItem("Crear Vacuna");
+		mRegistro.add(crearVacuna);
 		
-		JMenu mInventario = new JMenu("INVENTARIO");
-		menuBar.add(mInventario);
+		mInvertario = new JMenu("INVENTARIO");
+		menuBar.add(mInvertario);
 		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Listado Paciente");
-		mInventario.add(mntmNewMenuItem_3);
+		listaPaciente = new JMenuItem("Listado Paciente");
+		mInvertario.add(listaPaciente);
 		
-		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Listado Medico");
-		mInventario.add(mntmNewMenuItem_4);
+		listaMedico = new JMenuItem("Listado Medico");
+		mInvertario.add(listaMedico);
 		
-		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Listado Vacunas");
-		mInventario.add(mntmNewMenuItem_5);
+		listadoVacuna = new JMenuItem("Listado Vacunas");
+		mInvertario.add(listadoVacuna);
 		
-		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Listado Enfermedades");
-		mntmNewMenuItem_6.addActionListener(new ActionListener() {
+		listadoEnfermedad = new JMenuItem("Listado Enfermedades");
+		listadoEnfermedad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {	
 				//LogUser logUserDialog = new LogUser();
 		        //logUserDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		        //logUserDialog.setVisible(true);
 			}
 		});
-		mInventario.add(mntmNewMenuItem_6);
+		mInvertario.add(listadoEnfermedad);
 		
-		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Listado Vivienda");
-		mInventario.add(mntmNewMenuItem_7);
+		listaVivienda = new JMenuItem("Listado Vivienda");
+		mInvertario.add(listaVivienda);
 		
-		JMenu mUtilidades = new JMenu("UTILIDADES");
+		mUtilidades = new JMenu("UTILIDADES");
 		menuBar.add(mUtilidades);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("WORKING");
 		mUtilidades.add(mntmNewMenuItem_2);
 		
-		JMenu mUSER = new JMenu("USUARIO");
+		mUSER = new JMenu("USUARIO");
 		menuBar.add(mUSER);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Crear Usuario");
-		mntmNewMenuItem.addActionListener(new ActionListener() {
+		crearUsuario = new JMenuItem("Crear Usuario");
+		crearUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CrearUser user = new CrearUser();
 				user.setModal(true);
 				user.setVisible(true);
 			}
 		});
-		mUSER.add(mntmNewMenuItem);
+		mUSER.add(crearUsuario);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Borrar Usuario");
-		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+		borrarUsuario = new JMenuItem("Borrar Usuario");
+		borrarUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VerMisUsuarios usuarios = new VerMisUsuarios();
 				usuarios.setModal(true);
 				usuarios.setVisible(true);
 			}
 		});
-		mUSER.add(mntmNewMenuItem_1);
+		mUSER.add(borrarUsuario);
 		
 		lblSepa = new JLabel("--------------INFO-EXTRA---------------");
 		menuBar.add(lblSepa);

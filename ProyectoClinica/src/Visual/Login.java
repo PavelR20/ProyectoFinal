@@ -123,19 +123,33 @@ public class Login extends JFrame {
                     if (usuarioEncontrado != null) {
                         dispose();
                         JOptionPane.showMessageDialog(null, "Bienvenido a Clinica S.R.L", "Bienvenido", JOptionPane.INFORMATION_MESSAGE);
-           
+                        PrincipalVisual main = new PrincipalVisual();
+                        
                         if (usuarioEncontrado.esAdministrador()) {
-                           
-                            System.out.println("Acciones para administradores");
+                        	
+                        	main.mConsultas.setVisible(false);
+                        	main.mCitas.setVisible(false);
+                        	    	
+                           System.out.println("Acciones para administradores");
                         } else if (usuarioEncontrado.esSecretaria()) {
+                        	
+                           main.mConsultas.setVisible(false);
+                           main.listadoEnfermedad.setVisible(false);
+                           main.listadoVacuna.setVisible(false);
+                           main.mRegistro.setVisible(false);
+                           main.listaVivienda.setVisible(false);
+                           main.mUSER.setVisible(false);
                            
-                            System.out.println("Acciones para secretarias");
+                           System.out.println("Acciones para secretarias");
                         } else if (usuarioEncontrado.esMedico()) {
+                        	
+                           main.mCitas.setVisible(false);
+                           main.listaVivienda.setVisible(false);
+                           main.mUSER.setVisible(false);
                            
-                            System.out.println("Acciones para médicos");
+                           System.out.println("Acciones para médicos");
                         }
                         
-                        PrincipalVisual main = new PrincipalVisual();
                         main.lblUser.setText(usuarioEncontrado.getNombreUser());
                         main.setVisible(true);
                     } else {

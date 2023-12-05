@@ -7,15 +7,17 @@ public class Enfermedad {
 	private String descripcion;
 	private String sintomas;
 	private Vacuna vacunaDispo;
+	private boolean enfermedadVigilancia = true; 
 	
 	public Enfermedad(String idEnfermedad, String nombreEnfermedad, String descripcion, String sintomas,
-			Vacuna vacunaDispo) {
+			Vacuna vacunaDispo,boolean enfermedadVigilancia) {
 		super();
 		this.idEnfermedad = idEnfermedad;
 		this.nombreEnfermedad = nombreEnfermedad;
 		this.descripcion = descripcion;
 		this.sintomas = sintomas;
 		this.vacunaDispo = vacunaDispo;
+		this.setEnfermedadVigilancia(enfermedadVigilancia);
 	}
 	
 	public String toString() {
@@ -59,6 +61,14 @@ public class Enfermedad {
 
 	public void setVacunaDispo(Vacuna vacunaDispo) {
 		this.vacunaDispo = vacunaDispo;
+	}
+
+	public boolean isEnfermedadVigilancia() {
+		return enfermedadVigilancia;
+	}
+
+	public void setEnfermedadVigilancia(boolean enfermedadVigilancia) {
+		this.enfermedadVigilancia = enfermedadVigilancia;
 	}
 	
 	

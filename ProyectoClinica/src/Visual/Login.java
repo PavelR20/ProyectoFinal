@@ -118,11 +118,12 @@ public class Login extends JFrame {
                         usuarioEncontrado = usuario;
                         break;
                     }
-                    
+                }
+                
                     if (usuarioEncontrado != null) {
                         dispose();
                         JOptionPane.showMessageDialog(null, "Bienvenido a Clinica S.R.L", "Bienvenido", JOptionPane.INFORMATION_MESSAGE);
-                        
+           
                         if (usuarioEncontrado.esAdministrador()) {
                            
                             System.out.println("Acciones para administradores");
@@ -143,7 +144,7 @@ public class Login extends JFrame {
                         JpassContra.setText("");
                     }
                 }  
-			}
+			
 		});
 		btnEntrar.setBounds(331, 174, 89, 23);
 		contentPane.add(btnEntrar);

@@ -19,6 +19,7 @@ public class archivoManager {
 	private static final String FILE_PATH6 = "consultas.txt";
 	private static final String FILE_PATH7 = "citas.txt";
 	private static final String FILE_PATH8 = "historial.txt";
+	
 	// Usuarios 
 	
 	// 

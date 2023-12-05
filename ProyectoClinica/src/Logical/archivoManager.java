@@ -23,13 +23,12 @@ public class archivoManager {
 	// Usuarios 
 	
 	public static void GuardarUsuarios(ArrayList<Usuario> usuarios) {
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
+		try(PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(FILE_PATH, true)))) {
 			for (Usuario usuario : usuarios) {
 				writer.write(usuario.getIdUsuario() + ","
 						+ usuario.getNombreUser() + ","
 						+ usuario.getPassword() + ","
 						+ usuario.getRol());
-				writer.newLine(); 
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -55,7 +54,6 @@ public class archivoManager {
 
 	 public static void borrarUsuario(Usuario usuario) {
 		ArrayList<Usuario> listaUsuarios = LeerUsuario();
-
 
 		if (usuario != null) {
             listaUsuarios.remove(usuario);

@@ -234,11 +234,7 @@ public class Clinica {
 		}
 		
 	   
-	    private String hashPassword(String password) {
-		       
-	        return String.valueOf(password.hashCode());
-	    }
-	    
+	  
 	    public Usuario buscarUsuarioPorCodigo(String codigoUsuario) {
 	    	
 	        ArrayList<Usuario> usuarios = archivoManager.LeerUsuario();
@@ -250,20 +246,6 @@ public class Clinica {
 
 	        return null; 
 	    }
-	    
-	    public boolean login(String nombreUsuario, String password, String rol) {
-	        for (Usuario usuario : misUsuarios) {
-	            if (usuario.getNombreUser().equals(nombreUsuario) &&
-	                usuario.getPassword().equals(hashPassword(password)) &&
-	                usuario.getRol().equalsIgnoreCase(rol)) {
-	                System.out.println("Inicio de sesión exitoso como " + rol);
-	                return true;
-	            }
-	        }
-	        System.out.println("Credenciales incorrectas o usuario no autorizado.");
-	        return false;
-	    }
-	    
 	    
 	    private boolean verificarDisponibilidadMedico(Medico medico, Date fecha) {
 	        for (Cita cita : misCitas) {

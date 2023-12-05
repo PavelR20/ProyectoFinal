@@ -60,17 +60,17 @@ public class VerMisUsuarios extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
+
 		JPanel ListPanel = new JPanel();
 		ListPanel.setBounds(10, 75, 714, 275);
 		contentPanel.add(ListPanel);
 		ListPanel.setLayout(new BorderLayout(0, 0));
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		ListPanel.add(scrollPane, BorderLayout.CENTER);
-		
-		
+
+
 		String[] headear = {"ID","Usuario","Password", "Rol"};
 		model = new DefaultTableModel();
 		model.setColumnIdentifiers(headear);
@@ -81,35 +81,35 @@ public class VerMisUsuarios extends JDialog {
 				int index = table.getSelectedRow();
 				if(index >= 0) {
 					borrar.setEnabled(true);
-					
+
 					String codigoUsuario = table.getValueAt(index, 0).toString();
 					selected = Clinica.getInstance().buscarUsuarioPorCodigo(codigoUsuario);
-
+					System.out.println("Usuario seleccionado para borrar: " + selected);
 				}
 			}
 		});
 		table.setModel(model);
 		scrollPane.setViewportView(table);
-		
+
 		JPanel OpcionesPanel = new JPanel();
 		OpcionesPanel.setBackground(SystemColor.scrollbar);
 		OpcionesPanel.setBounds(10, 11, 714, 59);
 		contentPanel.add(OpcionesPanel);
 		OpcionesPanel.setLayout(null);
-		
+
 		txtNombre = new JTextField();
 		txtNombre.setBounds(53, 28, 603, 20);
 		OpcionesPanel.add(txtNombre);
 		txtNombre.setColumns(10);
-		
+
 		JLabel lblNewLabel = new JLabel("Buscar:");
 		lblNewLabel.setBounds(10, 31, 38, 14);
 		OpcionesPanel.add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Lista de usuarios");
 		lblNewLabel_1.setBounds(10, 3, 694, 14);
 		OpcionesPanel.add(lblNewLabel_1);
-		
+
 		JButton btnBuscar = new JButton("");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -129,15 +129,17 @@ public class VerMisUsuarios extends JDialog {
 				borrar.setEnabled(false);
 				borrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+
 						int confirmacion = JOptionPane.showConfirmDialog(null, "¿Seguro que desea borrar este usuario?",
 								"Confirmación", JOptionPane.YES_NO_OPTION);
-						
+
 						if (confirmacion == JOptionPane.YES_OPTION) {
-				            archivoManager.borrarUsuario(selected);
-				            cargarDatosDesdeArchivo("usuarios.txt");
-				            borrar.setEnabled(false);
-				        }
+							if (selected != null) {
+								archivoManager.borrarUsuario(selected);
+								cargarDatosDesdeArchivo("usuarios.txt");
+								borrar.setEnabled(false);
+							} 
+						}
 					}
 				});
 				borrar.setActionCommand("OK");
@@ -155,36 +157,38 @@ public class VerMisUsuarios extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
-		
+
 		cargarDatosDesdeArchivo("usuarios.txt");
 	}
-	
+
 	private void cargarDatosDesdeArchivo(String archivo) {
-        ArrayList<Usuario> listaUsuarios = archivoManager.LeerUsuario();
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
+		ArrayList<Usuario> listaUsuarios = archivoManager.LeerUsuario();
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
 
-        for (Usuario usuario : listaUsuarios) {
-            model.addRow(new Object[]{usuario.getIdUsuario(), usuario.getNombreUser(), usuario.getPassword(),usuario.getRol()});
-        }
-    }
-	
-		private void buscarPorNombre() {
-        String nombreABuscar = txtNombre.getText().trim();
-        boolean usuarioEncontrado = false;
+		model.setRowCount(0);
 
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        model.setRowCount(0);
+		for (Usuario usuario : listaUsuarios) {
+			model.addRow(new Object[]{usuario.getIdUsuario(), usuario.getNombreUser(), usuario.getPassword(), usuario.getRol()});
+		}
+	}
 
-        ArrayList<Usuario> listaUsuarios = archivoManager.LeerUsuario();
+	private void buscarPorNombre() {
+		String nombreABuscar = txtNombre.getText().trim();
+		boolean usuarioEncontrado = false;
 
-        for (Usuario usuario : listaUsuarios) {
-            if (usuario.getNombreUser().equalsIgnoreCase(nombreABuscar)) {
-                model.addRow(new Object[]{usuario.getIdUsuario(), usuario.getNombreUser(), usuario.getPassword(),usuario.getRol()});
-                usuarioEncontrado = true;
-            }
-        }
-        if (!usuarioEncontrado) {
-            JOptionPane.showMessageDialog(null, "Error No existe", "Busqueda", JOptionPane.ERROR_MESSAGE);
-        }
-    }
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		model.setRowCount(0);
+
+		ArrayList<Usuario> listaUsuarios = archivoManager.LeerUsuario();
+
+		for (Usuario usuario : listaUsuarios) {
+			if (usuario.getNombreUser().equalsIgnoreCase(nombreABuscar)) {
+				model.addRow(new Object[]{usuario.getIdUsuario(), usuario.getNombreUser(), usuario.getPassword(),usuario.getRol()});
+				usuarioEncontrado = true;
+			}
+		}
+		if (!usuarioEncontrado) {
+			JOptionPane.showMessageDialog(null, "Error No existe", "Busqueda", JOptionPane.ERROR_MESSAGE);
+		}
+	}
 }

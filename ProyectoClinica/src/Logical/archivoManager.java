@@ -53,19 +53,15 @@ public class archivoManager {
 		return usuarios;
 	}
 
-	public static void borrarUsuario(String nombreUsuario) {
+	 public static void borrarUsuario(Usuario usuario) {
 		ArrayList<Usuario> listaUsuarios = LeerUsuario();
 
 
-		for (int i = 0; i < listaUsuarios.size(); i++) {
-			if (listaUsuarios.get(i).getNombreUser().equalsIgnoreCase(nombreUsuario)) {
-				listaUsuarios.remove(i);
-				break;
-			}
-		}
-
-		GuardarUsuarios(listaUsuarios);
-	}
+		if (usuario != null) {
+            listaUsuarios.remove(usuario);
+            GuardarUsuarios(listaUsuarios);
+        }
+    }
 
 	// medicos 
 

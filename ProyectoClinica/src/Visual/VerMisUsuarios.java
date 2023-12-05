@@ -129,7 +129,15 @@ public class VerMisUsuarios extends JDialog {
 				borrar.setEnabled(false);
 				borrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						archivoManager.borrarUsuario(selected);
+						
+						int confirmacion = JOptionPane.showConfirmDialog(null, "¿Seguro que desea borrar este usuario?",
+								"Confirmación", JOptionPane.YES_NO_OPTION);
+						
+						if (confirmacion == JOptionPane.YES_OPTION) {
+				            archivoManager.borrarUsuario(selected);
+				            cargarDatosDesdeArchivo("usuarios.txt");
+				            borrar.setEnabled(false);
+				        }
 					}
 				});
 				borrar.setActionCommand("OK");

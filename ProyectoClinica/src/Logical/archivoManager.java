@@ -53,7 +53,7 @@ public class archivoManager {
 		return usuarios;
 	}
 
-	public static void borrarUsuario(String archivo, String nombreUsuario) {
+	public static void borrarUsuario(String nombreUsuario) {
 		ArrayList<Usuario> listaUsuarios = LeerUsuario();
 
 

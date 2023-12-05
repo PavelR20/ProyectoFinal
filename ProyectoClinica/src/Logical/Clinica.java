@@ -239,6 +239,18 @@ public class Clinica {
 	        return String.valueOf(password.hashCode());
 	    }
 	    
+	    public Usuario buscarUsuarioPorCodigo(String codigoUsuario) {
+	    	
+	        ArrayList<Usuario> usuarios = archivoManager.LeerUsuario();
+	        for (Usuario usuario : usuarios) {
+	            if (usuario.getIdUsuario().equals(codigoUsuario)) {
+	                return usuario;
+	            }
+	        }
+
+	        return null; 
+	    }
+	    
 	    public boolean login(String nombreUsuario, String password, String rol) {
 	        for (Usuario usuario : misUsuarios) {
 	            if (usuario.getNombreUser().equals(nombreUsuario) &&

@@ -60,7 +60,7 @@ public class RegistrarVivienda extends JDialog {
 		else {
 			setTitle("Modificar Vivienda");
 		}
-		
+
 		setBounds(100, 100, 400, 250);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -71,11 +71,11 @@ public class RegistrarVivienda extends JDialog {
 			panel.setBackground(SystemColor.info);
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
-			
+
 			JLabel lblNewLabel_1 = new JLabel("Codigo:");
 			lblNewLabel_1.setBounds(23, 24, 46, 14);
 			panel.add(lblNewLabel_1);
-			
+
 			txtCodeVivienda = new JTextField();
 			txtCodeVivienda.setBackground(SystemColor.info);
 			txtCodeVivienda.setEnabled(false);
@@ -83,11 +83,11 @@ public class RegistrarVivienda extends JDialog {
 			txtCodeVivienda.setBounds(90, 21, 86, 20);
 			panel.add(txtCodeVivienda);
 			txtCodeVivienda.setColumns(10);
-			
+
 			JLabel lblNewLabel_2 = new JLabel("Telefono:");
 			lblNewLabel_2.setBounds(23, 73, 52, 14);
 			panel.add(lblNewLabel_2);
-			
+
 			txtTelefono = new JTextField();
 			txtTelefono.addKeyListener(new KeyAdapter() {
 				@Override
@@ -100,16 +100,16 @@ public class RegistrarVivienda extends JDialog {
 			txtTelefono.setBounds(90, 70, 86, 20);
 			panel.add(txtTelefono);
 			txtTelefono.setColumns(10);
-			
+
 			JLabel lblNewLabel = new JLabel("");
 			lblNewLabel.setIcon(new ImageIcon(RegistrarVivienda.class.getResource("/imagenes/edificio-del-hospital (2).png")));
 			lblNewLabel.setBounds(310, 95, 64, 73);
 			panel.add(lblNewLabel);
-			
+
 			JLabel lblNewLabel_3 = new JLabel("Direccion:");
 			lblNewLabel_3.setBounds(23, 118, 57, 14);
 			panel.add(lblNewLabel_3);
-			
+
 			txtDireccion = new JTextField();
 			txtDireccion.setBounds(90, 115, 164, 20);
 			panel.add(txtDireccion);
@@ -157,7 +157,7 @@ public class RegistrarVivienda extends JDialog {
 		if(miVivienda!=null)
 			loadVivienda();
 	}
-	
+
 	public void clean() {
 		Clinica.getInstance().generadorCodigoVivienda++;
 		txtCodeVivienda.setText("Vivienda - "+Clinica.getInstance().generadorCodigoVivienda);

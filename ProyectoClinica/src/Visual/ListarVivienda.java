@@ -56,7 +56,7 @@ public class ListarVivienda extends JDialog {
 				{
 					modelo = new DefaultTableModel();
 					String[] headers = {"Codigo","Direccion","Telefono"};
-					
+
 					modelo.setColumnIdentifiers(headers);
 					table = new JTable();
 					table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -85,12 +85,12 @@ public class ListarVivienda extends JDialog {
 	}
 
 	public static void loadViviendas() {
-	    modelo.setRowCount(0);
-	    row = new Object[table.getColumnCount()];
-	    for (Vivienda viviend : Clinica.getInstance().getMisViviendas()) {
-            row[0] = viviend.getIdVivienda();
-            row[1] = viviend.getDireccion();
-            row[2] = viviend.getTelefono();
-	    }
+		modelo.setRowCount(0);
+		row = new Object[table.getColumnCount()];
+		for (Vivienda viviend : Clinica.getInstance().getMisViviendas()) {
+			row[0] = viviend.getIdVivienda();
+			row[1] = viviend.getDireccion();
+			row[2] = viviend.getTelefono();
+		}
 	}
 }

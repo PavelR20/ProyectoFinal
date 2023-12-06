@@ -58,23 +58,23 @@ public class RegistrarEnfermedad extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(RegistrarEnfermedad.class.getResource("/imagenes/edificio-del-hospital (2).png")));
 		lblNewLabel.setBounds(356, 152, 68, 65);
 		contentPanel.add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Codigo: ");
 		lblNewLabel_1.setBounds(10, 11, 46, 14);
 		contentPanel.add(lblNewLabel_1);
-		
+
 		txtCodigo = new JTextField("Enfermedad - "+Clinica.getInstance().generadorCodigoEnfermedad);
 		txtCodigo.setBackground(SystemColor.info);
 		txtCodigo.setEnabled(false);
 		txtCodigo.setBounds(106, 8, 96, 20);
 		contentPanel.add(txtCodigo);
 		txtCodigo.setColumns(10);
-		
+
 		txtNombre = new JTextField();
 		txtNombre.addKeyListener(new KeyAdapter() {
 			@Override
@@ -87,24 +87,24 @@ public class RegistrarEnfermedad extends JDialog {
 		txtNombre.setBounds(106, 39, 86, 20);
 		contentPanel.add(txtNombre);
 		txtNombre.setColumns(10);
-		
+
 		textDescripcion = new JTextField();
 		textDescripcion.setBounds(106, 75, 219, 20);
 		contentPanel.add(textDescripcion);
 		textDescripcion.setColumns(10);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("Nombre:");
 		lblNewLabel_2.setBounds(10, 42, 59, 14);
 		contentPanel.add(lblNewLabel_2);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("Descripcion:");
 		lblNewLabel_3.setBounds(10, 78, 75, 14);
 		contentPanel.add(lblNewLabel_3);
-		
+
 		JLabel lblNewLabel_4 = new JLabel("Sintomas:");
 		lblNewLabel_4.setBounds(10, 112, 75, 14);
 		contentPanel.add(lblNewLabel_4);
-		
+
 		txtSintomas = new JTextField();
 		txtSintomas.setBounds(106, 109, 219, 65);
 		contentPanel.add(txtSintomas);
@@ -119,7 +119,7 @@ public class RegistrarEnfermedad extends JDialog {
 					btnRegistrar = new JButton("Registrar");
 				else
 					btnRegistrar = new JButton("Actualizar");
-				
+
 				btnRegistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(miEnfermedad == null)
@@ -154,7 +154,7 @@ public class RegistrarEnfermedad extends JDialog {
 		}
 		if(miEnfermedad!=null)
 			loadEnfermedad();
-			
+
 	}
 	public void clean() {
 		Clinica.getInstance().generadorCodigoEnfermedad++;

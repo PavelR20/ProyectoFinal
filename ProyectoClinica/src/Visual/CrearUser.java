@@ -53,38 +53,38 @@ public class CrearUser extends JDialog {
 			JPanel panel = new JPanel();
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
-			
+
 			JLabel lblNewLabel = new JLabel("ID:");
 			lblNewLabel.setBounds(68, 40, 22, 14);
 			panel.add(lblNewLabel);
-			
+
 			JLabel lblNewLabel_1 = new JLabel("User ID:");
 			lblNewLabel_1.setBounds(44, 65, 46, 14);
 			panel.add(lblNewLabel_1);
-			
+
 			JLabel lblNewLabel_2 = new JLabel("Password:");
 			lblNewLabel_2.setBounds(42, 90, 63, 14);
 			panel.add(lblNewLabel_2);
-			
+
 			JLabel lblNewLabel_3 = new JLabel("Rol:");
 			lblNewLabel_3.setBounds(68, 114, 22, 14);
 			panel.add(lblNewLabel_3);
-			
+
 			txtPassword = new JTextField();
 			txtPassword.setBounds(100, 87, 140, 20);
 			panel.add(txtPassword);
 			txtPassword.setColumns(10);
-			
+
 			txtUserId = new JTextField();
 			txtUserId.setBounds(100, 62, 140, 20);
 			panel.add(txtUserId);
 			txtUserId.setColumns(10);
-			
+
 			TXTcodID = new JTextField();
 			TXTcodID.setBounds(100, 37, 140, 20);
 			panel.add(TXTcodID);
 			TXTcodID.setColumns(10);
-			
+
 			cbxRol = new JComboBox();
 			cbxRol.setModel(new DefaultComboBoxModel(new String[] {"Selecionar rol", "Medico", "Administrador", "Secretaria"}));
 			cbxRol.setBounds(100, 115, 140, 20);

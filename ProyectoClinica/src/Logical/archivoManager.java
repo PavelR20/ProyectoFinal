@@ -6,11 +6,14 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class archivoManager {
-	
+
 	private static final String FILE_PATH = "usuarios.txt";	
 	private static final String FILE_PATH1 = "Medico.txt";
 	private static final String FILE_PATH2 = "Paciente.txt";
@@ -20,9 +23,9 @@ public class archivoManager {
 	private static final String FILE_PATH6 = "consultas.txt";
 	private static final String FILE_PATH7 = "citas.txt";
 	private static final String FILE_PATH8 = "historial.txt";
-	
+
 	// Usuarios 
-	
+
 	public static void GuardarUsuarios(ArrayList<Usuario> usuarios) {
 		try(PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(FILE_PATH, true)))) {
 			for (Usuario usuario : usuarios) {
@@ -53,14 +56,14 @@ public class archivoManager {
 		return usuarios;
 	}
 
-	 public static void borrarUsuario(Usuario usuario) {
+	public static void borrarUsuario(Usuario usuario) {
 		ArrayList<Usuario> listaUsuarios = LeerUsuario();
 
 		if (usuario != null) {
-            listaUsuarios.remove(usuario);
-            GuardarUsuarios(listaUsuarios);
-        }
-    }
+			listaUsuarios.remove(usuario);
+			GuardarUsuarios(listaUsuarios);
+		}
+	}
 
 	// medicos 
 
@@ -72,15 +75,24 @@ public class archivoManager {
 		}
 	}
 
-	public static void leerMedico() {
+	public static ArrayList<Medico> leerMedico() {
+		ArrayList<Medico> medicos = new ArrayList<>();
 		try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH1))) {
-			String linea;
-			while ((linea = reader.readLine()) != null) {
-				System.out.println(linea); 
+			String line;
+			while ((line = reader.readLine()) != null) {
+				String[] parts = line.split(",");
+				if (parts.length == 9) { 
+					medicos.add(new Medico(parts[0], parts[1], parts[2], 
+							parseDate(parts[3]), parts[4], 
+							new Vivienda(parts[6], parts[7], parts[8], new ArrayList<Persona>()), 
+							parts[8], parts[9]));
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		return medicos;
 	}
 
 	// Paciente 
@@ -94,28 +106,28 @@ public class archivoManager {
 	}
 
 	public static ArrayList<Paciente> leerPacientes() {
-        ArrayList<Paciente> pacientes = new ArrayList<>();
+		ArrayList<Paciente> pacientes = new ArrayList<>();
 
-         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH2))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    String[] parts = line.split(",");
-                    if (parts.length == 10) {
+		try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH2))) {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				String[] parts = line.split(",");
+				if (parts.length == 10) {
 
-                         Vivienda vivienda = new Vivienda(parts[6], parts[7], parts[8], new ArrayList<Persona>());
-                         Paciente paciente = new Paciente(parts[0], parts[1], parts[2], parseDate(parts[3]), parts[4],
-                                 parts[5], vivienda, parts[9], new HistoriaMedica(new ArrayList<>()));
+					Vivienda vivienda = new Vivienda(parts[6], parts[7], parts[8], new ArrayList<Persona>());
+					Paciente paciente = new Paciente(parts[0], parts[1], parts[2], parseDate(parts[3]), parts[4],
+							parts[5], vivienda, parts[9], new HistoriaMedica(new ArrayList<>()));
 
-                        pacientes.add(paciente);
+					pacientes.add(paciente);
 
-                    }
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-         return pacientes;
-    }
+		return pacientes;
+	}
 
 	// Vacuna 
 
@@ -127,15 +139,25 @@ public class archivoManager {
 		}
 	}
 
-	public static void leerVacuna() {
+	public static ArrayList<Vacuna> leerVacuna() {
+		ArrayList<Vacuna> vacunas = new ArrayList<>();
 		try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH3))) {
-			String linea;
-			while ((linea = reader.readLine()) != null) {
-				System.out.println(linea); 
+			String line;
+			while ((line = reader.readLine()) != null) {
+				String[] parts = line.split(",");
+				if (parts.length == 5) { 
+					vacunas.add(new Vacuna(parts[0], parts[1], 
+							new Paciente(parts[0], parts[1], parts[2], parseDate(parts[3]), parts[4],
+									parts[5], new Vivienda(parts[6], parts[7], parts[8], new ArrayList<Persona>()), parts[9], new HistoriaMedica(new ArrayList<>())), 
+							Integer.parseInt(parts[3]), 
+							parts[4]));
+				}
 			}
-		} catch (IOException e) {
+		} catch (IOException | NumberFormatException e) {
 			e.printStackTrace();
 		}
+
+		return vacunas;
 	}
 
 	// enfermedad 
@@ -148,16 +170,28 @@ public class archivoManager {
 		}
 	}
 
-	public static void leerEnfermedad() {
+	public static ArrayList<Enfermedad> leerEnfermedad() {
+		ArrayList<Enfermedad> enfermedades = new ArrayList<>();
 		try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH4))) {
-			String linea;
-			while ((linea = reader.readLine()) != null) {
-				System.out.println(linea); 
+			String line;
+			while ((line = reader.readLine()) != null) {
+				String[] parts = line.split(",");
+				if (parts.length == 6) { 
+					enfermedades.add(new Enfermedad(parts[0], parts[1], parts[2], parts[3], 
+							new Vacuna(parts[0], parts[1], 
+									new Paciente(parts[0], parts[1], parts[2], parseDate(parts[3]), parts[4],
+											parts[5], new Vivienda(parts[6], parts[7], parts[8], new ArrayList<Persona>()), parts[9], new HistoriaMedica(new ArrayList<>())), 
+									Integer.parseInt(parts[3]), 
+									parts[4]), Boolean.parseBoolean(parts[5])));
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		return enfermedades;
 	}
+
 
 	// vivienda
 
@@ -169,16 +203,23 @@ public class archivoManager {
 		}
 	}
 
-	public static void leerVivienda() {
+	public static ArrayList<Vivienda> leerVivienda() {
+		ArrayList<Vivienda> viviendas = new ArrayList<>();
 		try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH5))) {
-			String linea;
-			while ((linea = reader.readLine()) != null) {
-				System.out.println(linea); 
+			String line;
+			while ((line = reader.readLine()) != null) {
+				String[] parts = line.split(",");
+				if (parts.length == 3) { 
+					viviendas.add(new Vivienda(parts[0], parts[1], parts[2], new ArrayList<>()));
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		return viviendas;
 	}
+
 
 	// consultas 
 
@@ -190,16 +231,43 @@ public class archivoManager {
 		}
 	}
 
-	public static void leerConsulta() {
+	public static ArrayList<Consultas> leerConsulta() {
+		ArrayList<Consultas> consultas = new ArrayList<>();
 		try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH6))) {
-			String linea;
-			while ((linea = reader.readLine()) != null) {
-				System.out.println(linea); 
+			String line;
+			while ((line = reader.readLine()) != null) {
+				String[] parts = line.split(",");
+				if (parts.length == 5) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					Date fechaConsulta = dateFormat.parse(parts[1]);
+
+					List<Enfermedad> sintomas = new ArrayList<>();
+					String[] sintomasArray = parts[2].split(";");
+					for (String sintoma : sintomasArray) {
+						sintomas.add(new Enfermedad(parts[0], parts[1], parts[2], parts[3], 
+								new Vacuna(parts[0], parts[1], 
+										new Paciente(parts[0], parts[1], parts[2], parseDate(parts[3]), parts[4],
+												parts[5], new Vivienda(parts[6], parts[7], parts[8], new ArrayList<Persona>()), parts[9], new HistoriaMedica(new ArrayList<>())), 
+										Integer.parseInt(parts[3]), 
+										parts[4]), Boolean.parseBoolean(parts[5])));
+					}
+
+					consultas.add(new Consultas(parts[0], fechaConsulta, sintomas,
+							new Medico(parts[0], parts[1], parts[2], 
+									parseDate(parts[3]), parts[4], 
+									new Vivienda(parts[6], parts[7], parts[8], new ArrayList<Persona>()), 
+									parts[8], parts[9]),
+							new Paciente(parts[0], parts[1], parts[2], parseDate(parts[3]), parts[4],
+									parts[5], new Vivienda(parts[6], parts[7], parts[8], new ArrayList<Persona>()), parts[9], new HistoriaMedica(new ArrayList<>()))));
+				}
 			}
-		} catch (IOException e) {
+		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
+
+		return consultas;
 	}
+
 
 	// citas 
 
@@ -211,16 +279,34 @@ public class archivoManager {
 		}
 	}
 
-	public static void leerCita() {
+	public static ArrayList<Cita> leerCita() {
+		ArrayList<Cita> citas = new ArrayList<>();
 		try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH7))) {
-			String linea;
-			while ((linea = reader.readLine()) != null) {
-				System.out.println(linea); 
+			String line;
+			while ((line = reader.readLine()) != null) {
+				String[] parts = line.split(",");
+				if (parts.length == 4) { 
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					Date fechaCita = dateFormat.parse(parts[3]);
+
+
+					citas.add(new Cita(parts[0], 
+							new Paciente(parts[0], parts[1], parts[2], parseDate(parts[3]), parts[4],
+									parts[5], new Vivienda(parts[6], parts[7], parts[8], new ArrayList<Persona>()), parts[9], new HistoriaMedica(new ArrayList<>())),
+							new Medico(parts[0], parts[1], parts[2], 
+									parseDate(parts[3]), parts[4], 
+									new Vivienda(parts[6], parts[7], parts[8], new ArrayList<Persona>()), 
+									parts[8], parts[9]),
+							fechaCita));
+				}
 			}
-		} catch (IOException e) {
+		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
+
+		return citas;
 	}
+
 
 	// historial 
 
@@ -232,19 +318,36 @@ public class archivoManager {
 		}
 	}
 
-	public static void leerHisto() {
+	public static ArrayList<HistoriaMedica> leerHistorias() {
+		ArrayList<HistoriaMedica> historias = new ArrayList<>();
 		try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH8))) {
-			String linea;
-			while ((linea = reader.readLine()) != null) {
-				System.out.println(linea); 
+			String line;
+			while ((line = reader.readLine()) != null) {
+				String[] parts = line.split(",");
+				if (parts.length > 0) { 
+					String idHistoria = parts[0]; 
+					ArrayList<Consultas> consultas = leerConsultas(idHistoria); 
+
+					HistoriaMedica historia = new HistoriaMedica(consultas);
+					historias.add(historia);
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		return historias;
 	}
-	
+
+
+	// Otros
+
 	private static Date parseDate(String dateStr) {
-	    return null;
+		return null;
 	}
-								 
+
+	private static ArrayList<Consultas> leerConsultas(String idHistoria) {
+		return new ArrayList<>(); 
+	}
+
 }	

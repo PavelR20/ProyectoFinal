@@ -3,14 +3,14 @@ package Logical;
 import java.util.Date;
 
 public class Persona {
-	
+
 	protected String cedula;
 	protected String nombre;
 	protected String genero;
 	protected Date fechaNacimiento;
 	protected String telefono;
 	protected Vivienda viviend;
-	
+
 	public Persona(String cedula, String nombre, String genero, Date fechaNacimiento, String telefono,Vivienda viviend) {
 		super();
 		this.cedula = cedula;
@@ -20,11 +20,11 @@ public class Persona {
 		this.telefono = telefono;
 		this.viviend = viviend;
 	}
-	
+
 	public String toString() {
-		
-        return cedula + "," + nombre + "," + genero + "," + fechaNacimiento + "," + telefono + "," + viviend;
-    }
+
+		return cedula + "," + nombre + "," + genero + "," + fechaNacimiento + "," + telefono + "," + viviend;
+	}
 
 	public String getCedula() {
 		return cedula;
@@ -73,10 +73,5 @@ public class Persona {
 	public void setViviend(Vivienda viviend) {
 		this.viviend = viviend;
 	}
-	
-	
-	
-	
-	
 
 }

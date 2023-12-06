@@ -3,11 +3,11 @@ package Logical;
 import java.util.Date;
 
 public class Paciente extends Persona {
-	
+
 	private String idPaciente;
 	private String infoEmergencia;
 	private HistoriaMedica historial;
-	
+
 	public Paciente(String cedula, String nombre, String genero, Date fechaNacimiento, String telefono,
 			String idPaciente,Vivienda viviend, String infoEmergencia, HistoriaMedica historial) {
 		super(cedula, nombre, genero, fechaNacimiento, telefono, viviend);
@@ -15,10 +15,10 @@ public class Paciente extends Persona {
 		this.infoEmergencia = infoEmergencia;
 		this.historial = historial;
 	}
-	
+
 	public String toString() {
-        return super.toString() + "," + "," + idPaciente + "," + infoEmergencia + "," + historial;
-    }
+		return super.toString() + "," + "," + idPaciente + "," + infoEmergencia + "," + historial;
+	}
 
 	public String getIdPaciente() {
 		return idPaciente;
@@ -43,11 +43,5 @@ public class Paciente extends Persona {
 	public void setHistorial(HistoriaMedica historial) {
 		this.historial = historial;
 	}
-	
-	
-
-	
-	
-	
 
 }

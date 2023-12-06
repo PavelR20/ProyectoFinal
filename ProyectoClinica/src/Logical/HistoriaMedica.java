@@ -4,15 +4,15 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class HistoriaMedica {
-	
+
 	private ArrayList<Consultas> historialConsultas;
 	private ResumenHistorial resumenPaciente;
-	
+
 	public HistoriaMedica(ArrayList<Consultas> historialConsultas) {
 		super();
 		historialConsultas = new ArrayList<Consultas>();
 	}
-	
+
 
 	public ArrayList<Consultas> getHistorialConsultas() {
 		return historialConsultas;
@@ -21,11 +21,11 @@ public class HistoriaMedica {
 	public void setHistorialConsultas(ArrayList<Consultas> historialConsultas) {
 		this.historialConsultas = historialConsultas;
 	}
-	
+
 	public void agregarConsulta(Consultas consult) {
 		historialConsultas.add(consult);
 	}
-	
+
 	public ResumenHistorial generarResumen() {
 		ResumenHistorial resumen = null;
 		int i=0;
@@ -36,9 +36,9 @@ public class HistoriaMedica {
 			resumen.getFecha().add((Date) historialConsultas.get(i).getFechaConsulta());
 			i++;
 		}
-		
+
 		return resumen;
-		
+
 	}
 
 	public ResumenHistorial getResumenPaciente() {

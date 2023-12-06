@@ -31,7 +31,7 @@ public class HistorialPacienteBuscar extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTable table;
 	private JTextField txtNombre;
-	
+
 	private static DefaultTableModel model;
 	private static Object[] row;
 
@@ -56,42 +56,42 @@ public class HistorialPacienteBuscar extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
+
 		JPanel ListPanel = new JPanel();
 		ListPanel.setBounds(10, 75, 714, 275);
 		contentPanel.add(ListPanel);
 		ListPanel.setLayout(new BorderLayout(0, 0));
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		ListPanel.add(scrollPane, BorderLayout.CENTER);
-		
-		
+
+
 		String[] headear = {"ID","Paciente","Cedula"};
 		model = new DefaultTableModel();
 		model.setColumnIdentifiers(headear);
 		table = new JTable();
 		table.setModel(model);
 		scrollPane.setViewportView(table);
-		
+
 		JPanel OpcionesPanel = new JPanel();
 		OpcionesPanel.setBackground(SystemColor.scrollbar);
 		OpcionesPanel.setBounds(10, 11, 714, 59);
 		contentPanel.add(OpcionesPanel);
 		OpcionesPanel.setLayout(null);
-		
+
 		txtNombre = new JTextField();
 		txtNombre.setBounds(57, 28, 599, 20);
 		OpcionesPanel.add(txtNombre);
 		txtNombre.setColumns(10);
-		
+
 		JLabel lblNewLabel = new JLabel("Buscar:");
 		lblNewLabel.setBounds(10, 31, 58, 14);
 		OpcionesPanel.add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Lista de Pacientes");
 		lblNewLabel_1.setBounds(10, 3, 694, 14);
 		OpcionesPanel.add(lblNewLabel_1);
-		
+
 		JButton btnBuscar = new JButton("");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -123,38 +123,38 @@ public class HistorialPacienteBuscar extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
-		
+
 		cargarDatosDesdeArchivo("paciente.txt");
 	}
-	
+
 	private void cargarDatosDesdeArchivo(String archivo) {
 		ArrayList<Paciente> listaPaciente = archivoManager.leerPacientes();
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        
-        model.setRowCount(0);
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+		model.setRowCount(0);
 
 		for (Paciente paciente : listaPaciente) {
 			model.addRow(new Object[]{paciente.getIdPaciente(), paciente.getNombre(), paciente.getCedula()});
 		}
-    }
-	
-		private void buscarPorNombre() {
-        String nombreABuscar = txtNombre.getText().trim();
-        boolean usuarioEncontrado = false;
+	}
 
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        model.setRowCount(0);
+	private void buscarPorNombre() {
+		String nombreABuscar = txtNombre.getText().trim();
+		boolean usuarioEncontrado = false;
 
-        ArrayList<Usuario> listaUsuarios = archivoManager.LeerUsuario();
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		model.setRowCount(0);
 
-        for (Usuario usuario : listaUsuarios) {
-            if (usuario.getNombreUser().equalsIgnoreCase(nombreABuscar)) {
-                model.addRow(new Object[]{usuario.getIdUsuario(), usuario.getNombreUser(), usuario.getPassword(),usuario.getRol()});
-                usuarioEncontrado = true;
-            }
-        }
-        if (!usuarioEncontrado) {
-            JOptionPane.showMessageDialog(null, "Error No existe", "Busqueda", JOptionPane.ERROR_MESSAGE);
-        }
-    }
+		ArrayList<Usuario> listaUsuarios = archivoManager.LeerUsuario();
+
+		for (Usuario usuario : listaUsuarios) {
+			if (usuario.getNombreUser().equalsIgnoreCase(nombreABuscar)) {
+				model.addRow(new Object[]{usuario.getIdUsuario(), usuario.getNombreUser(), usuario.getPassword(),usuario.getRol()});
+				usuarioEncontrado = true;
+			}
+		}
+		if (!usuarioEncontrado) {
+			JOptionPane.showMessageDialog(null, "Error No existe", "Busqueda", JOptionPane.ERROR_MESSAGE);
+		}
+	}
 }

@@ -40,6 +40,4 @@ public class ResumenHistorial {
 	public void setFecha(ArrayList<Date> fecha) {
 		this.fecha = fecha;
 	}
-		
-	
 }

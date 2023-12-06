@@ -18,9 +18,9 @@ public class CargarLogin extends JFrame {
 	private JPanel contentPane;
 	public JProgressBar Barra;
 	public JLabel lblEsperar;
-	
+
 	Login verLogin = new Login();
-	
+
 
 	/**
 	 * Launch the application.
@@ -53,31 +53,31 @@ public class CargarLogin extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(SystemColor.activeCaption);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		
+
 		Barra = new JProgressBar();
 		Barra.setStringPainted(true);
 		Barra.setForeground(new Color(50, 205, 50));
 		Barra.setBounds(10, 198, 425, 43);
 		panel.add(Barra);
-		
+
 		JLabel lblNewLabel = new JLabel("Clinica S.R.L");
 		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 32));
 		lblNewLabel.setBounds(128, 11, 198, 48);
 		panel.add(lblNewLabel);
-		
+
 		lblEsperar = new JLabel("Porfavor Espere");
 		lblEsperar.setBounds(10, 182, 135, 14);
 		panel.add(lblEsperar);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(CargarLogin.class.getResource("/imagenes/edificio-del-hospital (3).png")));
 		lblNewLabel_1.setBounds(155, 53, 144, 136);
 		panel.add(lblNewLabel_1);
-		
+
 	}
 }

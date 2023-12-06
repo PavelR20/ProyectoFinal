@@ -1,16 +1,16 @@
 package Logical;
 
 public class Enfermedad {
-	
+
 	private String idEnfermedad;
 	private String nombreEnfermedad;
 	private String descripcion;
 	private String sintomas;
 	private Vacuna vacunaDispo;
 	private boolean enfermedadVigilancia = true; 
-	
+
 	public Enfermedad(String idEnfermedad, String nombreEnfermedad, String descripcion, String sintomas,
-			Vacuna vacunaDispo,boolean enfermedadVigilancia) {
+			Vacuna vacunaDispo, boolean enfermedadVigilancia) {
 		super();
 		this.idEnfermedad = idEnfermedad;
 		this.nombreEnfermedad = nombreEnfermedad;
@@ -19,10 +19,10 @@ public class Enfermedad {
 		this.vacunaDispo = vacunaDispo;
 		this.setEnfermedadVigilancia(enfermedadVigilancia);
 	}
-	
+
 	public String toString() {
-        return idEnfermedad + "," + nombreEnfermedad + "," + descripcion + "," + sintomas + "," + vacunaDispo;
-    }
+		return idEnfermedad + "," + nombreEnfermedad + "," + descripcion + "," + sintomas + "," + vacunaDispo;
+	}
 	public String getIdEnfermedad() {
 		return idEnfermedad;
 	}
@@ -70,8 +70,8 @@ public class Enfermedad {
 	public void setEnfermedadVigilancia(boolean enfermedadVigilancia) {
 		this.enfermedadVigilancia = enfermedadVigilancia;
 	}
-	
-	
-	
+
+
+
 
 }

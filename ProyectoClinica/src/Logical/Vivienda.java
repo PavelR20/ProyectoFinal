@@ -3,12 +3,12 @@ package Logical;
 import java.util.ArrayList;
 
 public class Vivienda {
-	
+
 	private String idVivienda;
 	private String Direccion; 
 	private String telefono;
 	private ArrayList<Persona> misPersonas;
-	
+
 	public Vivienda(String idVivienda, String direccion, String telefono,  ArrayList<Persona> misPersonas) {
 		super();
 		this.idVivienda = idVivienda;
@@ -16,11 +16,11 @@ public class Vivienda {
 		this.telefono = telefono;
 		this.setMisPersonas(new ArrayList<Persona>());
 	}
-	
+
 	public String toString() {
-		
-        return idVivienda + "," + Direccion + "," + telefono;
-    }
+
+		return idVivienda + "," + Direccion + "," + telefono;
+	}
 
 	public String getIdVivienda() {
 		return idVivienda;
@@ -53,7 +53,5 @@ public class Vivienda {
 	public void setMisPersonas(ArrayList<Persona> misPersonas) {
 		this.misPersonas = misPersonas;
 	}
-	
-	
-	
+
 }

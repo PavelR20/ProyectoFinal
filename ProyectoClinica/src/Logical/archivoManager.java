@@ -66,7 +66,16 @@ public class archivoManager {
 	}
 
 	// medicos 
+	/*
+	public static void borrarMedico(Medico medico) {
+		ArrayList<Medico> listaMedico = leerMedico();
 
+		if (medico != null) {
+			listaMedico.remove(medico);
+			g(listaMedico);
+		}
+	}
+	*/
 	public static void guardarMedicoEnArchivo(Medico medico) {
 		try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(FILE_PATH1, true)))) {
 			writer.println(medico.toString()); 
@@ -84,8 +93,8 @@ public class archivoManager {
 				if (parts.length == 9) { 
 					medicos.add(new Medico(parts[0], parts[1], parts[2], 
 							parseDate(parts[3]), parts[4], 
-							new Vivienda(parts[6], parts[7], parts[8], new ArrayList<Persona>()), 
-							parts[8], parts[9]));
+							new Vivienda(parts[1], parts[2], parts[3], new ArrayList<Persona>()), 
+							parts[6], parts[7]));
 				}
 			}
 		} catch (IOException e) {

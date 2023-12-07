@@ -38,7 +38,7 @@ public class ListarMedico extends JDialog {
 	private static DefaultTableModel model;
 	private static Object[] row;
 	private JButton borrar;
-	private Usuario selected = null;
+	private Medico selected = null;
 
 	public static void main(String[] args) {
 		try {
@@ -54,7 +54,7 @@ public class ListarMedico extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListarMedico() {
-		setTitle("Ver usuarios");
+		setTitle("Ver Medicos");
 		setBounds(100, 100, 750, 433);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(SystemColor.window);
@@ -72,7 +72,7 @@ public class ListarMedico extends JDialog {
 		ListPanel.add(scrollPane, BorderLayout.CENTER);
 
 
-		String[] headear = {"ID","Usuario","Password", "Rol"};
+		String[] headear = {"ID","Nombre","Especialidad", "Genero"};
 		model = new DefaultTableModel();
 		model.setColumnIdentifiers(headear);
 		table = new JTable();
@@ -83,9 +83,9 @@ public class ListarMedico extends JDialog {
 				if(index >= 0) {
 					borrar.setEnabled(true);
 
-					String codigoUsuario = table.getValueAt(index, 0).toString();
-					selected = Clinica.getInstance().buscarUsuarioPorCodigo(codigoUsuario);
-					System.out.println("Usuario seleccionado para borrar: " + selected);
+					String codigoMedico = table.getValueAt(index, 0).toString();
+					selected = Clinica.getInstance().obtenerMedicoById(codigoMedico);
+					System.out.println("Medico seleccionado para borrar: " + selected);
 				}
 			}
 		});
@@ -138,12 +138,12 @@ public class ListarMedico extends JDialog {
 
 						if (confirmacion == JOptionPane.YES_OPTION) {
 							if (selected != null) {
-								archivoManager.borrarUsuario(selected);
-								cargarDatosDesdeArchivo("usuarios.txt");
+								//archivoManager.(selected);
+								cargarDatosDesdeArchivo("Medico.txt");
 								borrar.setEnabled(false);
 							} 
 						}
-						archivoManager.borrarUsuario(selected);
+						//archivoManager.borrarUsuario(selected);
 
 					}
 				});
@@ -173,7 +173,7 @@ public class ListarMedico extends JDialog {
 		model.setRowCount(0);
 
 		for (Medico medico : listaMedicos) {
-			model.addRow(new Object[]{ medico.getNombre()});
+			model.addRow(new Object[]{ medico.getIdMedico(),medico.getNombre(),medico.getEspecialidad(),medico.getGenero()});
 		}
 	}
 
@@ -188,7 +188,7 @@ public class ListarMedico extends JDialog {
 
 		for (Medico medico : listaMedicos) {
 			if (medico.getNombre().equalsIgnoreCase(nombreABuscar)) {
-				model.addRow(new Object[]{ medico.getNombre()});
+				model.addRow(new Object[]{ medico.getIdMedico(),medico.getNombre(),medico.getEspecialidad(),medico.getGenero()});
 				medicoEncontrado = true;
 			}
 		}

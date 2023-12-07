@@ -268,62 +268,47 @@ public class Clinica {
     }
     public Vivienda obtenervivienda(String idVivienda) {
 		
-		Vivienda viviendaReg = null;
-		boolean encontrado = false;
-		int i = 0;
-		while(i<misViviendas.size()&& !encontrado) {
-			if(misViviendas.get(i).getIdVivienda().equalsIgnoreCase(idVivienda)) {
-				viviendaReg = misViviendas.get(i);
-				encontrado = true;
-				break;
-			}
-			i++;
-		}
-		return viviendaReg;
+    	ArrayList<Vivienda> viviendas = archivoManager.leerVivienda();
+        for (Vivienda vivienda : viviendas) {
+            if (vivienda.getIdVivienda().equals(idVivienda)) {
+                return vivienda;
+            }
+        }
+
+        return null; 
 	}
     public Paciente obtenerPacienteById(String id) {
 		
-		Paciente pacienteReg = null;
-		boolean encontrado = false;
-		int i = 0;
-		while(i<misPaciente.size()&& !encontrado) {
-			if(misPaciente.get(i).getIdPaciente().equalsIgnoreCase(id)) {
-				pacienteReg = misPaciente.get(i);
-				encontrado = true;
-				break;
-			}
-			i++;
-		}
-		return pacienteReg;
+    	ArrayList<Paciente> pacientes = archivoManager.leerPacientes();
+        for (Paciente paciente : pacientes) {
+            if (paciente.getIdPaciente().equals(id)) {
+                return paciente;
+            }
+        }
+
+        return null; 
 	}
     public Medico obtenerMedicoById(String id) {
-		
-		Medico medicoReg = null;
-		boolean encontrado = false;
-		int i = 0;
-		while(i<misMedico.size()&& !encontrado) {
-			if(misMedico.get(i).getIdMedico().equalsIgnoreCase(id)) {
-				medicoReg = misMedico.get(i);
-				encontrado = true;
-				break;
-			}
-			i++;
-		}
-		return medicoReg;
+    	ArrayList<Medico> medicos = archivoManager.leerMedico();
+        for (Medico medico : medicos) {
+            if (medico.getIdMedico().equals(id)) {
+                return medico;
+            }
+        }
+
+        return null; 
+    	
 	}
     public Enfermedad obtenerEnfermedadById(String id) {
 		
-		Enfermedad enfermedadReg = null;
-		boolean encontrado = false;
-		int i = 0;
-		while(i<misEnfermedades.size()&& !encontrado) {
-			if(misEnfermedades.get(i).getIdEnfermedad().equalsIgnoreCase(id)) {
-				enfermedadReg = misEnfermedades.get(i);
-				encontrado = true;
-				break;
-			}
-			i++;
-		}
-		return enfermedadReg;
+    	ArrayList<Enfermedad> enfermedades = archivoManager.leerEnfermedad();
+        for (Enfermedad enfermedad : enfermedades) {
+            if (enfermedad.getIdEnfermedad().equals(id)) {
+                return enfermedad;
+            }
+        }
+
+        return null; 
+		
 	}
 }

@@ -162,7 +162,7 @@ public class ReportePaciente extends JDialog {
 			}
 		}
 	}
-	/*
+	
 	  private void buscarID() {
 	        String idPaciente = txtIdVacuna.getText();
 	        if (!idPaciente.isEmpty()) {
@@ -184,5 +184,5 @@ public class ReportePaciente extends JDialog {
 	            }
 	        }
 	    }
-	}*/
+	
 }

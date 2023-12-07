@@ -135,7 +135,7 @@ public class PrincipalVisual extends JFrame {
         crearEnfermedad.setBackground(SystemColor.activeCaption);
         mRegistro.add(crearEnfermedad);
         
-        crearVivienda = new JMenuItem("crear Vivienda");
+        crearVivienda = new JMenuItem("Crear Vivienda");
         crearVivienda.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		RegistrarVivienda vivienda = new RegistrarVivienda(null, 0);

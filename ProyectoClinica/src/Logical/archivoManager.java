@@ -33,6 +33,7 @@ public class archivoManager {
 						+ usuario.getNombreUser() + ","
 						+ usuario.getPassword() + ","
 						+ usuario.getRol());
+					writer.println();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

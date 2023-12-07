@@ -30,8 +30,8 @@ public class PrincipalVisual extends JFrame {
     public JMenuItem listadoEnfermedad;
     public JMenuItem listaVivienda;
     private Dimension dim;
-    private JMenuItem crearEnfermedad;
-    private JMenuItem crearVivienda;
+    public JMenuItem crearEnfermedad;
+    public JMenuItem crearVivienda;
     /**
      * Launch the application.
      */

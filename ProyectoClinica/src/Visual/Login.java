@@ -138,7 +138,11 @@ public class Login extends JFrame {
 						main.mConsultas.setVisible(false);
 						main.listadoEnfermedad.setVisible(false);
 						main.listadoVacuna.setVisible(false);
-						main.mRegistro.setVisible(false);
+						main.crearEnfermedad.setVisible(false);
+						main.crearVacuna.setVisible(false);
+						main.crearVivienda.setVisible(false);
+						main.mRegistro.setVisible(true);
+						main.crearVacuna.setVisible(false);
 						main.listaVivienda.setVisible(false);
 						main.mUSER.setVisible(false);
 
@@ -147,8 +151,10 @@ public class Login extends JFrame {
 
 						main.mCitas.setVisible(false);
 						main.listaVivienda.setVisible(false);
+						main.crearEnfermedad.setVisible(false);
+						main.crearVacuna.setVisible(false);
 						main.mUSER.setVisible(false);
-
+						
 						System.out.println("Acciones para médicos");
 					}
 

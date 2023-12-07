@@ -72,7 +72,7 @@ public class ListarMedico extends JDialog {
 		ListPanel.add(scrollPane, BorderLayout.CENTER);
 
 
-		String[] headear = {"ID","Nombre","Especialidad", "Genero"};
+		String[] headear = {"CEDULA","NOMBRE","GENERO","FECHA","TELEFONO", "VIVIENDA", "IDMEDICO", "ESPECIALIDAD"};
 		model = new DefaultTableModel();
 		model.setColumnIdentifiers(headear);
 		table = new JTable();
@@ -173,7 +173,7 @@ public class ListarMedico extends JDialog {
 		model.setRowCount(0);
 
 		for (Medico medico : listaMedicos) {
-			model.addRow(new Object[]{ medico.getIdMedico(),medico.getNombre(),medico.getEspecialidad(),medico.getGenero()});
+			model.addRow(new Object[]{medico.getCedula(), medico.getNombre(), medico.getGenero(), medico.getFechaNacimiento(), medico.getTelefono(), medico.getViviend(), medico.getIdMedico(), medico.getEspecialidad()});
 		}
 	}
 

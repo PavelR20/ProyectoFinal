@@ -95,7 +95,7 @@ public class archivoManager {
 					medicos.add(new Medico(parts[0], parts[1], parts[2], 
 							parseDate(parts[3]), parts[4], 
 							new Vivienda(parts[1], parts[2], parts[3], new ArrayList<Persona>()), 
-							parts[6], parts[7]));
+							parts[7], parts[8]));
 				}
 			}
 		} catch (IOException e) {

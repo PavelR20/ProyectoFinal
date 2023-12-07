@@ -160,7 +160,7 @@ public class ListarPaciente extends JDialog {
 			}
 		}
 
-		cargarDatosDesdeArchivo("Medico.txt");
+		cargarDatosDesdeArchivo("Paciente.txt");
 	}
 
 	private void cargarDatosDesdeArchivo(String archivo) {
@@ -185,7 +185,7 @@ public class ListarPaciente extends JDialog {
 
 		for (Paciente paciente : listaPaciente) {
 			if (paciente.getNombre().equalsIgnoreCase(nombreABuscar)) {
-				model.addRow(new Object[]{ paciente.getIdPaciente(),paciente.getNombre(),paciente.getGenero()});
+				model.addRow(new Object[]{ paciente.getCedula(),paciente.getNombre(),paciente.getGenero()});
 				pacienteEncontrado = true;
 			}
 		}

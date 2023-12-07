@@ -108,7 +108,7 @@ public class ListarMedico extends JDialog {
 		lblNewLabel.setBounds(10, 31, 38, 14);
 		OpcionesPanel.add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel("Lista de usuarios");
+		JLabel lblNewLabel_1 = new JLabel("Lista de Medicos");
 		lblNewLabel_1.setBounds(10, 3, 694, 14);
 		OpcionesPanel.add(lblNewLabel_1);
 

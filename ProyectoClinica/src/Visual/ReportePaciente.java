@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import Logical.Clinica;
@@ -15,6 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
+import javax.swing.JTextArea;
+
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -25,7 +28,7 @@ public class ReportePaciente extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtNombre;
 	private JTextField txtIdVacuna;
-	private JTextField txtDescripcion;
+	private JTextArea txtDescripcion;
 	private JTextField txtCedula;
 
 	/**
@@ -46,7 +49,7 @@ public class ReportePaciente extends JDialog {
 	 */
 	public ReportePaciente() {
 		setTitle("Reporte de Paciente");
-		setBounds(100, 100, 628, 500);
+		setBounds(100, 100, 705, 673);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -96,14 +99,21 @@ public class ReportePaciente extends JDialog {
 			cmbDiagnostico.setBounds(10, 207, 141, 20);
 			panel.add(cmbDiagnostico);
 
-			JLabel lblNewLabel_4 = new JLabel("Descripcion de Paciente:");
-			lblNewLabel_4.setBounds(334, 34, 147, 14);
-			panel.add(lblNewLabel_4);
+			   JLabel lblNewLabel_4 = new JLabel("Descripcion de Paciente:");
+		        lblNewLabel_4.setBounds(334, 34, 147, 14);
+		        panel.add(lblNewLabel_4);
 
-			txtDescripcion = new JTextField();
-			txtDescripcion.setBounds(334, 59, 225, 316);
-			panel.add(txtDescripcion);
-			txtDescripcion.setColumns(10);
+		      
+		        JScrollPane scrollPane = new JScrollPane();
+		        scrollPane.setBounds(334, 59, 225, 316);
+		        panel.add(scrollPane);
+
+		        txtDescripcion = new JTextArea();
+		        scrollPane.setViewportView(txtDescripcion);
+		        txtDescripcion.setLineWrap(true); 
+		        txtDescripcion.setWrapStyleWord(true);
+
+			
 
 			JLabel lblCedula = new JLabel("Cedula:");
 			lblCedula.setBounds(10, 109, 46, 14);

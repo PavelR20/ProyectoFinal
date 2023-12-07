@@ -29,7 +29,7 @@ public class PrincipalVisual extends JFrame {
     public JMenuItem listadoVacuna;
     public JMenuItem listadoEnfermedad;
     public JMenuItem listaVivienda;
-
+    private Dimension dim;
     /**
      * Launch the application.
      */
@@ -51,10 +51,15 @@ public class PrincipalVisual extends JFrame {
      * Create the frame.
      */
     public PrincipalVisual() {
+    	
+    	dim = getToolkit().getScreenSize();
         setIconImage(Toolkit.getDefaultToolkit().getImage(PrincipalVisual.class.getResource("/imagenes/edificio-del-hospital.png")));
         setTitle("MENU CLINICA");
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 959, 532);
+        setBounds(100, 100, 450, 300);
+        setSize(dim.width, dim.height-40);
+        setLocationRelativeTo(null);
 
         menuBar = new JMenuBar();
         menuBar.setBackground(SystemColor.activeCaption);
@@ -79,6 +84,7 @@ public class PrincipalVisual extends JFrame {
         menuBar.add(mConsultas);
 
         HacerConsultas = new JMenuItem("Hacer Consulta");
+        HacerConsultas.setBackground(SystemColor.activeCaption);
         HacerConsultas.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		HacerConsulta hacerCons = new HacerConsulta();
@@ -93,6 +99,7 @@ public class PrincipalVisual extends JFrame {
         menuBar.add(mRegistro);
 
         mntmNewMenuItem_9 = new JMenuItem("Crear Persona");
+        mntmNewMenuItem_9.setBackground(SystemColor.activeCaption);
         mntmNewMenuItem_9.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		RegistrarGeneral regisGen = new RegistrarGeneral(null,0);
@@ -104,6 +111,7 @@ public class PrincipalVisual extends JFrame {
         mRegistro.add(mntmNewMenuItem_9);
 
         crearVacuna = new JMenuItem("Crear Vacuna");
+        crearVacuna.setBackground(SystemColor.activeCaption);
         crearVacuna.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		RegistrarVacuna regisVac = new RegistrarVacuna();
@@ -118,18 +126,22 @@ public class PrincipalVisual extends JFrame {
         menuBar.add(mInvertario);
 
         listaPaciente = new JMenuItem("Listado Paciente");
+        listaPaciente.setBackground(SystemColor.activeCaption);
         stylizeMenuItem(listaPaciente);
         mInvertario.add(listaPaciente);
 
         listaMedico = new JMenuItem("Listado Medico");
+        listaMedico.setBackground(SystemColor.activeCaption);
         stylizeMenuItem(listaMedico);
         mInvertario.add(listaMedico);
 
         listadoVacuna = new JMenuItem("Listado Vacunas");
+        listadoVacuna.setBackground(SystemColor.activeCaption);
         stylizeMenuItem(listadoVacuna);
         mInvertario.add(listadoVacuna);
 
         listadoEnfermedad = new JMenuItem("Listado Enfermedades");
+        listadoEnfermedad.setBackground(SystemColor.activeCaption);
         stylizeMenuItem(listadoEnfermedad);
         listadoEnfermedad.addActionListener(e -> {
             // LogUser logUserDialog = new LogUser();
@@ -139,6 +151,7 @@ public class PrincipalVisual extends JFrame {
         mInvertario.add(listadoEnfermedad);
 
         listaVivienda = new JMenuItem("Listado Vivienda");
+        listaVivienda.setBackground(SystemColor.activeCaption);
         stylizeMenuItem(listaVivienda);
         mInvertario.add(listaVivienda);
 
@@ -146,6 +159,7 @@ public class PrincipalVisual extends JFrame {
         menuBar.add(mUtilidades);
 
         JMenuItem mntmNewMenuItem_2 = new JMenuItem("WORKING");
+        mntmNewMenuItem_2.setBackground(SystemColor.activeCaption);
         stylizeMenuItem(mntmNewMenuItem_2);
         mUtilidades.add(mntmNewMenuItem_2);
 
@@ -153,6 +167,7 @@ public class PrincipalVisual extends JFrame {
         menuBar.add(mUSER);
 
         crearUsuario = new JMenuItem("Crear Usuario");
+        crearUsuario.setBackground(SystemColor.activeCaption);
         stylizeMenuItem(crearUsuario);
         crearUsuario.addActionListener(e -> {
             CrearUser user = new CrearUser();
@@ -162,6 +177,7 @@ public class PrincipalVisual extends JFrame {
         mUSER.add(crearUsuario);
 
         borrarUsuario = new JMenuItem("Borrar Usuario");
+        borrarUsuario.setBackground(SystemColor.activeCaption);
         stylizeMenuItem(borrarUsuario);
         borrarUsuario.addActionListener(e -> {
             VerMisUsuarios usuarios = new VerMisUsuarios();
@@ -192,7 +208,7 @@ public class PrincipalVisual extends JFrame {
 
         JLabel lblNewLabel_1 = new JLabel("");
         lblNewLabel_1.setIcon(new ImageIcon(PrincipalVisual.class.getResource("/imagenes/caduceo.png")));
-        lblNewLabel_1.setBounds(411, 153, 64, 104);
+        lblNewLabel_1.setBounds(870, 367, 64, 104);
         panel.add(lblNewLabel_1);
     }
 
@@ -200,7 +216,7 @@ public class PrincipalVisual extends JFrame {
     private void stylizeMenuItem(JMenuItem menuItem) {
         menuItem.setFont(new Font("Segoe UI", Font.PLAIN, 16));  
         menuItem.setForeground(Color.BLACK);  
-        menuItem.setBackground(new Color(0, 0, 128));  
+        menuItem.setBackground(SystemColor.activeCaption);  
         menuItem.setPreferredSize(new Dimension(180, 40));  
         menuItem.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10)); 
     }

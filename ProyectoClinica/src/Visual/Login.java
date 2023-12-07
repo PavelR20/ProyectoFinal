@@ -1,6 +1,7 @@
 package Visual;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -27,6 +28,7 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JPasswordField JpassContra;
 	private JTextField txtUser;
+	private Dimension dim;
 
 	/**
 	 * Launch the application.
@@ -151,6 +153,10 @@ public class Login extends JFrame {
 					}
 
 					main.lblUser.setText(usuarioEncontrado.getNombreUser());
+					dim = getToolkit().getScreenSize();
+					main.setResizable(false);
+					main.setSize(dim.width, dim.height-40);
+					main.setLocationRelativeTo(null);
 					main.setVisible(true);
 				} else {
 					JOptionPane.showMessageDialog(null, "DATOS ERRONEOS", "ERROR", JOptionPane.ERROR_MESSAGE);

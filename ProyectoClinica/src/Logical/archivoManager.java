@@ -67,16 +67,16 @@ public class archivoManager {
 	}
 
 	// medicos 
-	/*
+	
 	public static void borrarMedico(Medico medico) {
 		ArrayList<Medico> listaMedico = leerMedico();
 
 		if (medico != null) {
 			listaMedico.remove(medico);
-			g(listaMedico);
+			guardarMedicoEnArchivo(medico);
 		}
 	}
-	*/
+
 	public static void guardarMedicoEnArchivo(Medico medico) {
 		try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(FILE_PATH1, true)))) {
 			writer.println(medico.toString()); 

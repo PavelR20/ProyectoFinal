@@ -142,8 +142,6 @@ public class VerMisUsuarios extends JDialog {
 								borrar.setEnabled(false);
 							} 
 						}
-						archivoManager.borrarUsuario(selected);
-
 					}
 				});
 				borrar.setActionCommand("OK");

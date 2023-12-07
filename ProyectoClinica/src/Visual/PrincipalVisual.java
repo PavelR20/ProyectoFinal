@@ -150,11 +150,25 @@ public class PrincipalVisual extends JFrame {
         menuBar.add(mInvertario);
 
         listaPaciente = new JMenuItem("Listado Paciente");
+        listaPaciente.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		ListarPaciente listar1 = new ListarPaciente();
+        		listar1.setModal(true);
+        		listar1.setVisible(true);
+        	}
+        });
         listaPaciente.setBackground(SystemColor.activeCaption);
         stylizeMenuItem(listaPaciente);
         mInvertario.add(listaPaciente);
 
         listaMedico = new JMenuItem("Listado Medico");
+        listaMedico.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		ListarMedico lista2 = new ListarMedico();
+        		lista2.setModal(true);
+        		lista2.setVisible(true);
+        	}
+        });
         listaMedico.setBackground(SystemColor.activeCaption);
         stylizeMenuItem(listaMedico);
         mInvertario.add(listaMedico);

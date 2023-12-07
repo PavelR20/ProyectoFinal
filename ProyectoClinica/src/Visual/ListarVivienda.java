@@ -61,6 +61,7 @@ public class ListarVivienda extends JDialog {
 					table = new JTable();
 					table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 					table.setModel(modelo);
+					table.getTableHeader().setReorderingAllowed(false);
 					scrollPane.setViewportView(table);
 				}
 			}

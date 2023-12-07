@@ -89,6 +89,7 @@ public class VerMisUsuarios extends JDialog {
 			}
 		});
 		table.setModel(model);
+		table.getTableHeader().setReorderingAllowed(false);
 		scrollPane.setViewportView(table);
 
 		JPanel OpcionesPanel = new JPanel();

@@ -132,7 +132,7 @@ public class HacerConsulta extends JDialog {
 			String headers[] = { "Nombre", "Codigo", "Sintomas" };
 			modeloNoSelected.setColumnIdentifiers(headers);
 			tableEnfermedadNoSelected = new JTable();
-			
+			tableEnfermedadNoSelected.getTableHeader().setReorderingAllowed(false);
 			scrollPane.setViewportView(tableEnfermedadNoSelected);
 			tableEnfermedadNoSelected.setModel(modeloNoSelected);
 		}
@@ -213,7 +213,7 @@ public class HacerConsulta extends JDialog {
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
-		}
+		} 
 		loadTable();
 	}
 	public void loadTable() {

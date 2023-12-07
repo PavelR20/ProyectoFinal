@@ -40,17 +40,15 @@ public class HacerConsulta extends JDialog {
 	private JSpinner spnFecha;
 	private JTextField txtConsulta;
 	private JTable tableEnfermedadNoSelected;
-	private JTable tableEnfermedadSelected;
 	private static DefaultTableModel modeloNoSelected;
 	private static Object[] rowNoSelected; 
-	private static DefaultTableModel modeloSelected;
-	private static Object[] rowSelected; 
 	private int indexSelected;
 	private int indexNoSelected;
 	private JButton btnAgregar;
 	private JButton btnQuitar;
 	private ArrayList<Enfermedad> enfermedadesSelected;
-	private ArrayList<Enfermedad> enfermedadesNoSelected;
+	private JTextField txtEnfermedad;
+	private Enfermedad consultEnfermedad = null;
 
 	/**
 	 * Launch the application.
@@ -69,7 +67,7 @@ public class HacerConsulta extends JDialog {
 	 * Create the dialog.
 	 */
 	public HacerConsulta() {
-		setArrays();
+		enfermedadesSelected = new ArrayList<Enfermedad>();
 		setTitle("Hacer Consulta");
 		setBounds(100, 100, 600, 400);
 		getContentPane().setLayout(new BorderLayout());
@@ -124,8 +122,8 @@ public class HacerConsulta extends JDialog {
 		}
 		
 		JPanel panel_EnfermedadNoSelected = new JPanel();
-		panel_EnfermedadNoSelected.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Enfermedades no seleccionadas", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_EnfermedadNoSelected.setBounds(10, 117, 219, 130);
+		panel_EnfermedadNoSelected.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Enfermedades ", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_EnfermedadNoSelected.setBounds(355, 117, 219, 130);
 		contentPanel.add(panel_EnfermedadNoSelected);
 		panel_EnfermedadNoSelected.setLayout(new BorderLayout(0, 0));
 		{
@@ -151,65 +149,52 @@ public class HacerConsulta extends JDialog {
 			tableEnfermedadNoSelected.setModel(modeloNoSelected);
 		}
 		
-		JPanel panel_panel_EnfermedadSelected = new JPanel();
-		panel_panel_EnfermedadSelected.setBorder(new TitledBorder(null, "Enfermedades seleccionadas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_panel_EnfermedadSelected.setBounds(338, 117, 236, 130);
-		contentPanel.add(panel_panel_EnfermedadSelected);
-		panel_panel_EnfermedadSelected.setLayout(new BorderLayout(0, 0));
 		
-		JScrollPane scrollPane = new JScrollPane();
-		panel_panel_EnfermedadSelected.add(scrollPane, BorderLayout.CENTER);
-		
-		modeloSelected = new DefaultTableModel();
-		String headers1[] = { "Nombre", "Codigo", "Sintomas" };
-		modeloSelected.setColumnIdentifiers(headers1);
-		tableEnfermedadSelected = new JTable();
-		tableEnfermedadSelected.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				indexSelected = tableEnfermedadSelected.getSelectedRow();
-				if (indexSelected >= 0)
-					btnQuitar.setEnabled(true);
-				else {
-					btnQuitar.setEnabled(false);
-				}
-			}
-		});
-		scrollPane.setViewportView(tableEnfermedadSelected);
-		tableEnfermedadSelected.setModel(modeloSelected);
 		
 		btnAgregar = new JButton("Agregar");
 		btnAgregar.setEnabled(false);
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				enfermedadesNoSelected.get(indexNoSelected).setEnfermedadIsSelected(true);
-				btnAgregar.setEnabled(false);
-				loadTableNoSelected();
-				loadTableSelected();
+				if (consultEnfermedad != null) {
+					enfermedadesSelected.add(consultEnfermedad);
+					btnAgregar.setEnabled(false);
+				}
+				txtEnfermedad.setText("Enfermedad - ");
+				
 			}
 		});
-		btnAgregar.setBounds(239, 144, 89, 23);
+		btnAgregar.setBounds(256, 146, 89, 23);
 		contentPanel.add(btnAgregar);
-		
-		btnQuitar = new JButton("Quitar");
-		btnQuitar.setEnabled(false);
-		btnQuitar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(enfermedadesSelected.get(indexSelected)!=null)
-					enfermedadesSelected.get(indexSelected).setEnfermedadIsSelected(false);
-				btnQuitar.setEnabled(false);
-				loadTableNoSelected();
-				loadTableSelected();
-			}
-		});
-		btnQuitar.setBounds(239, 178, 89, 23);
-		contentPanel.add(btnQuitar);
 		{
 			JLabel lblNewLabel = new JLabel("");
 			lblNewLabel.setIcon(new ImageIcon(HacerConsulta.class.getResource("/imagenes/edificio-del-hospital (2).png")));
 			lblNewLabel.setBounds(510, 258, 64, 70);
 			contentPanel.add(lblNewLabel);
 		}
+		
+		JLabel lblNewLabel_5 = new JLabel("Codigo de la Enfermedad:");
+		lblNewLabel_5.setBounds(10, 128, 134, 14);
+		contentPanel.add(lblNewLabel_5);
+		
+		txtEnfermedad = new JTextField();
+		txtEnfermedad.setText("Enfermedad - ");
+		txtEnfermedad.setBounds(10, 147, 104, 20);
+		contentPanel.add(txtEnfermedad);
+		txtEnfermedad.setColumns(10);
+		
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(new ActionListener() {
+			
+
+			public void actionPerformed(ActionEvent e) {
+				consultEnfermedad = Clinica.getInstance().obtenerEnfermedadById(txtEnfermedad.getText());
+				if (consultEnfermedad != null) {
+					btnAgregar.setEnabled(true);
+				}
+			}
+		});
+		btnBuscar.setBounds(124, 146, 89, 23);
+		contentPanel.add(btnBuscar);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(SystemColor.info);
@@ -223,7 +208,7 @@ public class HacerConsulta extends JDialog {
 								enfermedadesSelected, Clinica.getInstance().obtenerMedicoById(txtCodMed.getText()),
 										Clinica.getInstance().obtenerPacienteById(txtCodePaciente.getText()));
 						Clinica.getInstance().agregarConsulta(consultaReg);
-						setDefault();
+						
 					}
 				});
 				btnRegistrar.setActionCommand("OK");
@@ -241,60 +226,28 @@ public class HacerConsulta extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
-		loadTableNoSelected();
-		loadTableSelected();
+		loadTable();
 	}
-	public void loadTableNoSelected() {
+	public void loadTable() {
 		  modeloNoSelected.setRowCount(0);
 		  rowNoSelected = new Object[tableEnfermedadNoSelected.getColumnCount()];
 		  if(Clinica.getInstance().getMisEnfermedades()!=null) {
 			  for (Enfermedad enfermedad : Clinica.getInstance().getMisEnfermedades()) {
-			        if(!enfermedad.isEnfermedadIsSelected()) {
-					    rowNoSelected[0] = enfermedad.getNombreEnfermedad();
-					    rowNoSelected[1] = enfermedad.getIdEnfermedad();
-					    rowNoSelected[2] = enfermedad.getSintomas();
-				        modeloNoSelected.addRow(rowNoSelected);
-			        }
+			        
+				    rowNoSelected[0] = enfermedad.getNombreEnfermedad();
+				    rowNoSelected[1] = enfermedad.getIdEnfermedad();
+				    rowNoSelected[2] = enfermedad.getSintomas();
+			        modeloNoSelected.addRow(rowNoSelected);
+		        
 			    }
 		  }
 	}
-	public void loadTableSelected() {
-		  modeloSelected.setRowCount(0);
-		  rowSelected = new Object[tableEnfermedadSelected.getColumnCount()];
-		  if(Clinica.getInstance().getMisEnfermedades()!=null) {
-			  for (Enfermedad enfermedad : Clinica.getInstance().getMisEnfermedades()) {
-			        if(enfermedad.isEnfermedadIsSelected()) {
-					    rowSelected[0] = enfermedad.getNombreEnfermedad();
-					    rowSelected[1] = enfermedad.getIdEnfermedad();
-					    rowSelected[2] = enfermedad.getSintomas();
-				        modeloSelected.addRow(rowSelected);
-			        }
-			    }
-		  }
+	public void clean() {
+		txtCodePaciente.setText("Paciente - ");
+		Clinica.getInstance().generadorCodigoConsulta++;
+		txtConsulta.setText("Consulta - "+Clinica.getInstance().generadorCodigoConsulta);
+		txtCodMed.setText("Medico - ");
+		txtEnfermedad.setText("Enfermedad - ");
 	}
-	public void setArrays() {
-		int index = 0;
-		if(Clinica.getInstance().getMisEnfermedades()!=null) {
-			for (Enfermedad enfermedad : Clinica.getInstance().getMisEnfermedades()) {
-		        if(enfermedad.isEnfermedadIsSelected()) {
-				    enfermedadesSelected.add(Clinica.getInstance().getMisEnfermedades().get(index));
-		        }
-		        else {
-		        	enfermedadesNoSelected.add(Clinica.getInstance().getMisEnfermedades().get(index));
-		        }
-		        index++;
-		    }
-		}
-	}
-	public void setDefault() {
-		if(Clinica.getInstance().getMisEnfermedades()!=null) {
-		
-			for (Enfermedad enfermedad : enfermedadesSelected) {
-		        if(enfermedad.isEnfermedadIsSelected()) {
-				    enfermedad.setEnfermedadIsSelected(false);
-		        }
-		    }
-		}
-	}
-
+	
 }

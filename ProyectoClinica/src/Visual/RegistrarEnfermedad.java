@@ -71,7 +71,7 @@ public class RegistrarEnfermedad extends JDialog {
 		txtCodigo = new JTextField("Enfermedad - "+Clinica.getInstance().generadorCodigoEnfermedad);
 		txtCodigo.setBackground(SystemColor.info);
 		txtCodigo.setEnabled(false);
-		txtCodigo.setBounds(85, 8, 96, 20);
+		txtCodigo.setBounds(106, 8, 96, 20);
 		contentPanel.add(txtCodigo);
 		txtCodigo.setColumns(10);
 		
@@ -84,29 +84,29 @@ public class RegistrarEnfermedad extends JDialog {
 					e.consume();
 			}
 		});
-		txtNombre.setBounds(85, 39, 86, 20);
+		txtNombre.setBounds(106, 39, 86, 20);
 		contentPanel.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		textDescripcion = new JTextField();
-		textDescripcion.setBounds(85, 75, 219, 20);
+		textDescripcion.setBounds(106, 75, 219, 20);
 		contentPanel.add(textDescripcion);
 		textDescripcion.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Nombre:");
-		lblNewLabel_2.setBounds(10, 42, 52, 14);
+		lblNewLabel_2.setBounds(10, 42, 59, 14);
 		contentPanel.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Descripcion:");
-		lblNewLabel_3.setBounds(10, 78, 65, 14);
+		lblNewLabel_3.setBounds(10, 78, 75, 14);
 		contentPanel.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Sintomas:");
-		lblNewLabel_4.setBounds(10, 112, 52, 14);
+		lblNewLabel_4.setBounds(10, 112, 75, 14);
 		contentPanel.add(lblNewLabel_4);
 		
 		txtSintomas = new JTextField();
-		txtSintomas.setBounds(85, 109, 219, 65);
+		txtSintomas.setBounds(106, 109, 219, 65);
 		contentPanel.add(txtSintomas);
 		txtSintomas.setColumns(10);
 		{
@@ -122,7 +122,7 @@ public class RegistrarEnfermedad extends JDialog {
 				
 				btnRegistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if(miEnfermedad != null)
+						if(miEnfermedad == null)
 						{
 							Enfermedad aux = new Enfermedad(txtCodigo.getText(),txtNombre.getText(),textDescripcion.getText(),txtSintomas.getText(), null,true);
 							Clinica.getInstance().agregarEnfermedad(aux);
@@ -157,7 +157,7 @@ public class RegistrarEnfermedad extends JDialog {
 			
 	}
 	public void clean() {
-		Clinica.getInstance().generadorCodigoVivienda++;
+		Clinica.getInstance().generadorCodigoEnfermedad++;
 		txtCodigo.setText("Enfermedad - "+Clinica.getInstance().generadorCodigoEnfermedad);
 		textDescripcion.setText("");
 		txtSintomas.setText("");

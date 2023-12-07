@@ -310,4 +310,19 @@ public class Clinica {
 			}
 			return medicoReg;
 		}
+	    public Enfermedad obtenerEnfermedadById(String id) {
+			
+			Enfermedad enfermedadReg = null;
+			boolean encontrado = false;
+			int i = 0;
+			while(i<misEnfermedades.size()&& !encontrado) {
+				if(misEnfermedades.get(i).getIdEnfermedad().equalsIgnoreCase(id)) {
+					enfermedadReg = misEnfermedades.get(i);
+					encontrado = true;
+					break;
+				}
+				i++;
+			}
+			return enfermedadReg;
+		}
 	}

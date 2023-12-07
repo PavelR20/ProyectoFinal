@@ -8,7 +8,6 @@ public class Enfermedad {
 	private String sintomas;
 	private Vacuna vacunaDispo;
 	private boolean enfermedadVigilancia = true; 
-	private boolean enfermedadIsSelected = false;
 	
 	public Enfermedad(String idEnfermedad, String nombreEnfermedad, String descripcion, String sintomas,
 			Vacuna vacunaDispo,boolean enfermedadVigilancia) {
@@ -70,14 +69,6 @@ public class Enfermedad {
 
 	public void setEnfermedadVigilancia(boolean enfermedadVigilancia) {
 		this.enfermedadVigilancia = enfermedadVigilancia;
-	}
-
-	public boolean isEnfermedadIsSelected() {
-		return enfermedadIsSelected;
-	}
-
-	public void setEnfermedadIsSelected(boolean enfermedadIsSelected) {
-		this.enfermedadIsSelected = enfermedadIsSelected;
 	}
 	
 	

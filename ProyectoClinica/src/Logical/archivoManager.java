@@ -186,7 +186,7 @@ public class archivoManager {
 			String line;
 			while ((line = reader.readLine()) != null) {
 				String[] parts = line.split(",");
-				if (parts.length == 6) { 
+				if (parts.length == 10) { 
 					enfermedades.add(new Enfermedad(parts[0], parts[1], parts[2], parts[3], 
 							new Vacuna(parts[0], parts[1], 
 									new Paciente(parts[0], parts[1], parts[2], parseDate(parts[3]), parts[4],

@@ -1,2 +1,0 @@
-42342423424,fasdadsa,comboBoxChanged,Mon Dec 04 19:06:39 GMT-04:00 2023,312313123,null,,Paciente - 1,adsadasdasdadasdad,null
-829320928,Josvier,Masculino,Thu Dec 07 08:30:48 PST 2023,18098882788,Vivienda - 1,Santiago,11221,,Paciente - 1,Nada,null

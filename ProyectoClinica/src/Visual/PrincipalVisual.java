@@ -3,6 +3,8 @@ package Visual;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PrincipalVisual extends JFrame {
 
@@ -13,7 +15,6 @@ public class PrincipalVisual extends JFrame {
     public JMenuItem hacerCita;
     public JMenuItem HacerConsultas;
     public JMenu mRegistro;
-    public JMenuItem crearPersona;
     public JMenuItem mntmNewMenuItem_9;
     public JMenuItem crearVacuna;
     public JMenu mUSER;
@@ -63,6 +64,14 @@ public class PrincipalVisual extends JFrame {
         menuBar.add(mCitas);
 
         hacerCita = new JMenuItem("Hacer Cita");
+        hacerCita.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		HacerCita hacerCita = new HacerCita();
+        		hacerCita.setModal(true);
+        		hacerCita.setVisible(true);
+        		
+        	}
+        });
         stylizeMenuItem(hacerCita);
         mCitas.add(hacerCita);
 
@@ -70,21 +79,38 @@ public class PrincipalVisual extends JFrame {
         menuBar.add(mConsultas);
 
         HacerConsultas = new JMenuItem("Hacer Consulta");
+        HacerConsultas.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		HacerConsulta hacerCons = new HacerConsulta();
+        		hacerCons.setModal(true);
+        		hacerCons.setVisible(true);
+        	}
+        });
         stylizeMenuItem(HacerConsultas);
         mConsultas.add(HacerConsultas);
 
         mRegistro = new JMenu("REGISTROS");
         menuBar.add(mRegistro);
 
-        crearPersona = new JMenuItem("Crear Medico");
-        stylizeMenuItem(crearPersona);
-        mRegistro.add(crearPersona);
-
-        mntmNewMenuItem_9 = new JMenuItem("Crear Paciente");
+        mntmNewMenuItem_9 = new JMenuItem("Crear Persona");
+        mntmNewMenuItem_9.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		RegistrarGeneral regisGen = new RegistrarGeneral(null,0);
+        		regisGen.setModal(true);
+        		regisGen.setVisible(true);
+        	}
+        });
         stylizeMenuItem(mntmNewMenuItem_9);
         mRegistro.add(mntmNewMenuItem_9);
 
         crearVacuna = new JMenuItem("Crear Vacuna");
+        crearVacuna.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		RegistrarVacuna regisVac = new RegistrarVacuna();
+        		regisVac.setModal(true);
+        		regisVac.setVisible(true);
+        	}
+        });
         stylizeMenuItem(crearVacuna);
         mRegistro.add(crearVacuna);
 

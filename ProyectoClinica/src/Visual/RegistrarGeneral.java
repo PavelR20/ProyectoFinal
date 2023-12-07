@@ -182,7 +182,7 @@ public class RegistrarGeneral extends JDialog {
 			panel_DatosGenerales.add(lblNewLabel_2);
 
 			spnFecha = new JSpinner();
-			spnFecha.setBounds(402, 23, 123, 20);
+			spnFecha.setBounds(402, 23, 144, 28);
 			spnFecha.setModel(new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_YEAR));
 			panel_DatosGenerales.add(spnFecha);
 

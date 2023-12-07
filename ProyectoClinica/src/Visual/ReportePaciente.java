@@ -127,9 +127,8 @@ public class ReportePaciente extends JDialog {
         scrollPaneEnfermedades.setBounds(10, 446, 549, 150);
         contentPanel.add(scrollPaneEnfermedades);
 
-       
-        modeloEnfermedades = new DefaultTableModel();
         String headersEnfermedades[] = { "Nombre", "Código", "Síntomas" };
+        modeloEnfermedades = new DefaultTableModel();
         modeloEnfermedades.setColumnIdentifiers(headersEnfermedades);
 
         tableEnfermedades = new JTable();
@@ -161,20 +160,21 @@ public class ReportePaciente extends JDialog {
         cancelButton.setActionCommand("Cancel");
         buttonPane.add(cancelButton);
         
+        
         cargarDatosDesdeArchivo("enfermedad.txt");
     }
 
 
     
     private void cargarDatosDesdeArchivo(String archivo) {
+    	
         ArrayList<Enfermedad> listaEnf = archivoManager.leerEnfermedad();
         DefaultTableModel model = (DefaultTableModel) tableEnfermedades.getModel();
 
-      
         model.setRowCount(0);
 
         for (Enfermedad enfermedad : listaEnf) {
-            model.addRow(new Object[]{enfermedad.getNombreEnfermedad(), enfermedad.getIdEnfermedad(), enfermedad.getSintomas()});
+            model.addRow(new Object[]{enfermedad.getIdEnfermedad(), enfermedad.getNombreEnfermedad(), enfermedad.getSintomas()});
         }
     }
 }

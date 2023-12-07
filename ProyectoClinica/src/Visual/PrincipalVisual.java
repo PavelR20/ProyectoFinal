@@ -125,10 +125,24 @@ public class PrincipalVisual extends JFrame {
         mRegistro.add(crearVacuna);
         
         crearEnfermedad = new JMenuItem("Crear enfermedad");
+        crearEnfermedad.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		RegistrarEnfermedad enfer = new RegistrarEnfermedad(null, 0);
+        		enfer.setModal(true);
+        		enfer.setVisible(true);
+        	}
+        });
         crearEnfermedad.setBackground(SystemColor.activeCaption);
         mRegistro.add(crearEnfermedad);
         
         crearVivienda = new JMenuItem("crear Vivienda");
+        crearVivienda.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		RegistrarVivienda vivienda = new RegistrarVivienda(null, 0);
+        		vivienda.setModal(true);
+        		vivienda.setVisible(true);
+        	}
+        });
         crearVivienda.setBackground(SystemColor.activeCaption);
         mRegistro.add(crearVivienda);
 

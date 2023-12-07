@@ -164,8 +164,6 @@ public class ReportePaciente extends JDialog {
         cargarDatosDesdeArchivo("enfermedad.txt");
     }
 
-
-    
     private void cargarDatosDesdeArchivo(String archivo) {
     	
         ArrayList<Enfermedad> listaEnf = archivoManager.leerEnfermedad();

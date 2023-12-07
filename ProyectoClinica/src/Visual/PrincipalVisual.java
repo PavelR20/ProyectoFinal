@@ -189,6 +189,14 @@ public class PrincipalVisual extends JFrame {
         mInvertario.add(listadoEnfermedad);
 
         listaVivienda = new JMenuItem("Listado Vivienda");
+        listaVivienda.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		
+        		ListarVivienda listarV = new ListarVivienda();
+        		listarV.setModal(true);
+        		listarV.setVisible(true);
+        	}
+        });
         listaVivienda.setBackground(SystemColor.activeCaption);
         stylizeMenuItem(listaVivienda);
         mInvertario.add(listaVivienda);

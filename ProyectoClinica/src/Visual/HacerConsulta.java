@@ -42,8 +42,6 @@ public class HacerConsulta extends JDialog {
 	private JTable tableEnfermedadNoSelected;
 	private static DefaultTableModel modeloNoSelected;
 	private static Object[] rowNoSelected; 
-	private int indexSelected;
-	private int indexNoSelected;
 	private JButton btnAgregar;
 	private JButton btnQuitar;
 	private ArrayList<Enfermedad> enfermedadesSelected;
@@ -120,7 +118,7 @@ public class HacerConsulta extends JDialog {
 			contentPanel.add(txtConsulta);
 			txtConsulta.setColumns(10);
 		}
-
+		
 		JPanel panel_EnfermedadNoSelected = new JPanel();
 		panel_EnfermedadNoSelected.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Enfermedades ", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_EnfermedadNoSelected.setBounds(355, 117, 219, 130);
@@ -129,28 +127,18 @@ public class HacerConsulta extends JDialog {
 		{
 			JScrollPane scrollPane = new JScrollPane();
 			panel_EnfermedadNoSelected.add(scrollPane, BorderLayout.CENTER);
-
+			
 			modeloNoSelected = new DefaultTableModel();
 			String headers[] = { "Nombre", "Codigo", "Sintomas" };
 			modeloNoSelected.setColumnIdentifiers(headers);
 			tableEnfermedadNoSelected = new JTable();
-			tableEnfermedadNoSelected.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					indexNoSelected = tableEnfermedadNoSelected.getSelectedRow();
-					if (indexNoSelected >= 0)
-						btnAgregar.setEnabled(true);
-					else {
-						btnAgregar.setEnabled(false);
-					}
-				}
-			});
+			
 			scrollPane.setViewportView(tableEnfermedadNoSelected);
 			tableEnfermedadNoSelected.setModel(modeloNoSelected);
 		}
-
-
-
+		
+		
+		
 		btnAgregar = new JButton("Agregar");
 		btnAgregar.setEnabled(false);
 		btnAgregar.addActionListener(new ActionListener() {
@@ -160,7 +148,7 @@ public class HacerConsulta extends JDialog {
 					btnAgregar.setEnabled(false);
 				}
 				txtEnfermedad.setText("Enfermedad - ");
-
+				
 			}
 		});
 		btnAgregar.setBounds(256, 146, 89, 23);
@@ -171,20 +159,20 @@ public class HacerConsulta extends JDialog {
 			lblNewLabel.setBounds(510, 258, 64, 70);
 			contentPanel.add(lblNewLabel);
 		}
-
+		
 		JLabel lblNewLabel_5 = new JLabel("Codigo de la Enfermedad:");
 		lblNewLabel_5.setBounds(10, 128, 134, 14);
 		contentPanel.add(lblNewLabel_5);
-
+		
 		txtEnfermedad = new JTextField();
 		txtEnfermedad.setText("Enfermedad - ");
 		txtEnfermedad.setBounds(10, 147, 104, 20);
 		contentPanel.add(txtEnfermedad);
 		txtEnfermedad.setColumns(10);
-
+		
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
-
+			
 
 			public void actionPerformed(ActionEvent e) {
 				consultEnfermedad = Clinica.getInstance().obtenerEnfermedadById(txtEnfermedad.getText());
@@ -206,9 +194,9 @@ public class HacerConsulta extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						Consultas consultaReg = new Consultas(txtConsulta.getText(),(Date)spnFecha.getValue(),
 								enfermedadesSelected, Clinica.getInstance().obtenerMedicoById(txtCodMed.getText()),
-								Clinica.getInstance().obtenerPacienteById(txtCodePaciente.getText()));
+										Clinica.getInstance().obtenerPacienteById(txtCodePaciente.getText()));
 						Clinica.getInstance().agregarConsulta(consultaReg);
-
+						
 					}
 				});
 				btnRegistrar.setActionCommand("OK");
@@ -233,14 +221,14 @@ public class HacerConsulta extends JDialog {
 		rowNoSelected = new Object[tableEnfermedadNoSelected.getColumnCount()];
 		if(Clinica.getInstance().getMisEnfermedades()!=null) {
 			for (Enfermedad enfermedad : Clinica.getInstance().getMisEnfermedades()) {
-
+			        
 				rowNoSelected[0] = enfermedad.getNombreEnfermedad();
-				rowNoSelected[1] = enfermedad.getIdEnfermedad();
-				rowNoSelected[2] = enfermedad.getSintomas();
-				modeloNoSelected.addRow(rowNoSelected);
-
+			    rowNoSelected[1] = enfermedad.getIdEnfermedad();
+			    rowNoSelected[2] = enfermedad.getSintomas();
+		        modeloNoSelected.addRow(rowNoSelected);
+		        
+		    	}
 			}
-		}
 	}
 	public void clean() {
 		txtCodePaciente.setText("Paciente - ");
@@ -249,5 +237,5 @@ public class HacerConsulta extends JDialog {
 		txtCodMed.setText("Medico - ");
 		txtEnfermedad.setText("Enfermedad - ");
 	}
-
+	
 }

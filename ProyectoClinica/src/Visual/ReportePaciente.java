@@ -35,8 +35,8 @@ public class ReportePaciente extends JDialog {
     private JTextArea txtDescripcion;
     private JTextField txtCedula;
     private JTable tableEnfermedades;
-    private static DefaultTableModel modeloEnfermedades;
     private static Object[] rowEnfermedades;
+    private static DefaultTableModel model;
 
     public static void main(String[] args) {
         try {
@@ -128,13 +128,14 @@ public class ReportePaciente extends JDialog {
         contentPanel.add(scrollPaneEnfermedades);
 
         String headersEnfermedades[] = { "Nombre", "Código", "Síntomas" };
-        modeloEnfermedades = new DefaultTableModel();
-        modeloEnfermedades.setColumnIdentifiers(headersEnfermedades);
+        model = new DefaultTableModel();
+        model.setColumnIdentifiers(headersEnfermedades);
 
         tableEnfermedades = new JTable();
         tableEnfermedades.getTableHeader().setReorderingAllowed(false);
+        tableEnfermedades.setModel(model);
         scrollPaneEnfermedades.setViewportView(tableEnfermedades);
-        tableEnfermedades.setModel(modeloEnfermedades);
+        
 
  
 

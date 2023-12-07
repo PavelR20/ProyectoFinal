@@ -30,6 +30,8 @@ public class PrincipalVisual extends JFrame {
     public JMenuItem listadoEnfermedad;
     public JMenuItem listaVivienda;
     private Dimension dim;
+    private JMenuItem crearEnfermedad;
+    private JMenuItem crearVivienda;
     /**
      * Launch the application.
      */
@@ -121,6 +123,14 @@ public class PrincipalVisual extends JFrame {
         });
         stylizeMenuItem(crearVacuna);
         mRegistro.add(crearVacuna);
+        
+        crearEnfermedad = new JMenuItem("Crear enfermedad");
+        crearEnfermedad.setBackground(SystemColor.activeCaption);
+        mRegistro.add(crearEnfermedad);
+        
+        crearVivienda = new JMenuItem("crear Vivienda");
+        crearVivienda.setBackground(SystemColor.activeCaption);
+        mRegistro.add(crearVivienda);
 
         mInvertario = new JMenu("INVENTARIO");
         menuBar.add(mInvertario);

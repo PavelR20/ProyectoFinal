@@ -69,7 +69,7 @@ public class ListarPaciente extends JDialog {
 		ListPanel.add(scrollPane, BorderLayout.CENTER);
 
 
-		String[] headear = {"ID","Nombre", "Genero"};
+		String[] headear = {"Cedula","Nombre", "Genero"};
 		model = new DefaultTableModel();
 		model.setColumnIdentifiers(headear);
 		table = new JTable();
@@ -170,7 +170,7 @@ public class ListarPaciente extends JDialog {
 		model.setRowCount(0);
 
 		for (Paciente paciente : listaPaciente) {
-			model.addRow(new Object[]{ paciente.getIdPaciente(),paciente.getNombre(),paciente.getGenero()});
+			model.addRow(new Object[]{ paciente.getCedula(),paciente.getNombre(),paciente.getGenero()});
 		}
 	}
 
